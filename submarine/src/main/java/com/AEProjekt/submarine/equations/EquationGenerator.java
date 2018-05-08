@@ -12,7 +12,7 @@ public class EquationGenerator
     private int ufoX;
     private int ufoY;
     private boolean visiblePlane;
-    private boolean visilbeBoat;
+    private boolean visibleBoat;
     private iEquationType equation;
 
     public void generateEquation(int equationType)
@@ -53,7 +53,6 @@ public class EquationGenerator
                 negativeGanzeX.add(i);
             }
         }
-
         for (int i = 1; i <= 12; i++)
         {
             double y = equation.calculateY(i);
@@ -137,12 +136,12 @@ public class EquationGenerator
 
     public boolean isVisilbeBoat()
     {
-        return visilbeBoat;
+        return visibleBoat;
     }
 
     public void setVisilbeBoat(boolean visilbeBoat)
     {
-        this.visilbeBoat = visilbeBoat;
+        this.visibleBoat = visilbeBoat;
     }
 
     public iEquationType getEquation()
