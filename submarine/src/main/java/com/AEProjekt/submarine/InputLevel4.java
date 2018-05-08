@@ -1,8 +1,8 @@
 package com.AEProjekt.submarine;
 
 public class InputLevel4 implements iLInput{
-    private int userNumeratorInput;
-    private int userDenominatorInput;
+    private int userNumeratorInput; //Zaehler
+    private int userDenominatorInput; //Nenner
     private int userYInput;
 
     //Konstruktor
@@ -45,7 +45,15 @@ public class InputLevel4 implements iLInput{
     {
         if(userYInput>= -12 && userYInput <= 12)
         {
-            return true;
+            if(userDenominatorInput != 0)
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+
         }
         else
         {
