@@ -23,10 +23,18 @@ public class EquationGenerator
         }
     }
 
+    //TODO: Ein Punkt immer kleiner als 0
+    //TODO: kürzen von brüchen
     private void generateLinearEquation()
     {
-        // Zähler der Steigung im Bereich von -12 bis 12 generieren, wobie 12 maximale Spielfeldgröße ist.
-        int dividend = -MAXVALUES + new Random().nextInt(MAXVALUES *2 + 1);
+        // Zähler der Steigung im Bereich von -6 bis 6 generieren.
+        //int dividend = -MAXVALUES + new Random().nextInt(MAXVALUES *2 + 1);
+        int dividend = new Random().nextInt(MAXVALUES ) + 1;
+        // bei 0 positiv, bei 1 negativ
+        if(new Random().nextInt(2) == 0)
+        {
+            dividend *= -1;
+        }
         int divisor = new Random().nextInt(MAXVALUES)+1; // +1 um 0 auszuschließen und um auf 12 zu kommen
         int temp = dividend/divisor;
         if(temp < 0) temp*=-1;
@@ -55,11 +63,25 @@ public class EquationGenerator
             }
         }
 
-        setSubmarineX(negativeGanzeX.get(new Random().nextInt(negativeGanzeX.size())));
-        setSubmarineY((int) equation.calculateY(getSubmarineX()));
+        int x1 = negativeGanzeX.get(new Random().nextInt(negativeGanzeX.size()));
+        int y1 = (int) equation.calculateY(x1);
+        int x2 = positiveGanzeX.get(new Random().nextInt(positiveGanzeX.size()));
+        int y2 = (int) equation.calculateY(x2);
 
-        setUfoX(positiveGanzeX.get(new Random().nextInt(positiveGanzeX.size())));
-        setUfoY((int) equation.calculateY(getUfoX()));
+        if(y1 < y2)
+        {
+            setSubmarineX(x1);
+            setSubmarineY(y1);
+            setUfoX(x2);
+            setUfoY(y2);
+        }
+        else
+        {
+            setSubmarineX(x2);
+            setSubmarineY(y2);
+            setUfoX(x1);
+            setUfoY(y1);
+        }
 
     }
 
