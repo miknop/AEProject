@@ -1,6 +1,6 @@
-package com.AEProjekt.submarine;
+package com.AEProjekt.submarine.InputLevel;
 
-public class InputLevel4 implements iLInput{
+public class InputLevel4 implements iLInput {
     private int userNumeratorInput; //Zaehler
     private int userDenominatorInput; //Nenner
     private int userYInput;

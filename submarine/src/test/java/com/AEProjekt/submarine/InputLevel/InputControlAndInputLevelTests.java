@@ -1,9 +1,8 @@
-package com.AEProjekt.submarine;
+package com.AEProjekt.submarine.InputLevel;
 
-import com.AEProjekt.submarine.iLInput;
-import com.AEProjekt.submarine.InputControl;
-
-
+import com.AEProjekt.submarine.InputLevel.InputLevel1;
+import com.AEProjekt.submarine.InputLevel.TestStructureForInputLevel1;
+import com.AEProjekt.submarine.InputLevel.iLInput;
 
 
 public class InputControlAndInputLevelTests {

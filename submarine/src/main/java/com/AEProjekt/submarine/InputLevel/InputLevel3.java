@@ -1,6 +1,6 @@
-package com.AEProjekt.submarine;
+package com.AEProjekt.submarine.InputLevel;
 
-public class InputLevel3 implements iLInput{
+public class InputLevel3 implements iLInput {
     private double pX;
 
     //Konstruktor
