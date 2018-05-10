@@ -1,4 +1,4 @@
-package com.AEProjekt.submarine;
+package com.AEProjekt.submarine.equation;
 
 import com.AEProjekt.submarine.equations.EquationGenerator;
 import com.AEProjekt.submarine.equations.linearEquation;
@@ -31,5 +31,6 @@ public class EquationGeneratorTests {
             assertTrue("Y-Achsenabschnitt nicht im Bereich von -12 bis 12", linear.getB() >= -12 && linear.getB() <= 12);
         }
     }
+
 
 }

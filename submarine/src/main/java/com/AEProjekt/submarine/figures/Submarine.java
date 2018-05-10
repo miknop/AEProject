@@ -3,13 +3,15 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package submarine_addon;
+package com.AEProjekt.submarine.figures;  // created at 5/7/2018
 
 /**
  *
  * @author Michel
  */
-public class Satellite {
+
+// renamed from UBoat to Submarine (Michel; 5/7/2018)
+public class Submarine {
     private int xPosition;
     private int yPosition;
     

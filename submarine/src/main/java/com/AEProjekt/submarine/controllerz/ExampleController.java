@@ -1,4 +1,4 @@
-package com.AEProjekt.submarine;
+package com.AEProjekt.submarine.controllerz;
 
 
 
