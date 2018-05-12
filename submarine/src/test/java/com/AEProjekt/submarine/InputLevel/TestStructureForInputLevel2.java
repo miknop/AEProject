@@ -1,4 +1,4 @@
-package com.AEProjekt.submarine;
+package com.AEProjekt.submarine.InputLevel;
 
 /**
  * Created by freygang_sim on 09.05.2018.
