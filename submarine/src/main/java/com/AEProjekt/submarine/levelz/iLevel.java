@@ -3,15 +3,15 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package submarine_addon;  // created at 5/7/2018
+package com.AEProjekt.submarine.levelz;  // created at 5/7/2018
 
 /**
  *
  * @author Michel
  */
-public interface iFigure {
-    public int[] field = {};
+public interface iLevel {
+    final int maxLosses = 2;
+    final int triesTotal = 7;
     
-    public void method();       
-        
+    public void method();
 }

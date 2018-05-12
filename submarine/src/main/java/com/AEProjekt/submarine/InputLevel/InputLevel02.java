@@ -1,8 +1,7 @@
-package com.AEProjekt.submarine;
+package com.AEProjekt.submarine.InputLevel;
 
 
-
-public class InputLevel02 implements iLInput{
+public class InputLevel02 implements iLInput {
 
     private double pFX;
 
