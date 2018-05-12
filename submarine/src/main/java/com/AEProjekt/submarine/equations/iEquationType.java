@@ -5,4 +5,5 @@ public interface iEquationType
     String toString();
     double calculateX(int y);
     double calculateY(int x);
+
 }
