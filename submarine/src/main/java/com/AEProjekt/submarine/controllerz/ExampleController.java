@@ -21,4 +21,11 @@ public class ExampleController
         return "example";
     }
 
+    @GetMapping("/bootstrapTest")
+    public String bootstrapTest(Model model)
+    {
+        model.addAttribute("message", "Bootstrap Test");
+        return "bootstrapTest";
+    }
+
 }
