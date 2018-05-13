@@ -18,4 +18,35 @@ public class Submarine {
     private void generatePosition(){
         
     }
+
+    public Submarine(int x, int y)
+    {
+        xPosition = x;
+        yPosition = y;
+    }
+
+    public String toString()
+    {
+        return "(" + Integer.toString(xPosition) + "/" + Integer.toString(yPosition) + ")";
+    }
+
+    public int getxPosition()
+    {
+        return xPosition;
+    }
+
+    public void setxPosition(int xPosition)
+    {
+        this.xPosition = xPosition;
+    }
+
+    public int getyPosition()
+    {
+        return yPosition;
+    }
+
+    public void setyPosition(int yPosition)
+    {
+        this.yPosition = yPosition;
+    }
 }

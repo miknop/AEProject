@@ -16,4 +16,14 @@ public class Plane {
     private void generatePosition(){
         
     }
+    public Plane(int x, int y)
+    {
+        xPosition = x;
+        yPosition = y;
+    }
+
+    public String toString()
+    {
+        return "(" + Integer.toString(xPosition) + "/" + Integer.toString(yPosition) + ")";
+    }
 }
