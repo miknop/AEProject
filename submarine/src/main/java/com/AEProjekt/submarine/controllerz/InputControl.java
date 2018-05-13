@@ -55,7 +55,7 @@ public class InputControl {
 
     private boolean isBombDepthValid(iLInput input)
     {
-        if(input instanceof InputLevel02)
+        if(input instanceof InputLevel2)
         {
             if(input.isInputValid())
             {
