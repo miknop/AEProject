@@ -9,7 +9,7 @@ package com.AEProjekt.submarine.levelz;  //  created at 5/7/2018
  *
  * @author Michel
  */
-public class Level4 {
+public class Level4 implements iLevel{
    private boolean plane;
     
     public void setPlane(boolean plane){

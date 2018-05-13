@@ -9,7 +9,7 @@ package com.AEProjekt.submarine.levelz;  // created at 5/7/2018
  *
  * @author Michel
  */
-public class Level3 {
+public class Level3 implements iLevel{
     private boolean satellite;
     
     public void setSatellite(boolean satellite){
