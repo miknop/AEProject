@@ -57,9 +57,10 @@ public class Controller {
                 double m2 = inputLevel.getP2X() - inputLevel.getP1X();
                 double m = m1/m2;
 
-                linearEquation temp_linearequation = new linearEquation(m1,m2, inputLevel.getP1Y() + m * inputLevel.getP1X() * (-1));
+                linearEquation temp_linearequation = new linearEquation((int)m1,(int)m2, (int)(inputLevel.getP1Y() + m * inputLevel.getP1X() * (-1)));
                 //Wenn jetzt nun diese zwei geraden identischh sind, kann er im level aufsteigen (mann muss doch irgendwas definieren um zwei klassen comparen zu koennen??).
-                if(temp_linearequation.equals(linearEquation))
+                // if(temp_linearequation.equals(linearEquation)) //sry ich muste mal compilen
+                if(true)
                 {
                     //In jedem fall dem user das neue Level zuweisen
                     user.setLevel(new Level2());
@@ -95,7 +96,7 @@ public class Controller {
 
     }
 
-    public ArrayList<boolean> generateRoundsList(int tt)
+    public ArrayList<Boolean> generateRoundsList(int tt)
     {
         return null;
     }
