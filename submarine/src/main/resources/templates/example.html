@@ -9,8 +9,8 @@
     <title>AE_Projekt; Submarine Math Game</title>
 
     <!-- Bootstrap -->
-    <link href="css/bootstrap.min.css" rel="stylesheet">
-    <script src="js/graphs.js"></script>
+    <link rel="stylesheet" type="text/css"
+          href="webjars/bootstrap/4.1.0/css/bootstrap.min.css" />
 
     <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -76,6 +76,10 @@
 </head>
 <body>
     <h1>Hello, world!</h1>
+    <p>Gegebene Funktion: </p>
+    <p th:text="${gleichung.toString()}"></p>
+    <p th:text="${submarine.toString()}"></p>
+    <p th:text="${plane.toString()}"></p>
     <!--<p th:text="'Hello, ' + ${name} + '!'" ></p>-->
     <div class="container-fluid">
         <div class="row">
@@ -199,23 +203,30 @@ er zum Offizier befördert (Level 5).</textarea>
             </div>
 
 
-
-
-
+            <div class="row">
+                <div class="col-xs-6 col-md-2">.col-xs-6 .col-md-4</div>
+                <div class="col-xs-12 col-sm-6 col-md-8">.col-xs-12 .col-sm-6 .col-md-1</div>
+                <div class="col-xs-6 col-md-4">.col-xs-6 .col-md-4</div>
+            </div>
         </div>
-        <!--<div class="row">
-            <div class="col-xs-6 col-md-2">.col-xs-6 .col-md-4</div>
-            <div class="col-xs-12 col-sm-6 col-md-8">.col-xs-12 .col-sm-6 .col-md-1</div>
-            <div class="col-xs-6 col-md-4">.col-xs-6 .col-md-4</div>
+    </div>
 
 
-        </div>-->
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-4 bg-success">
+                <p>Lorem ipsum...</p>
+            </div>
+            <div class="col-8 bg-warning">
+                <p>Sed ut perspiciatis...</p>
+            </div>
+        </div>
     </div>
 
     <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <script src="/webjars/jquery/3.3.1/jquery.min.js"></script>
     <!-- Include all compiled plugins (below), or include individual files as needed -->
-    <script src="js/bootstrap.min.js"></script>
-    <script src="js/graphs.js"></script>
+    <script type="text/javascript"
+            src="webjars/bootstrap/4.1.0/js/bootstrap.min.js"></script>
 </body>
 </html>

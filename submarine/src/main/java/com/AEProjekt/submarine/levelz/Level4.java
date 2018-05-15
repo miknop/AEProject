@@ -3,21 +3,21 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package submarine_addon;  // created at 5/7/2018
+package com.AEProjekt.submarine.levelz;  //  created at 5/7/2018
 
 /**
  *
  * @author Michel
  */
-public class Level3 {
-    private boolean satellite;
+public class Level4 implements iLevel{
+   private boolean plane;
     
-    public void setSatellite(boolean satellite){
-        this.satellite = satellite;
+    public void setPlane(boolean plane){
+        this.plane = plane;
     }
     
-    public boolean getSatelite(){
-        return this.satellite;
+    public boolean getPlane(){
+        return this.plane;
     }
     
     public void method(){

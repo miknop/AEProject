@@ -1,4 +1,6 @@
-package com.AEProjekt.submarine;
+package com.AEProjekt.submarine.controllerz;
+
+import com.AEProjekt.submarine.InputLevel.*;
 
 public class InputControl {
 

@@ -1,8 +1,8 @@
-package com.AEProjekt.submarine;
+package com.AEProjekt.submarine.InputLevel;
 
-public class InputLevel4 implements iLInput{
-    private int userNumeratorInput;
-    private int userDenominatorInput;
+public class InputLevel4 implements iLInput {
+    private int userNumeratorInput; //Zaehler
+    private int userDenominatorInput; //Nenner
     private int userYInput;
 
     //Konstruktor
@@ -45,11 +45,67 @@ public class InputLevel4 implements iLInput{
     {
         if(userYInput>= -12 && userYInput <= 12)
         {
-            return true;
+            if(userDenominatorInput != 0)
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+
         }
         else
         {
             return false;
         }
+    }
+
+    @Override
+    public double getP1Y()
+    {
+        return 0;
+    }
+
+    @Override
+    public void setP1Y(double p1Y)
+    {
+
+    }
+
+    @Override
+    public double getP1X()
+    {
+        return 0;
+    }
+
+    @Override
+    public void setP1X(double p1X)
+    {
+
+    }
+
+    @Override
+    public double getP2Y()
+    {
+        return 0;
+    }
+
+    @Override
+    public void setP2Y(double p2Y)
+    {
+
+    }
+
+    @Override
+    public double getP2X()
+    {
+        return 0;
+    }
+
+    @Override
+    public void setP2X(double p2X)
+    {
+
     }
 }
