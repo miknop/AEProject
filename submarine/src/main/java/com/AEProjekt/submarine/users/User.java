@@ -1,14 +1,14 @@
 package com.AEProjekt.submarine.users;
 
 import com.AEProjekt.submarine.levelz.iLevel;
-import lombok.Getter;
-import lombok.Setter;
+import lombok.Data;
 
 
+@Data
 public class User {
-    @Getter @Setter private String username;
-    @Getter @Setter private String password;
-    @Getter @Setter private iLevel level;
+    private String username;
+    private String password;
+    private iLevel level;
 
     public String getUsername() {
         return username;
