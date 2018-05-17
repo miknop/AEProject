@@ -12,7 +12,7 @@ import java.util.ArrayList;
 
 public class Controller {
     private EquationGenerator generator;
-    private linearEquation linearEquation = null;
+    private LinearEquation linearEquation = null;
     private iLInput inputLevel;
     private InputControl validInput;
     private User user;
@@ -23,15 +23,30 @@ public class Controller {
     public void storyExecution()
     {
 
-        Level level = new Level (generator);
+        // generiere Level und erzeuge Gleichung sowie Figuren
+        Level1 level1 = new Level1();
+        while (!user.isLevel1Beaten()) {
+            //Achtung, noch Endlosschleife
+            level1.equipLevel();
+
+            //playLevel() -> methode, die ein iLevel übergeben bekommt und jedes mal läuft,
+            // solange ein Level nicht geschlagen wurde.
+            // jedes mal, wenn etwas richtig oder falsch gemacht wurde, wird die Liste (weiß noch nicht genau wohin mit der Liste)
+            // mit Fail oder Win gefüllt.
+            // Bei Fail wird equipLevel neu aufgerufen, bei Win auch, es sei denn, die abbruchbedingung für levelIsBeaten ist erfüllt
+            // und das level ist geschlagen
+
+        }
+
+
         //Pruefe ob schon eine Gleichung generiert wurde
         //wenn nein, generiere
-        if(linearequation == null && !(user.getLevel() instanceof Level5))
+        if(linearEquation == null && !(user.getLevel() instanceof Level5))
         {
             generator = new EquationGenerator();
 
 
-            linearEquation= (linearEquation) generator.getEquation();
+            linearEquation = (LinearEquation) generator.getEquation();
 
         }
 
@@ -55,9 +70,9 @@ public class Controller {
                 double m2 = inputLevel.getP2X() - inputLevel.getP1X();
                 double m = m1/m2;
 
-                linearEquation temp_linearequation = new linearEquation((int)m1,(int)m2, (int)(inputLevel.getP1Y() + m * inputLevel.getP1X() * (-1)));
+                LinearEquation temp_linearequation = new LinearEquation((int)m1,(int)m2, (int)(inputLevel.getP1Y() + m * inputLevel.getP1X() * (-1)));
                 //Wenn jetzt nun diese zwei geraden identischh sind, kann er im level aufsteigen (mann muss doch irgendwas definieren um zwei klassen comparen zu koennen??).
-                // if(temp_linearequation.equals(linearEquation)) //sry ich muste mal compilen
+                // if(temp_linearequation.equals(LinearEquation)) //sry ich muste mal compilen
                 if(true)
                 {
                     //In jedem fall dem user das neue Level zuweisen

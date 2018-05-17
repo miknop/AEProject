@@ -1,42 +1,16 @@
 package com.AEProjekt.submarine.InputLevel;
 
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+
+@Data
+@AllArgsConstructor
+@NoArgsConstructor
 public class InputLevel4 implements iLInput {
     private int userNumeratorInput; //Zaehler
     private int userDenominatorInput; //Nenner
     private int userYInput;
-
-    //Konstruktor
-
-    public InputLevel4(int userNumeratorInput, int userDenominatorInput, int userYInput) {
-        this.userNumeratorInput = userNumeratorInput;
-        this.userDenominatorInput = userDenominatorInput;
-        this.userYInput = userYInput;
-    }
-
-    //Getter und Setter
-    public int getUserNumeratorInput() {
-        return userNumeratorInput;
-    }
-
-    public void setUserNumeratorInput(int userNumeratorInput) {
-        this.userNumeratorInput = userNumeratorInput;
-    }
-
-    public int getUserDenominatorInput() {
-        return userDenominatorInput;
-    }
-
-    public void setUserDenominatorInput(int userDenominatorInput) {
-        this.userDenominatorInput = userDenominatorInput;
-    }
-
-    public int getUserYInput() {
-        return userYInput;
-    }
-
-    public void setUserYInput(int userYInput) {
-        this.userYInput = userYInput;
-    }
 
     //Weitere Methoden
 

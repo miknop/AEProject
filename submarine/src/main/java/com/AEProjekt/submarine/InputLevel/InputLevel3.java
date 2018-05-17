@@ -1,21 +1,15 @@
 package com.AEProjekt.submarine.InputLevel;
 
+
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+
+@Data
+@AllArgsConstructor
+@NoArgsConstructor
 public class InputLevel3 implements iLInput {
     private double pX;
-
-    //Konstruktor
-    public InputLevel3(double pX) {
-        this.pX = pX;
-    }
-
-    //Getter und Setter
-    public double getpX() {
-        return pX;
-    }
-
-    public void setpX(double pX) {
-        this.pX = pX;
-    }
 
     //Weitere Methoden
 

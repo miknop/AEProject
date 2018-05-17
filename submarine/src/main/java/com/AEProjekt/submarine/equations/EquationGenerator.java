@@ -1,5 +1,7 @@
 package com.AEProjekt.submarine.equations;
 
+import com.AEProjekt.submarine.figures.iFigure;
+
 import java.util.ArrayList;
 import java.util.Random;
 
@@ -20,13 +22,40 @@ public class EquationGenerator
     {
         if(equationType == 1)
         {
-            generateLinearEquation();
+           // generateLinearEquation();
         }
     }
 
+    //TODO Michael
+    public static LinearEquation generateLinearEquation(){
+        LinearEquation equation = new LinearEquation();
+        return equation;
+    }
+
+    public static int generateUfoX() {
+        int i  = 0;
+        return i;
+    }
+
+    public static int generateUfoY() {
+        int i  = 0;
+        return i;
+    }
+
+    public static int generateSubX() {
+        int i  = 0;
+        return i;
+    }
+
+    public static int generateSubY() {
+        int i  = 0;
+        return i;
+    }
+
+
     //TODO: Ein Punkt immer kleiner als 0
     //TODO: kürzen von brüchen
-    private void generateLinearEquation()
+    private void generateLinearEquationOld()
     {
         // Zähler der Steigung im Bereich von -6 bis 6 generieren.
         //int dividend = -MAXVALUES + new Random().nextInt(MAXVALUES *2 + 1);
@@ -41,7 +70,7 @@ public class EquationGenerator
         if(temp < 0) temp*=-1;
         int b = (-MAXVALUES + temp) + new Random().nextInt(MAXVALUES *2 - temp); // erklärung folgt
 
-        equation = new linearEquation(dividend, divisor, b);
+        equation = new LinearEquation(dividend, divisor, b);
 
         ArrayList<Integer> negativeGanzeX = new ArrayList<Integer>();
         ArrayList<Integer> positiveGanzeX = new ArrayList<Integer>();

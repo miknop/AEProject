@@ -6,32 +6,30 @@
 package com.AEProjekt.submarine.levelz;  // created at 5/7/2018
 
 import com.AEProjekt.submarine.equations.EquationGenerator;
-import com.AEProjekt.submarine.equations.linearEquation;
+import com.AEProjekt.submarine.equations.LinearEquation;
+import com.AEProjekt.submarine.figures.Plane;
+import com.AEProjekt.submarine.figures.Submarine;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
 /**
  *
  * @author Michel
  */
+@Data
+@AllArgsConstructor
+@NoArgsConstructor
 public class Level1 implements iLevel {
-    private boolean plane;
+    private Plane plane = null;
+    private Submarine sub = null;
+    private LinearEquation linEq = null;
 
-    private linearEquation = EquationGenerator.generateLinearEquation();
-
-    //constructor mit Generator
-    public void setPlane(boolean plane) {
-        this.plane = plane;
-    }
-
-    public boolean getPlane() {
-        return this.plane;
-    }
-
-    generatePlane() {
-        Plane=new plane;
-        x=generator get x;
-        y= generator getY;
+    public void equipLevel() {
+        linEq = EquationGenerator.generateLinearEquation();
+        plane = new Plane(EquationGenerator.generateUfoX(),EquationGenerator.generateUfoX());
+        sub = new Submarine(EquationGenerator.generateSubX(), EquationGenerator.generateSubY());
     }
 
 
-}
 }

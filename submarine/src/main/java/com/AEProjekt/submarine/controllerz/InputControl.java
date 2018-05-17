@@ -1,16 +1,16 @@
 package com.AEProjekt.submarine.controllerz;
 
 import com.AEProjekt.submarine.InputLevel.*;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
+@Data
+@AllArgsConstructor
+@NoArgsConstructor
 public class InputControl {
 
     private iLInput input;
-
-    //Konstruktor
-    //Nothing
-
-    //Getter und Setter
-    //Nothing
 
     //Weitere Methoden
     private boolean isDrawnInputValid(iLInput input)

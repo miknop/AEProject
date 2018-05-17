@@ -5,20 +5,21 @@
  */
 package com.AEProjekt.submarine.levelz;  // created at 5/7/2018
 
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+
 /**
  *
  * @author Michel
  */
+
+@Data
+@AllArgsConstructor
+@NoArgsConstructor
 public class Level3 implements iLevel{
     private boolean satellite;
-    
-    public void setSatellite(boolean satellite){
-        this.satellite = satellite;
-    }
-    
-    public boolean getSatelite(){
-        return this.satellite;
-    }
+
     
     public void method(){
         
