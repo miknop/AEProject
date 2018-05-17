@@ -5,22 +5,22 @@
  */
 package com.AEProjekt.submarine.figures;  // created at 5/7/2018
 
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+
 /**
  *
  * @author Michel
  */
+@Data
+@AllArgsConstructor
+@NoArgsConstructor
 public class Plane {
     private int xPosition;
     private int yPosition;
-    
-    private void generatePosition(){
-        
-    }
-    public Plane(int x, int y)
-    {
-        xPosition = x;
-        yPosition = y;
-    }
+
+
 
     public String toString()
     {

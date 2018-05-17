@@ -5,20 +5,19 @@
  */
 package com.AEProjekt.submarine.levelz;  //  created at 5/7/2018
 
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+
 /**
  *
  * @author Michel
  */
+@Data
+@AllArgsConstructor
+@NoArgsConstructor
 public class Level4 implements iLevel{
    private boolean plane;
-    
-    public void setPlane(boolean plane){
-        this.plane = plane;
-    }
-    
-    public boolean getPlane(){
-        return this.plane;
-    }
     
     public void method(){
         

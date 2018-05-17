@@ -5,48 +5,21 @@
  */
 package com.AEProjekt.submarine.figures;  // created at 5/7/2018
 
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+
 /**
  *
  * @author Michel
  */
-
+@Data
+@AllArgsConstructor
+@NoArgsConstructor
 // renamed from UBoat to Submarine (Michel; 5/7/2018)
 public class Submarine {
     private int xPosition;
     private int yPosition;
-    
-    private void generatePosition(){
-        
-    }
 
-    public Submarine(int x, int y)
-    {
-        xPosition = x;
-        yPosition = y;
-    }
 
-    public String toString()
-    {
-        return "(" + Integer.toString(xPosition) + "/" + Integer.toString(yPosition) + ")";
-    }
-
-    public int getxPosition()
-    {
-        return xPosition;
-    }
-
-    public void setxPosition(int xPosition)
-    {
-        this.xPosition = xPosition;
-    }
-
-    public int getyPosition()
-    {
-        return yPosition;
-    }
-
-    public void setyPosition(int yPosition)
-    {
-        this.yPosition = yPosition;
-    }
 }

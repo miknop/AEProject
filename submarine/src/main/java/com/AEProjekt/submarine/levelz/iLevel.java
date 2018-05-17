@@ -12,6 +12,5 @@ package com.AEProjekt.submarine.levelz;  // created at 5/7/2018
 public interface iLevel {
     final int maxLosses = 2;
     final int triesTotal = 7;
-    
-    public void method();
+
 }
