@@ -15,7 +15,8 @@ public class EquationGenerator
     private boolean visibleBoat;
     private iEquationType equation;
 
-    public void generateEquation(int equationType)
+
+    public static void generateEquation(int equationType)
     {
         if(equationType == 1)
         {

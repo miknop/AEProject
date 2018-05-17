@@ -11,8 +11,8 @@ import com.AEProjekt.submarine.levelz.*;
 import java.util.ArrayList;
 
 public class Controller {
-    private EquationGenerator equation;
-    private linearEquation linearequation;
+    private EquationGenerator generator;
+    private linearEquation linearEquation = null;
     private iLInput inputLevel;
     private InputControl validInput;
     private User user;
@@ -22,18 +22,16 @@ public class Controller {
 
     public void storyExecution()
     {
+
+        Level level = new Level (generator);
         //Pruefe ob schon eine Gleichung generiert wurde
         //wenn nein, generiere
         if(linearequation == null && !(user.getLevel() instanceof Level5))
         {
-            equation = new EquationGenerator();
-            equation.generateEquation(1);
-            int m1 = equation.getUfoY() - equation.getSubmarineY();
-            int m2 = equation.getUfoX() - equation.getSubmarineX();
-            int m = m1/m2;
+            generator = new EquationGenerator();
 
-            linearequation = new linearEquation(m1,m2, equation.getSubmarineY() + m * equation.getSubmarineX() * (-1));
 
+            linearEquation= (linearEquation) generator.getEquation();
 
         }
 
