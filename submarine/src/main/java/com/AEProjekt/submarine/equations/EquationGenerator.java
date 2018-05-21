@@ -1,5 +1,7 @@
 package com.AEProjekt.submarine.equations;
 
+import com.AEProjekt.submarine.figures.iFigure;
+
 import java.util.ArrayList;
 import java.util.Random;
 
@@ -12,20 +14,48 @@ public class EquationGenerator
     private int ufoX;
     private int ufoY;
     private boolean visiblePlane;
-    private boolean visilbeBoat;
+    private boolean visibleBoat;
     private iEquationType equation;
 
-    public void generateEquation(int equationType)
+
+    public static void generateEquation(int equationType)
     {
         if(equationType == 1)
         {
-            generateLinearEquation();
+           // generateLinearEquation();
         }
     }
 
+    //TODO Michael
+    public static LinearEquation generateLinearEquation(){
+        LinearEquation equation = new LinearEquation();
+        return equation;
+    }
+
+    public static int generateUfoX() {
+        int i  = 0;
+        return i;
+    }
+
+    public static int generateUfoY() {
+        int i  = 0;
+        return i;
+    }
+
+    public static int generateSubX() {
+        int i  = 0;
+        return i;
+    }
+
+    public static int generateSubY() {
+        int i  = 0;
+        return i;
+    }
+
+
     //TODO: Ein Punkt immer kleiner als 0
     //TODO: kürzen von brüchen
-    private void generateLinearEquation()
+    private void generateLinearEquationOld()
     {
         // Zähler der Steigung im Bereich von -6 bis 6 generieren.
         //int dividend = -MAXVALUES + new Random().nextInt(MAXVALUES *2 + 1);
@@ -40,7 +70,7 @@ public class EquationGenerator
         if(temp < 0) temp*=-1;
         int b = (-MAXVALUES + temp) + new Random().nextInt(MAXVALUES *2 - temp); // erklärung folgt
 
-        equation = new linearEquation(dividend, divisor, b);
+        equation = new LinearEquation(dividend, divisor, b);
 
         ArrayList<Integer> negativeGanzeX = new ArrayList<Integer>();
         ArrayList<Integer> positiveGanzeX = new ArrayList<Integer>();
@@ -53,7 +83,6 @@ public class EquationGenerator
                 negativeGanzeX.add(i);
             }
         }
-
         for (int i = 1; i <= 12; i++)
         {
             double y = equation.calculateY(i);
@@ -137,12 +166,12 @@ public class EquationGenerator
 
     public boolean isVisilbeBoat()
     {
-        return visilbeBoat;
+        return visibleBoat;
     }
 
     public void setVisilbeBoat(boolean visilbeBoat)
     {
-        this.visilbeBoat = visilbeBoat;
+        this.visibleBoat = visilbeBoat;
     }
 
     public iEquationType getEquation()
