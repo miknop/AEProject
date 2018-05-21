@@ -5,6 +5,7 @@
  */
 package com.AEProjekt.submarine.figures;
 
+import com.AEProjekt.submarine.equations.Point;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -20,4 +21,14 @@ public class Satellite {
     private int xPosition;
     private int yPosition;
 
+    public Satellite(Point p)
+    {
+        this.xPosition = p.getX();
+        this.yPosition = p.getY();
+    }
+
+    public String toString()
+    {
+        return "(" + Integer.toString(xPosition) + "/" + Integer.toString(yPosition) + ")";
+    }
 }

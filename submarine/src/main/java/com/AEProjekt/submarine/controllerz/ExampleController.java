@@ -13,16 +13,13 @@ import org.springframework.web.bind.annotation.RequestParam;
 @Controller
 public class ExampleController
 {
-    EquationGenerator generator = new EquationGenerator();
-
     @GetMapping("/example") // Die URL, für keine Subseite einfach @GetMapping()
     public String example(@RequestParam(name="gleichung", required=false, defaultValue="gleichung") String gleichung, Model model)
     {
-        generator.generateEquation(1);
-        LinearEquation equation = (LinearEquation) generator.getEquation();
+        LinearEquation equation = EquationGenerator.generateLinearEquation();
         model.addAttribute("gleichung", equation);
-        model.addAttribute("submarine", new Submarine(generator.getSubmarineX(), generator.getSubmarineY()));
-        model.addAttribute("plane", new Submarine(generator.getUfoX(), generator.getUfoY()));
+        model.addAttribute("submarine", new Submarine(EquationGenerator.generatePointBelowSea(equation)));
+        model.addAttribute("plane", new Submarine(EquationGenerator.generatePointAboveSea(equation)));
         return "example";
     }
 
