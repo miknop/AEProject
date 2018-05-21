@@ -1,8 +1,5 @@
 package com.AEProjekt.submarine.equations;
 
-import com.AEProjekt.submarine.figures.Submarine;
-import com.AEProjekt.submarine.figures.iFigure;
-
 import java.util.ArrayList;
 import java.util.Random;
 
@@ -33,6 +30,12 @@ public class EquationGenerator
         }
 
         int divisor = new Random().nextInt(MAXVALUES)+1; // +1 um 0 auszuschließen und um auf 12 zu kommen
+
+        //Bruch kürzen  mit Hilfe des gcd (Größter gemeinsamer Teiler)
+        int gcd = ExtraMath.calculateGcd(dividend, divisor);
+        dividend /= gcd;
+        divisor /= gcd;
+
         int temp = dividend/divisor;
         if(temp < 0) temp*=-1;
         int b;
@@ -88,9 +91,15 @@ public class EquationGenerator
             }
         }
 
-
         int x1 = xAbove.get(new Random().nextInt(xAbove.size()));
         int y1 = (int) equation.calculateY(x1);
+
+        return new Point(x1, y1);
+    }
+
+    public static Point generatePointAtSealevel(iEquationType equation) {
+        int x1 = (int) equation.calculateX(0);
+        int y1 = 0;
 
         return new Point(x1, y1);
     }

@@ -23,9 +23,9 @@ public class EquationGeneratorTests {
             LinearEquation linear = EquationGenerator.generateLinearEquation();
             System.out.print(linear.toString());
             System.out.println(" Submarine" + EquationGenerator.generatePointBelowSea(linear).toString() + ", " + " Ufo" + EquationGenerator.generatePointAboveSea(linear).toString() + "");
-            assertTrue("Zähler nicht im Bereich von -12 bis 12", linear.getDividend() >= -12 && linear.getDividend() <= 12);
-            assertTrue("Nenner nicht im Bereich von 1 bis 12",linear.getDivisor() >= 1 && linear.getDivisor() <= 12);
-            assertTrue("Y-Achsenabschnitt nicht im Bereich von -12 bis 12", linear.getB() >= -12 && linear.getB() <= 12);
+            assertTrue("Zähler nicht im Bereich von -12 bis 12: " + linear.getDividend(), linear.getDividend() >= -12 && linear.getDividend() <= 12);
+            assertTrue("Nenner nicht im Bereich von 1 bis 12: " + linear.getDivisor(),linear.getDivisor() >= 1 && linear.getDivisor() <= 12);
+            assertTrue("Y-Achsenabschnitt nicht im Bereich von -12 bis 12 : " + linear.getB(), linear.getB() >= -12 && linear.getB() <= 12);
         }
     }
 
