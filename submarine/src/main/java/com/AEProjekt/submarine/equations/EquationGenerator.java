@@ -35,8 +35,23 @@ public class EquationGenerator
         int divisor = new Random().nextInt(MAXVALUES)+1; // +1 um 0 auszuschließen und um auf 12 zu kommen
         int temp = dividend/divisor;
         if(temp < 0) temp*=-1;
-        int b = (-MAXVALUES + temp) + new Random().nextInt(MAXVALUES *2 - temp); // erklärung folgt
-
+        int b;
+        if(temp < 1)
+        {
+            b = (-MAXVALUES + divisor);
+            if(MAXVALUES - divisor == 0)
+            {
+                b += new Random().nextInt(1); // erklärung folgt
+            }
+            else
+            {
+                b += new Random().nextInt((MAXVALUES - divisor) * 2); // erklärung folgt
+            }
+        }
+        else
+        {
+            b = (-MAXVALUES + temp) + new Random().nextInt(MAXVALUES * 2 - temp);
+        }
         return new LinearEquation(dividend, divisor, b);
     }
 
