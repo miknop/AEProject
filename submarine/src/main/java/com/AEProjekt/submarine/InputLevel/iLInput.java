@@ -1,11 +1,16 @@
 package com.AEProjekt.submarine.InputLevel;
 
+import lombok.Data;
+
 public interface iLInput {
 
     //Weitere Methoden
 
     //Prueft im einzelnen ob die eingaben fuer die verschiedenen Levels Valide sind
     public boolean isInputValid();
+
+
+    /*
     public double getP1Y();
 
     public void setP1Y(double p1Y);
@@ -21,4 +26,5 @@ public interface iLInput {
     public double getP2X();
 
     public void setP2X(double p2X);
+    */
 }

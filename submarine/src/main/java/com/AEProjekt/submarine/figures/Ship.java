@@ -13,11 +13,16 @@ import lombok.NoArgsConstructor;
  *
  * @author Michel
  */
-@Data
-@AllArgsConstructor
-@NoArgsConstructor
+//@Data
+//@AllArgsConstructor
+//@NoArgsConstructor
 public class Ship {
     private int xPosition;
     private int yPosition;
 
+
+    public Ship(int xPosition, int yPosition) {
+        this.xPosition = xPosition;
+        this.yPosition = yPosition;
+    }
 }

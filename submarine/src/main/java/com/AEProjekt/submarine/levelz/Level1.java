@@ -19,17 +19,62 @@ import lombok.NoArgsConstructor;
  */
 @Data
 @AllArgsConstructor
-@NoArgsConstructor
+//@NoArgsConstructor
 public class Level1 implements iLevel {
     private Plane plane = null;
     private Submarine sub = null;
     private LinearEquation linEq = null;
+    private LevelBeatCounter levelbeatcounter;
+
+
+
+    public Level1()
+    {
+        equipLevel();
+    }
 
     public void equipLevel() {
         linEq = EquationGenerator.generateLinearEquation();
         plane = new Plane(EquationGenerator.generateUfoX(),EquationGenerator.generateUfoX());
         sub = new Submarine(EquationGenerator.generateSubX(), EquationGenerator.generateSubY());
+        levelbeatcounter = new LevelBeatCounter();
+
     }
 
 
+    //Ja, brauchen wir nicht, schon klar, aber Lombok funktioniert irgendwie nicht richtig
+
+    public LevelBeatCounter getLevelbeatcounter() {
+        return levelbeatcounter;
+    }
+
+    public void setLevelbeatcounter(LevelBeatCounter levelbeatcounter) {
+        this.levelbeatcounter = levelbeatcounter;
+    }
+
+    /*
+    public Plane getPlane() {
+        return plane;
+    }
+
+    public void setPlane(Plane plane) {
+        this.plane = plane;
+    }
+
+    public Submarine getSub() {
+        return sub;
+    }
+
+    public void setSub(Submarine sub) {
+        this.sub = sub;
+    }
+
+    public LinearEquation getLinEq() {
+        return linEq;
+    }
+
+    public void setLinEq(LinearEquation linEq) {
+        this.linEq = linEq;
+    }
+    */
 }

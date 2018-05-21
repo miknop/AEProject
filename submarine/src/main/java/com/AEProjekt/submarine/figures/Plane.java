@@ -13,9 +13,9 @@ import lombok.NoArgsConstructor;
  *
  * @author Michel
  */
-@Data
-@AllArgsConstructor
-@NoArgsConstructor
+//@Data
+//@AllArgsConstructor
+//@NoArgsConstructor
 public class Plane {
     private int xPosition;
     private int yPosition;
@@ -25,5 +25,11 @@ public class Plane {
     public String toString()
     {
         return "(" + Integer.toString(xPosition) + "/" + Integer.toString(yPosition) + ")";
+    }
+
+
+    public Plane(int xPosition, int yPosition) {
+        this.xPosition = xPosition;
+        this.yPosition = yPosition;
     }
 }

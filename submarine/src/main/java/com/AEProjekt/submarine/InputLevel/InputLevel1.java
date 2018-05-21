@@ -10,10 +10,10 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 public class InputLevel1 implements iLInput
 {
-    private double p1Y;
-    private double p1X;
-    private double p2Y;
-    private double p2X;
+    private int p1Y;
+    private int p1X;
+    private int p2Y;
+    private int p2X;
 
     //Weitere Methoden
     /**
@@ -45,4 +45,6 @@ public class InputLevel1 implements iLInput
         }
 
     }
+
+
 }
