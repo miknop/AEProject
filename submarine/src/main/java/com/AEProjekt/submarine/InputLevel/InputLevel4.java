@@ -35,7 +35,7 @@ public class InputLevel4 implements iLInput {
         }
     }
 
-    @Override
+    /*@Override
     public double getP1Y()
     {
         return 0;
@@ -81,5 +81,5 @@ public class InputLevel4 implements iLInput {
     public void setP2X(double p2X)
     {
 
-    }
+    }*/
 }

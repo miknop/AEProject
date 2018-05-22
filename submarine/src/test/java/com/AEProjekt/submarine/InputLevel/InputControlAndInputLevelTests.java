@@ -28,7 +28,7 @@ public class InputControlAndInputLevelTests {
                         TestStructureForInputLevel1 test_gen1;
                         test_gen1 = TestForInputLevel1();
 
-                        test_input = new InputLevel1(test_gen1.p1Y, test_gen1.p1X, test_gen1.p2Y, test_gen1.p2X);
+                        test_input = new InputLevel1((int)test_gen1.p1Y, (int)test_gen1.p1X, (int)test_gen1.p2Y, (int)test_gen1.p2X);
                         assertTrue("Ungueltige Gerade.", test_input.isInputValid() == test_gen1.right_or_wrong);
                         break;
                     case 1:

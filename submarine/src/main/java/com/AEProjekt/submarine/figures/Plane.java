@@ -33,9 +33,4 @@ public class Plane{
         return "(" + Integer.toString(xPosition) + "/" + Integer.toString(yPosition) + ")";
     }
 
-
-    public Plane(int xPosition, int yPosition) {
-        this.xPosition = xPosition;
-        this.yPosition = yPosition;
-    }
 }
