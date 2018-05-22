@@ -35,10 +35,9 @@ public class Level1 implements iLevel {
 
     public void equipLevel() {
         linEq = EquationGenerator.generateLinearEquation();
-        plane = new Plane(EquationGenerator.generateUfoX(),EquationGenerator.generateUfoX());
-        sub = new Submarine(EquationGenerator.generateSubX(), EquationGenerator.generateSubY());
+        plane = new Plane(EquationGenerator.generatePointAboveSea(linEq));
+        sub = new Submarine(EquationGenerator.generatePointBelowSea(linEq));
         levelbeatcounter = new LevelBeatCounter();
-
     }
 
 

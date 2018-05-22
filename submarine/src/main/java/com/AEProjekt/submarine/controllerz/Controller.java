@@ -131,10 +131,7 @@ public class Controller {
         /*
         if(linearEquation == null && !(user.getLevel() instanceof Level5))
         {
-            generator = new EquationGenerator();
-
-
-            linearEquation = (LinearEquation) generator.getEquation();
+            linearEquation = EquationGenerator.generateLinearEquation();
 
         }
 

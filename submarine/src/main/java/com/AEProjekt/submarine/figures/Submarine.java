@@ -5,6 +5,7 @@
  */
 package com.AEProjekt.submarine.figures;  // created at 5/7/2018
 
+import com.AEProjekt.submarine.equations.Point;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -17,11 +18,21 @@ import lombok.NoArgsConstructor;
 //@AllArgsConstructor
 //@NoArgsConstructor
 // renamed from UBoat to Submarine (Michel; 5/7/2018)
-public class Submarine {
+public class Submarine{
     private int xPosition;
     private int yPosition;
 
+    public Submarine(Point p)
+    {
+        this.xPosition = p.getX();
+        this.yPosition = p.getY();
+    }
 
+
+    public String toString()
+    {
+        return "(" + Integer.toString(xPosition) + "/" + Integer.toString(yPosition) + ")";
+    }
     public Submarine(int xPosition, int yPosition) {
         this.xPosition = xPosition;
         this.yPosition = yPosition;
