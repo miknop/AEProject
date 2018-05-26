@@ -86,7 +86,7 @@
             <!-- Hier kommt die linke Spalte mit Input für Gleichungslösung, History der Eingaben und Ausgabe von Gleichungen -->
             <div class="col-md-1">
                 <p>Gegebene Funktion: </p>
-                <p th:text="'f(x)=' + ${equation}"></p>
+                <p th:text="'f(x)=' + ${gleichung.toString()}"></p>
                 <input type="text" name="solution">
 
                 <p>

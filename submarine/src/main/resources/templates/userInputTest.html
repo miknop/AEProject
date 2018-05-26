@@ -1,0 +1,63 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Getting Started: Handling Form Submission</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+</head>
+<body>
+<h1>Form</h1>
+
+
+<form action="#" th:action="@{/userInputTest}" th:object="${userInput}" method="post">
+    <table>
+        <tr>
+            <td>x: <input type="text" th:field="*{punkt1.x}" /></td>
+            <td th:if="${#fields.hasErrors('punkt1.x')}" >Bitte geben Sie eine Zahl ohne Nachkommastellen ein</td>
+        </tr>
+        <tr>
+            <td>Punkt 1 y: <input type="text" th:field="*{punkt1.y}" /></td>
+            <td th:if="${#fields.hasErrors('punkt1.y')}" >Bitte geben Sie eine Zahl ohne Nachkommastellen ein</td>
+        </tr>
+        <tr>
+            <td>Punkt 2 x: <input type="text" th:field="*{punkt2.x}" /></td>
+            <td th:if="${#fields.hasErrors('punkt2.x')}" >Bitte geben Sie eine Zahl ohne Nachkommastellen ein</td>
+        </tr>
+        <tr>
+            <td>Punkt 2 y: <input type="text" th:field="*{punkt2.y}" /></td>
+            <td th:if="${#fields.hasErrors('punkt2.y')}" >Bitte geben Sie eine Zahl ohne Nachkommastellen ein</td>
+        </tr>
+        <tr>
+            <td>Nenner: <input type="text" th:field="*{divident}" /></td>
+            <td th:if="${#fields.hasErrors('divident')}" >Bitte geben Sie eine Zahl ohne Nachkommastellen ein</td>
+        </tr>
+        <tr>
+            <td>Zähler: <input type="text" th:field="*{divisor}" /></td>
+            <td th:if="${#fields.hasErrors('divisor')}" >Bitte geben Sie eine Zahl ohne Nachkommastellen ein</td>
+        </tr>
+        <tr>
+            <td>b: <input type="text" th:field="*{b}" /></td>
+            <td th:if="${#fields.hasErrors('b')}" >Bitte geben Sie eine Zahl ohne Nachkommastellen ein</td>
+        </tr>
+        <tr>
+            <td><button type="submit">Submit</button></td>
+        </tr>
+    </table>
+</form>
+<!--<form action="#" th:action="@{/userInputTest}" th:object="${userInput}" method="post">
+    <table>
+        <tr>
+            <td>Name:</td>
+            <td>Punkt 1 x: <input type="text" th:field="*{b}" /></td>
+            <td th:if="${#fields.hasErrors('b')}" th:errors="*{b}">Number Error</td>
+        </tr>
+        <tr>
+            <td><button type="submit">Submit</button></td>
+        </tr>
+    </table>
+</form> -->
+
+
+
+
+</body>
+</html>

@@ -2,13 +2,17 @@ package com.AEProjekt.submarine.controllerz;
 
 
 
+import com.AEProjekt.submarine.UserInputTest;
 import com.AEProjekt.submarine.equations.EquationGenerator;
 import com.AEProjekt.submarine.equations.LinearEquation;
 import com.AEProjekt.submarine.figures.Submarine;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.annotation.*;
+
+import javax.validation.Valid;
+
 
 @Controller
 public class ExampleController
@@ -30,4 +34,21 @@ public class ExampleController
         return "bootstrapTest";
     }
 
+    @GetMapping("/userInputTest")
+    public String userInputTest(Model model)
+    {
+        model.addAttribute("userInput", new UserInputTest());
+        return "userInputTest";
+    }
+
+
+    @PostMapping("/userInputTest")
+    public String userInputTest(@Valid @ModelAttribute("userInput") UserInputTest userInput, BindingResult bindingResult)
+    {
+        if(bindingResult.hasErrors())
+        {
+            return "userInputTest";
+        }
+        return "userInputTestResult";
+    }
 }
