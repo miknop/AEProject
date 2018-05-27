@@ -7,11 +7,17 @@
 <body>
 <h1>Form</h1>
 
-
+<tr>
+    <td>
+        f(x) =
+    </td>
+    <td th:text="${fkt}"></td>
+</tr>
 <form action="#" th:action="@{/userInputTest}" th:object="${userInput}" method="post">
     <table>
+
         <tr>
-            <td>x: <input type="text" th:field="*{punkt1.x}" /></td>
+            <td>Punkt 1 x: <input type="text" th:field="*{punkt1.x}" /></td>
             <td th:if="${#fields.hasErrors('punkt1.x')}" >Bitte geben Sie eine Zahl ohne Nachkommastellen ein</td>
         </tr>
         <tr>

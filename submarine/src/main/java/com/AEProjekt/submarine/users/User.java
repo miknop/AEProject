@@ -14,12 +14,14 @@ public class User {
     private String username;
     private String password;
     private iLevel level = new Level1();
+    /*
     private boolean level1Beaten = false;
     private boolean level2Beaten= false;
     private boolean level3Beaten= false;
     private boolean level4Beaten = false;
+    */
 
-
+    /*
     public String getUsername() {
         return username;
     }
@@ -43,6 +45,7 @@ public class User {
     public void setLevel(iLevel level) {
         this.level = level;
     }
+
 
     public boolean isLevel1Beaten() {
         return level1Beaten;
@@ -75,4 +78,5 @@ public class User {
     public void setLevel4Beaten(boolean level4Beaten) {
         this.level4Beaten = level4Beaten;
     }
+    */
 }

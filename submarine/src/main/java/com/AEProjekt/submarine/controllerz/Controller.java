@@ -1,6 +1,7 @@
 package com.AEProjekt.submarine.controllerz;
 
 
+import com.AEProjekt.submarine.UserInputTest;
 import com.AEProjekt.submarine.users.User;
 import com.AEProjekt.submarine.InputLevel.*;
 import com.AEProjekt.submarine.equations.EquationGenerator;
@@ -8,10 +9,18 @@ import com.AEProjekt.submarine.equations.*;
 import com.AEProjekt.submarine.figures.Ship;
 import com.AEProjekt.submarine.levelz.*;
 import jdk.internal.util.xml.impl.Input;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import java.util.ArrayList;
+
+@Data
+@AllArgsConstructor
 
 public class Controller {
     private EquationGenerator generator;
@@ -24,6 +33,12 @@ public class Controller {
 
 
 
+
+    public Controller()
+    {
+        //if(user == null)
+            user = new User();
+    }
 
 
 
@@ -45,30 +60,28 @@ public class Controller {
             }
             else
             {
-                ((Level1) level).getLevelbeatcounter().fillResultOfRound(true);
+                ((Level1) level).getLevelbeatcounter().fillResultOfRound(false);
             }
 
         }
 
     }
 
-    @GetMapping("/testforinputs")
 
-    public void fillInputForLevels(@RequestParam(name="current_level", required=false) String currentLevel,
-                                   @RequestParam(name="y_1", required=false) int y1,
-                                   @RequestParam(name="x_1", required=false) int x1,
-                                   @RequestParam(name="y_2", required=false) int y2,
-                                   @RequestParam(name="x_2", required=false) int x2
 
-                                   )
+    public void storyBeforeExecution(UserInputTest aninputtest)
     {
+        inputLevel = new InputLevel1();
 
-        //InputLevel1 inputLevel;
-        iLInput inputLevel = new InputLevel1();
-        ((InputLevel1)inputLevel).setP1Y(y1);
-        ((InputLevel1)inputLevel).setP1X(x1);
-        ((InputLevel1)inputLevel).setP2Y(y2);
-        ((InputLevel1)inputLevel).setP2X(x2);
+        ((InputLevel1) inputLevel).setP1X(aninputtest.getPunkt1().getX());
+        ((InputLevel1) inputLevel).setP1Y(aninputtest.getPunkt1().getY());
+        ((InputLevel1) inputLevel).setP2X(aninputtest.getPunkt2().getX());
+        ((InputLevel1) inputLevel).setP2Y(aninputtest.getPunkt2().getY());
+
+
+
+        storyExecution(user);
+
 
     }
 
@@ -78,44 +91,41 @@ public class Controller {
 
 
 
-        /*
-        - Der User ist eingeloggt und die UI wird angezeigt
-        - Level ist erzeugt, Gleichung auch--> Gleichung an Frontend schicken
-        - Gleichung anzeigen (Im Frontend)
-        - User gibt input
-        - Input validieren und ob er die Aufgabe richtig geloest hat
-        - Solange wiederholen bis level geschlagen wurde
-
-         */
-
-
-        // generiere Level und erzeuge Gleichung sowie Figuren
-        //Level1 level1 = new Level1();
 
 
 
 
-        //while (!user.isLevel1Beaten()) {
+        //while (isLevelBeat(user) && !(user.getLevel() instanceof Level4) &&  user.getLevel().getLevelbeatcounter().getBeatCounter() < 7 ) {
+        if((user.getLevel() instanceof Level4) && isLevelBeat(user) && user.getLevel().getLevelbeatcounter().getBeatCounter() == 7)
+        {
 
-            //Achtung, noch Endlosschleife
-            //level1.equipLevel();
 
-            //Fuer den level reset
-            //Hat der Benutzer 5 versuche erreicht und ist das level immer noch nicht besiegt muss zurueck getzt werden
-            if(((Level1) user.getLevel()).getLevelbeatcounter().getBeatCounter() >= 5 && !user.isLevel1Beaten())
+
+            System.out.println("Du hast gewonnen!");
+
+
+        }
+
+        else
+        {
+
+            if(!isLevelBeat(user))
             {
-                user.setLevel(new Level1());
+                if(user.getLevel() instanceof  Level1)
+                    user.setLevel(new Level1());
+                else if (user.getLevel() instanceof  Level2)
+                    user.setLevel(new Level2());
+                else if (user.getLevel() instanceof  Level3)
+                    user.setLevel(new Level3());
+                else if (user.getLevel() instanceof  Level4)
+                    user.setLevel(new Level4());
             }
 
-            playLevel(((Level1) user.getLevel()));
-            //playLevel() -> methode, die ein iLevel übergeben bekommt und jedes mal läuft,
-            // solange ein Level nicht geschlagen wurde.
-            // jedes mal, wenn etwas richtig oder falsch gemacht wurde, wird die Liste (weiß noch nicht genau wohin mit der Liste)
-            // mit Fail oder Win gefüllt.
-            // Bei Fail wird equipLevel neu aufgerufen, bei Win auch, es sei denn, die abbruchbedingung für levelIsBeaten ist erfüllt
-            // und das level ist geschlagen
-
-        //}
+            //Jedes level hat sein eigenen Beatcounter und es muss nicht gecastet werden
+            playLevel((user.getLevel()));
+            //Nachdem die runde gespielt wurde, kann nun eine entscheidung getroffen werden, ob er in das naechste kommt
+            setToNextLevel(user);
+        }
 
 
 
@@ -185,7 +195,7 @@ public class Controller {
         }*/
     }
 
-    private void moveFigure()
+    private void moveFigure(User user)
     {
 
     }
@@ -200,9 +210,26 @@ public class Controller {
         return null;
     }
 
-    //Kontrolliert ob level bestanden wurde, ist gueltig fuer alle Level
+
+    public void setToNextLevel(User user)
+    {
+        //Die Fragstellung hier ist doch, koennte er es nach wie vor gewinnen und hat er seinen soll erfuellt
+        if(isLevelBeat(user) && user.getLevel().getLevelbeatcounter().getBeatCounter() == 7)
+        {
+            if(user.getLevel() instanceof  Level1)
+                user.setLevel(new Level2());
+            else if (user.getLevel() instanceof  Level2)
+                user.setLevel(new Level3());
+            else if (user.getLevel() instanceof  Level3)
+                user.setLevel(new Level4());
+        }
+
+
+    }
+    //Die genauere fragestellung die hier erfüllt werden soll ist doch eher, kann der user das level noch gewinnen
     public boolean isLevelBeat(User user)
     {
+        /*
         if(user.getLevel() instanceof  Level1)
         {
             if(user.isLevel1Beaten())
@@ -235,6 +262,27 @@ public class Controller {
             }
         }
         return false;
+        */
+
+        int wrongs = 0;
+        for(int i = 0; i < ((user.getLevel()).getLevelbeatcounter().getBeatCounter()); i++)
+        {
+            if((user.getLevel()).getLevelbeatcounter().getBeatList().get(i) == false) {
+                wrongs++;
+            }
+        }
+
+        if(wrongs >= 2)
+        {
+            return false;
+        }
+        else
+        {
+            return true;
+        }
+
+
+
     }
 
 }

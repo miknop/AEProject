@@ -43,13 +43,16 @@ public class Level1 implements iLevel {
 
     //Ja, brauchen wir nicht, schon klar, aber Lombok funktioniert irgendwie nicht richtig
 
+    /*
     public LevelBeatCounter getLevelbeatcounter() {
         return levelbeatcounter;
     }
+    */
 
+    /*
     public void setLevelbeatcounter(LevelBeatCounter levelbeatcounter) {
         this.levelbeatcounter = levelbeatcounter;
-    }
+    }*/
 
     /*
     public Plane getPlane() {

@@ -14,9 +14,17 @@ import org.springframework.web.bind.annotation.*;
 import javax.validation.Valid;
 
 
+
 @Controller
 public class ExampleController
 {
+
+    private com.AEProjekt.submarine.controllerz.Controller abc = new com.AEProjekt.submarine.controllerz.Controller();
+
+
+
+
+
     @GetMapping("/example") // Die URL, für keine Subseite einfach @GetMapping()
     public String example(@RequestParam(name="gleichung", required=false, defaultValue="gleichung") String gleichung, Model model)
     {
@@ -38,6 +46,7 @@ public class ExampleController
     public String userInputTest(Model model)
     {
         model.addAttribute("userInput", new UserInputTest());
+        model.addAttribute("fkt", abc.getUser().getLevel().getLinEq().toString());
         return "userInputTest";
     }
 
@@ -47,8 +56,13 @@ public class ExampleController
     {
         if(bindingResult.hasErrors())
         {
+
             return "userInputTest";
         }
+
+
+        abc.storyBeforeExecution(userInput);
+
         return "userInputTestResult";
     }
 }
