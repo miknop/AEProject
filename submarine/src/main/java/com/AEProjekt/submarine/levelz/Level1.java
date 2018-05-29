@@ -40,6 +40,12 @@ public class Level1 implements iLevel {
         levelbeatcounter = new LevelBeatCounter();
     }
 
+    public void equipLevelNoRS()
+    {
+        linEq = EquationGenerator.generateLinearEquation();
+        plane = new Plane(EquationGenerator.generatePointAboveSea(linEq));
+        sub = new Submarine(EquationGenerator.generatePointBelowSea(linEq));
+    }
 
     //Ja, brauchen wir nicht, schon klar, aber Lombok funktioniert irgendwie nicht richtig
 

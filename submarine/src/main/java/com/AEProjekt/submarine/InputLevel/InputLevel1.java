@@ -5,14 +5,20 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import javax.validation.constraints.Digits;
+
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
 public class InputLevel1 implements iLInput
 {
+    //@Digits(integer = 10, fraction = 0)
     private int p1Y;
+    //@Digits(integer = 10, fraction = 0)
     private int p1X;
+    //@Digits(integer = 10, fraction = 0)
     private int p2Y;
+    //@Digits(integer = 10, fraction = 0)
     private int p2X;
 
     //Weitere Methoden

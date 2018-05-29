@@ -1,7 +1,10 @@
 package com.AEProjekt.submarine.users;
 
 import com.AEProjekt.submarine.levelz.Level1;
+import com.AEProjekt.submarine.levelz.Level2;
 import com.AEProjekt.submarine.levelz.iLevel;
+
+
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -13,7 +16,7 @@ import lombok.NoArgsConstructor;
 public class User {
     private String username;
     private String password;
-    private iLevel level = new Level1();
+    private iLevel level = new Level2();
     /*
     private boolean level1Beaten = false;
     private boolean level2Beaten= false;

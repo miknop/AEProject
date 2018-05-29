@@ -1,7 +1,7 @@
 package com.AEProjekt.submarine.controllerz;
 
 
-
+/*
 import com.AEProjekt.submarine.UserInputTest;
 import com.AEProjekt.submarine.equations.EquationGenerator;
 import com.AEProjekt.submarine.equations.LinearEquation;
@@ -66,3 +66,4 @@ public class ExampleController
         return "userInputTestResult";
     }
 }
+*/
