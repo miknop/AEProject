@@ -10,7 +10,6 @@ package com.AEProjekt.submarine.figures;  // created at 5/7/2018
  * @author Michel
  */
 public interface iFigure {
-    public int[] field = {};
 
     public void method();
 

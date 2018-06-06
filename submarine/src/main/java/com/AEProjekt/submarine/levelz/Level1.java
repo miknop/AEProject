@@ -61,11 +61,11 @@ public class Level1 implements iLevel {
     }*/
 
     /*
-    public Plane getPlane() {
+    public PlaneEntity getPlane() {
         return plane;
     }
 
-    public void setPlane(Plane plane) {
+    public void setPlane(PlaneEntity plane) {
         this.plane = plane;
     }
 
@@ -77,11 +77,11 @@ public class Level1 implements iLevel {
         this.sub = sub;
     }
 
-    public LinearEquation getLinEq() {
+    public LinearEquationEntity getLinEq() {
         return linEq;
     }
 
-    public void setLinEq(LinearEquation linEq) {
+    public void setLinEq(LinearEquationEntity linEq) {
         this.linEq = linEq;
     }
     */
