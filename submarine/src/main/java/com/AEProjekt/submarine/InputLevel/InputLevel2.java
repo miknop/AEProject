@@ -10,7 +10,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 public class InputLevel2 implements iLInput {
 
-    private double pFX;
+    private int pFX;
 
     //Weitere Methoden
         public boolean isInputValid()

@@ -9,7 +9,7 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 public class InputLevel3 implements iLInput {
-    private double pX;
+    private int pX;
 
     //Weitere Methoden
 

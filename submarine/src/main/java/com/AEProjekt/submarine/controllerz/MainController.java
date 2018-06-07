@@ -82,8 +82,17 @@ public class MainController {
         {
             int m1 = ((InputLevel1) inputLevel).getP2Y() - ((InputLevel1) inputLevel).getP1Y();
             int m2 = ((InputLevel1) inputLevel).getP2X() - ((InputLevel1) inputLevel).getP1X();
-            int m = m1/m2;
-            double m_doub = (double)m1 / (double)m2;
+
+            int m = 0;
+            double m_doub = 0;
+
+            //Es darf nicht durch null geteilt werden
+            if(m2 != 0)
+            {
+                m = m1/m2;
+                m_doub = (double)m1 / (double)m2;
+            }
+
 
 
             LinearEquation temp_linearequation = new LinearEquation(m1, m2, (int)((double)((InputLevel1) inputLevel).getP1Y() + m_doub * (double)((InputLevel1) inputLevel).getP1X() * (-1)));
@@ -99,6 +108,51 @@ public class MainController {
                 ((Level1) level).getLevelbeatcounter().fillResultOfRound(false);
             }
 
+        }
+
+        if(level instanceof  Level2)
+        {
+            Point temp_point = new Point(((Level2) level).getSubmarine().getPoint().getX(), ((InputLevel2) inputLevel).getPFX());
+
+            if(temp_point.compareTo(((Level2) level).getSubmarine().getPoint()) == 0)
+            {
+                ((Level2) level).getLevelbeatcounter().fillResultOfRound(true);
+                ((Level2) level).equipLevelNoRS();
+            }
+            else
+            {
+                ((Level2) level).getLevelbeatcounter().fillResultOfRound(false);
+            }
+        }
+
+        if(level instanceof Level3)
+        {
+            Point temp_point = new Point(((InputLevel3) inputLevel).getPX(), ((Level3) level).getSubmarine().getPoint().getY());
+
+            if(temp_point.compareTo(((Level3) level).getSubmarine().getPoint()) == 0)
+            {
+                ((Level3) level).getLevelbeatcounter().fillResultOfRound(true);
+                ((Level3) level).equipLevelNoRS();
+            }
+            else
+            {
+                ((Level3) level).getLevelbeatcounter().fillResultOfRound(false);
+            }
+        }
+
+        if(level instanceof Level4)
+        {
+            LinearEquation temp_linearequation = new LinearEquation(((InputLevel4) inputLevel).getUserNumeratorInput(),((InputLevel4) inputLevel).getUserDenominatorInput(), ((InputLevel4) inputLevel).getUserYInput());
+
+            if(temp_linearequation.compareTo(((Level4) level).getLinEq()) == 0)
+            {
+                ((Level4) level).getLevelbeatcounter().fillResultOfRound(true);
+                ((Level4) level).equipLevelNoRS();
+            }
+            else
+            {
+                ((Level4) level).getLevelbeatcounter().fillResultOfRound(false);
+            }
         }
 
     }

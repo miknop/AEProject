@@ -5,7 +5,9 @@
  */
 package com.AEProjekt.submarine.levelz;  // created at 5/7/2018
 
+import com.AEProjekt.submarine.equations.EquationGenerator;
 import com.AEProjekt.submarine.equations.LinearEquation;
+import com.AEProjekt.submarine.figures.Submarine;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -22,9 +24,18 @@ public class Level3 implements iLevel{
     private LevelBeatCounter levelbeatcounter;
     private LinearEquation linEq = null;
     private boolean satellite;
+    private Submarine submarine;
 
-    
-    public void method(){
-        
+
+    public void equipLevel() {
+        linEq = EquationGenerator.generateLinearEquation();
+        levelbeatcounter = new LevelBeatCounter();
+        submarine = new Submarine(EquationGenerator.generatePointBelowSea(linEq));
+    }
+
+    public void equipLevelNoRS()
+    {
+        linEq = EquationGenerator.generateLinearEquation();
+        submarine = new Submarine(EquationGenerator.generatePointBelowSea(linEq));
     }
 }

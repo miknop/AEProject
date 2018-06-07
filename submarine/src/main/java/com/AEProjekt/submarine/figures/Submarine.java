@@ -14,9 +14,9 @@ import lombok.NoArgsConstructor;
  *
  * @author Michel
  */
-//@Data
-//@AllArgsConstructor
-//@NoArgsConstructor
+@Data
+@AllArgsConstructor
+@NoArgsConstructor
 // renamed from UBoat to Submarine (Michel; 5/7/2018)
 public class Submarine{
     private int xPosition;
