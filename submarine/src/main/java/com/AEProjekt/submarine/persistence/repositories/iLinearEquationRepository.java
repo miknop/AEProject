@@ -6,5 +6,5 @@ import org.springframework.data.repository.CrudRepository;
 /**
  * Created by backes_tor on 06.06.2018.
  */
-public interface iLinearEquationRepository extends CrudRepository<LinearEquationEntity, String> {
+public interface iLinearEquationRepository extends CrudRepository<LinearEquationEntity, Long> {
 }

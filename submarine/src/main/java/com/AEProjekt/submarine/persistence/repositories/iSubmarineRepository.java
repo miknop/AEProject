@@ -7,5 +7,5 @@ import org.springframework.data.repository.CrudRepository;
 /**
  * Created by backes_tor on 06.06.2018.
  */
-public interface iSubmarineRepository extends CrudRepository<SubmarineEntity, String> {
+public interface iSubmarineRepository extends CrudRepository<SubmarineEntity, Long> {
 }

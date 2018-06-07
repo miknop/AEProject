@@ -9,6 +9,7 @@ import com.AEProjekt.submarine.equations.EquationGenerator;
 import com.AEProjekt.submarine.equations.LinearEquation;
 import com.AEProjekt.submarine.figures.Plane;
 import com.AEProjekt.submarine.figures.Submarine;
+import com.AEProjekt.submarine.figures.iFigure;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -21,8 +22,8 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 //@NoArgsConstructor
 public class Level1 implements iLevel {
-    private Plane plane = null;
-    private Submarine sub = null;
+    private iFigure plane = null;
+    private iFigure sub = null;
     private LinearEquation linEq = null;
     private LevelBeatCounter levelbeatcounter;
 
@@ -47,42 +48,4 @@ public class Level1 implements iLevel {
         sub = new Submarine(EquationGenerator.generatePointBelowSea(linEq));
     }
 
-    //Ja, brauchen wir nicht, schon klar, aber Lombok funktioniert irgendwie nicht richtig
-
-    /*
-    public LevelBeatCounter getLevelbeatcounter() {
-        return levelbeatcounter;
-    }
-    */
-
-    /*
-    public void setLevelbeatcounter(LevelBeatCounter levelbeatcounter) {
-        this.levelbeatcounter = levelbeatcounter;
-    }*/
-
-    /*
-    public PlaneEntity getPlane() {
-        return plane;
-    }
-
-    public void setPlane(PlaneEntity plane) {
-        this.plane = plane;
-    }
-
-    public Submarine getSub() {
-        return sub;
-    }
-
-    public void setSub(Submarine sub) {
-        this.sub = sub;
-    }
-
-    public LinearEquationEntity getLinEq() {
-        return linEq;
-    }
-
-    public void setLinEq(LinearEquationEntity linEq) {
-        this.linEq = linEq;
-    }
-    */
 }

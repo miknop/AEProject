@@ -14,26 +14,19 @@ import lombok.NoArgsConstructor;
  *
  * @author Michel
  */
-//@Data
+@Data
 //@AllArgsConstructor
 //@NoArgsConstructor
-public class Ship {
-    private int xPosition;
-    private int yPosition;
+public class Ship implements iFigure{
+    private Point point;
 
     public Ship(Point p)
     {
-        this.xPosition = p.getX();
-        this.yPosition = p.getY();
+        point = p;
     }
 
     public String toString()
     {
-        return "(" + Integer.toString(xPosition) + "/" + Integer.toString(yPosition) + ")";
-    }
+        return "(" + Integer.toString(point.getX()) + "/" + Integer.toString(point.getY()) + ")";}
 
-    public Ship(int xPosition, int yPosition) {
-        this.xPosition = xPosition;
-        this.yPosition = yPosition;
-    }
 }

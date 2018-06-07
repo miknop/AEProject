@@ -1,7 +1,14 @@
 package com.AEProjekt.submarine.equations;
 
+
+
 import java.util.ArrayList;
 import java.util.Random;
+
+/**
+ * Created by miknop
+ *
+ */
 
 public class EquationGenerator
 {

@@ -25,7 +25,7 @@ public class LevelEntity {
 
     @GeneratedValue
     @Id
-    private long id;
+    private Long id;
 
     private Plane plane;
 
