@@ -15,7 +15,7 @@ import lombok.NoArgsConstructor;
  * @author Michel
  */
 @Data
-@AllArgsConstructor
+//@AllArgsConstructor
 @NoArgsConstructor
 public class Satellite implements iFigure{
     private Point point;
