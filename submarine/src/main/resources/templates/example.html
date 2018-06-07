@@ -77,16 +77,13 @@
 <body>
     <h1>Hello, world!</h1>
     <p>Gegebene Funktion: </p>
-    <p th:text="${gleichung.toString()}"></p>
+    <!--<p th:text="${gleichung.toString()}"></p>-->
     <p th:text="${submarine.toString()}"></p>
-    <p th:text="${plane.toString()}"></p>
-    <!--<p th:text="'Hello, ' + ${name} + '!'" ></p>-->
+    <!--<p th:text="${plane.toString()}"></p>-->
     <div class="container-fluid">
         <div class="row">
             <!-- Hier kommt die linke Spalte mit Input für Gleichungslösung, History der Eingaben und Ausgabe von Gleichungen -->
             <div class="col-md-1">
-                <p>Gegebene Funktion: </p>
-                <p th:text="'f(x)=' + ${gleichung.toString()}"></p>
                 <input type="text" name="solution">
 
                 <p>
@@ -108,7 +105,7 @@
             </div>
             <!-- Hier kommt die mittlere Spalte aka "Spielfeld" -->
             <!--<div class="col-md-8" onload="zeichne()">-->
-            <div class="col-md-8">
+            <div class="col-md-8" onload="zeichne()" >
                 <main>
                     <form>
                         <fieldset>
@@ -117,7 +114,7 @@
                                 <label> Faktor a
                                     <input name="a" step="0.01" type="number" value="1"> </label> * x +
                                 <label> Konstante c
-                                    <input name="c" type="number" value="1"> </label>
+                                    <input name="c" id="" type="number" value="1"> </label>
                             </p>
                         </fieldset>
                     </form>
@@ -134,14 +131,15 @@
                         <rect x="0" y="0" width="700" height="400" fill="url(#grid)"></rect>
                         <!-- Ursprungspunkt -->
                         <circle cx="350" cy="200" r="4" fill="#c32e04"></circle>
+                        <circle cx="370" cy="200" r="4" fill="blue"></circle>
                         <!-- X-Achse -->
                         <path class="axis" id="x-axis" d="M0,200 h695" />
                         <!-- Y-Achse -->
                         <path class="axis" id="y-axis" d="M350,400 v-395" />
                         <!-- Linie des Funktionsgraphen -->
-                        <path id="functionGraph" d="M140,400 L540,0" stroke="#0f0" />
+                        <path id="functionGraph" d="M140,400 L560,0" stroke="#0f0" />
                         <!-- Beschriftung des Ursprungspunktes -->
-                        <text x="360" y="220" fill="darkslategray">(0,0)</text>
+                        <text x="360" y="200" fill="darkslategray">(0,0)</text>
                         <!-- Beschriftung X-Achse -->
                         <text id="x-label" x="640" y="195" fill="#999">X-Achse</text>
                         <!-- Beschriftung Y-Achse -->
@@ -154,17 +152,32 @@
                 </main>
 
             </div>
-
-            <!--<script type="text/javascript">
+            <script th:inline="javascript">
+                
+                /*<![CDATA[*/
+                
                 function zeichne(){
-                    var canvas = document.getElementById('canvastest');
-                    var bild = canvas.getContext('2d');
+                    var graph = document.getElementById('functionGraph');
+                    //var data = graph.getAttribute("d","M140,400 L560,0");
+                    //graph.setAttribute("d")
+                    var submarine = /*[[${submarine.toString()}]]*/ '-1,-1';
+                    var submarineY = submarine.substr(submarine.length()-submarine.indexOf(','),submarine.length()-1);                    
+                    var submarineX = submarine.substr(0,submarine.indexOf(','));
+                    submarineY = 200+(-10*submarineY);
+                    submarineX = 350+(10*submarineX); 
+                    
+                    var plane = /*[[${plane.toString()}]]*/ '-1,-1';
+                    var planeY = plane.substr(plane.length()-plane.indexOf(','),plane.length()-1);                    
+                    var planeX = plane.substr(0,plane.indexOf(','));
+                    planeY = 200+(10*planeY);
+                    planeX = 350+(10*planeX); 
 
-                    bild.fillStyle = "rgb(200,0,0)";
-                    bild.fillRect (10, 10, 60, 50);
+                    graph.setAttribute("d", "M"+submarineX+","+submarineY+"L"+planeX+","+0);
+                /*]]>*/
+
                 }
             </script>
-            <canvas id="canvastest" width="150" height="150" > Ihr Browser kann kein Canvas! </canvas>-->
+            <canvas id="canvastest" width="150" height="150" > Ihr Browser kann kein Canvas! </canvas>
             </div>
 
             <!-- Hier kommt die rechte Spalte aka Befehlsangabe -->

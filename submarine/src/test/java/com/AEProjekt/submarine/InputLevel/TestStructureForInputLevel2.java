@@ -5,5 +5,5 @@ package com.AEProjekt.submarine.InputLevel;
  */
 public class TestStructureForInputLevel2 {
     public boolean right_or_wrong;
-    public double pFX;
+    public int pFX;
 }

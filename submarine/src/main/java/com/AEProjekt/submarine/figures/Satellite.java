@@ -14,26 +14,20 @@ import lombok.NoArgsConstructor;
  *
  * @author Michel
  */
-//@Data
+@Data
 //@AllArgsConstructor
-//@NoArgsConstructor
-public class Satellite {
-    private int xPosition;
-    private int yPosition;
+@NoArgsConstructor
+public class Satellite implements iFigure{
+    private Point point;
 
     public Satellite(Point p)
     {
-        this.xPosition = p.getX();
-        this.yPosition = p.getY();
+        point = p;
     }
 
     public String toString()
     {
-        return "(" + Integer.toString(xPosition) + "/" + Integer.toString(yPosition) + ")";
+        return "(" + Integer.toString(point.getX()) + "/" + Integer.toString(point.getY()) + ")";
     }
 
-    public Satellite(int xPosition, int yPosition) {
-        this.xPosition = xPosition;
-        this.yPosition = yPosition;
-    }
 }
