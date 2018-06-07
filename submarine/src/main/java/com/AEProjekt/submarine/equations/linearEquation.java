@@ -1,5 +1,11 @@
 package com.AEProjekt.submarine.equations;
 
+/**
+ *
+ * @author
+ * @since
+ * @version
+ */
 public class linearEquation implements iEquationType
 {
     private int dividend; // Zähler

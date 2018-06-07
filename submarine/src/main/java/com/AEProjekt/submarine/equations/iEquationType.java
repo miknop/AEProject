@@ -1,5 +1,13 @@
 package com.AEProjekt.submarine.equations;
 
+/**
+ *
+ * @author
+ * @since
+ * @version
+ *
+ * calculateX, calculateY:
+ */
 public interface iEquationType
 {
     String toString();

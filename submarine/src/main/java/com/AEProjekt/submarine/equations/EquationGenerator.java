@@ -3,6 +3,24 @@ package com.AEProjekt.submarine.equations;
 import java.util.ArrayList;
 import java.util.Random;
 
+/**
+ * kurze Beschreibung, was die Klasse macht
+ * @author (Created by)
+ * @since (when created)
+ * (@version)
+ *
+ * MAXVALUES:
+ *
+ * submarineX, submarineY:
+ *
+ * ufoX, ufoY:
+ *
+ * visiblePlane:
+ *
+ * visibleBoat:
+ *
+ * equation:
+ */
 public class EquationGenerator
 {
     private static final int MAXVALUES = 6;
@@ -15,6 +33,10 @@ public class EquationGenerator
     private boolean visibleBoat;
     private iEquationType equation;
 
+    /**
+     * kurze Beschreibung der Methode
+     * @param equationType
+     */
     public void generateEquation(int equationType)
     {
         if(equationType == 1)
@@ -25,6 +47,9 @@ public class EquationGenerator
 
     //TODO: Ein Punkt immer kleiner als 0
     //TODO: kürzen von brüchen
+    /**
+     * kurze Beschreibung
+     */
     private void generateLinearEquation()
     {
         // Zähler der Steigung im Bereich von -6 bis 6 generieren.
@@ -124,6 +149,10 @@ public class EquationGenerator
         this.ufoY = ufoY;
     }
 
+    /**
+     *
+     * @return visiblePlane
+     */
     public boolean isVisiblePlane()
     {
         return visiblePlane;
@@ -134,6 +163,10 @@ public class EquationGenerator
         this.visiblePlane = visiblePlane;
     }
 
+    /**
+     *
+     * @return visibleBoat
+     */
     public boolean isVisilbeBoat()
     {
         return visibleBoat;
@@ -144,6 +177,10 @@ public class EquationGenerator
         this.visibleBoat = visilbeBoat;
     }
 
+    /**
+     *
+     * @return equation
+     */
     public iEquationType getEquation()
     {
         return equation;
