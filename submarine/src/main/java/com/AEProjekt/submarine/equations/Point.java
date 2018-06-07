@@ -21,4 +21,16 @@ public class Point
     {
         return ("(" + x + "/" + y + ")");
     }
+
+    public int compareTo(Point o) {
+        if(o.getX() == this.x && o.getY() == this.y)
+        {
+            return 0;
+        }
+        else
+        {
+            return -1;
+        }
+
+    }
 }
