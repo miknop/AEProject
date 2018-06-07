@@ -28,10 +28,19 @@ public class Submarine{
         this.yPosition = p.getY();
     }
 
+    public int getPosX()
+    {
+        return xPosition;
+    }
+
+    public int getPosY()
+    {
+        return yPosition;
+    }
 
     public String toString()
     {
-        return "(" + Integer.toString(xPosition) + "/" + Integer.toString(yPosition) + ")";
+        return Integer.toString(xPosition) + "/" + Integer.toString(yPosition);
     }
     public Submarine(int xPosition, int yPosition) {
         this.xPosition = xPosition;

@@ -27,10 +27,18 @@ public class Plane{
         this.yPosition = p.getY();
     }
 
+    public int getPosX()
+    {
+        return xPosition;
+    }
+    public int getPosY()
+    {
+        return yPosition;
+    }
 
     public String toString()
     {
-        return "(" + Integer.toString(xPosition) + "/" + Integer.toString(yPosition) + ")";
+        return Integer.toString(xPosition) + "/" + Integer.toString(yPosition) ;
     }
 
 }

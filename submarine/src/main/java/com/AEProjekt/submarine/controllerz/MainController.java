@@ -74,7 +74,15 @@ public class MainController {
         return "exampleMainController";
     }
 
-
+    @GetMapping("/example") // Die URL, für keine Subseite einfach @GetMapping()
+    public String example(@RequestParam(name="gleichung", required=false, defaultValue="gleichung") String gleichung, Model model)
+    {
+        LinearEquation equation = EquationGenerator.generateLinearEquation();
+        model.addAttribute("gleichung", equation);
+        model.addAttribute("submarine", new Submarine(EquationGenerator.generatePointBelowSea(equation)));
+        model.addAttribute("plane", new Submarine(EquationGenerator.generatePointAboveSea(equation)));
+        return "example";
+    }
 
     public void playLevel(iLevel level)
     {
