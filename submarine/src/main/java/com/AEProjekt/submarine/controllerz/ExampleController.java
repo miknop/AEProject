@@ -9,6 +9,12 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 @Controller
+/**
+ * kurze Beschreibung, was die Klasse macht
+ * @author (Created by)
+ * @since (when created)
+ * (@version)
+ */
 public class ExampleController
 {
     EquationGenerator generator = new EquationGenerator();

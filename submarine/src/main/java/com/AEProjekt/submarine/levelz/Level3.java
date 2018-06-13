@@ -6,8 +6,9 @@
 package com.AEProjekt.submarine.levelz;  // created at 5/7/2018
 
 /**
- *
+ * Level 3
  * @author Michel
+ * @since 20.05.
  */
 public class Level3 {
     private boolean satellite;

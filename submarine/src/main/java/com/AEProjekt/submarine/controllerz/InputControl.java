@@ -2,6 +2,12 @@ package com.AEProjekt.submarine.controllerz;
 
 import com.AEProjekt.submarine.InputLevel.*;
 
+/**
+ * kurze Beschreibung, was die Klasse macht
+ * @author (Created by)
+ * @since (when created)
+ * (@version)
+ */
 public class InputControl {
 
     private iLInput input;
@@ -13,6 +19,12 @@ public class InputControl {
     //Nothing
 
     //Weitere Methoden
+
+    /**
+     * kurze Beschreibung
+     * @param input
+     * @return
+     */
     private boolean isDrawnInputValid(iLInput input)
     {
         if(input instanceof InputLevel1)
@@ -33,6 +45,11 @@ public class InputControl {
         }
     }
 
+    /**
+     * kurze Beschreibung
+     * @param input
+     * @return
+     */
     private boolean isEquationInputValid(iLInput input)
     {
         if(input instanceof InputLevel4)
@@ -53,6 +70,11 @@ public class InputControl {
         }
     }
 
+    /**
+     * kurze Beschreibung
+     * @param input
+     * @return
+     */
     private boolean isBombDepthValid(iLInput input)
     {
         if(input instanceof InputLevel02)
@@ -73,6 +95,11 @@ public class InputControl {
         }
     }
 
+    /**
+     * kurze Beschreibung
+     * @param input
+     * @return
+     */
     private boolean isBoatPosValid(iLInput input)
     {
         if(input instanceof InputLevel3)

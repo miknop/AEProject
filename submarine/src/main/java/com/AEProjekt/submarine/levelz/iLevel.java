@@ -6,8 +6,9 @@
 package com.AEProjekt.submarine.levelz;  // created at 5/7/2018
 
 /**
- *
+ * Interface für die Levels, welches nur festlegt, dass 5 von den letzten 7 Versuchen geschafft sein müssen
  * @author Michel
+ * @since 20.05.
  */
 public interface iLevel {
     final int maxLosses = 2;
