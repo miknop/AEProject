@@ -1,8 +1,8 @@
 package com.AEProjekt.submarine.figures;
 
 public class FigureGenerator {
-
-    public static Plane generatePlane(int x, int y) {
+/*
+    public static Plane generatePlane(Poin) {
         return new Plane(x,y);
     }
 
@@ -18,5 +18,6 @@ public class FigureGenerator {
         return new Submarine(x,y);
     }
 
+*/
 
 }

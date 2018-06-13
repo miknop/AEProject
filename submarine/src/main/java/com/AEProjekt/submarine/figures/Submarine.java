@@ -13,37 +13,33 @@ import lombok.NoArgsConstructor;
 /**
  *
  * @author Michel
+ * renamed from UBoat to Submarine (Michel; 5/7/2018)
  */
-//@Data
+@Data
 //@AllArgsConstructor
 //@NoArgsConstructor
-// renamed from UBoat to Submarine (Michel; 5/7/2018)
-public class Submarine{
-    private int xPosition;
-    private int yPosition;
+
+public class Submarine implements iFigure{
+    private Point point;
 
     public Submarine(Point p)
     {
-        this.xPosition = p.getX();
-        this.yPosition = p.getY();
+        point = p;
     }
 
-    public int getPosX()
+    public int getX()
     {
-        return xPosition;
+        return point.getX();
     }
 
-    public int getPosY()
+    public int getY()
     {
-        return yPosition;
+        return point.getY();
     }
 
     public String toString()
     {
-        return Integer.toString(xPosition) + "/" + Integer.toString(yPosition);
+        return "(" + Integer.toString(point.getX()) + "/" + Integer.toString(point.getY()) + ")";
     }
-    public Submarine(int xPosition, int yPosition) {
-        this.xPosition = xPosition;
-        this.yPosition = yPosition;
-    }
+
 }
