@@ -1,6 +1,7 @@
 package com.AEProjekt.submarine.InputLevel;
 
 
+import com.AEProjekt.submarine.equations.Point;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -13,9 +14,7 @@ import javax.validation.constraints.Digits;
 public class InputLevel1 implements iLInput
 {
     //@Digits(integer = 10, fraction = 0)
-    private int p1Y;
-    //@Digits(integer = 10, fraction = 0)
-    private int p1X;
+    private Point p1;
     //@Digits(integer = 10, fraction = 0)
     private int p2Y;
     //@Digits(integer = 10, fraction = 0)
@@ -28,7 +27,7 @@ public class InputLevel1 implements iLInput
     public boolean isInputValid()
     {
 
-        //Punkte muessen im Spielfeld liegen
+        /*//Punkte muessen im Spielfeld liegen
         if((p1Y>= -12 && p1Y <= 12)&&
                 (p1X >= -12 && p1X <= 12)&&
                 (p2Y >= -12 && p2Y <= 12)&&
@@ -48,8 +47,8 @@ public class InputLevel1 implements iLInput
         else
         {
            return false;
-        }
-
+        }*/
+        return true;
     }
 
 

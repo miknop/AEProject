@@ -69,7 +69,7 @@ public class MainController {
 
         this.inputLevel = userInput;
 
-        storyExecution(this.user);
+        //storyExecution(this.user);
 
         return "exampleMainController";
     }
@@ -84,7 +84,114 @@ public class MainController {
         return "example";
     }
 
-    public void playLevel(iLevel level)
+    @GetMapping("/level1") // Die URL, für keine Subseite einfach @GetMapping()
+    public String level1(Model model, iLInput input)
+    {
+        LinearEquation equation = EquationGenerator.generateLinearEquation();
+        model.addAttribute("gleichung", equation);
+        model.addAttribute("submarine", new Submarine(EquationGenerator.generatePointBelowSea(equation)));
+        model.addAttribute("plane", new Submarine(EquationGenerator.generatePointAboveSea(equation)));
+        model.addAttribute("input", new InputLevel1());
+        return "level1";
+    }
+
+    @PostMapping("/level1") // Die URL, für keine Subseite einfach @GetMapping()
+    public String level1Input(@ModelAttribute("userInput") InputLevel1 userInput, Model model)
+    {
+        LinearEquation equation = EquationGenerator.generateLinearEquation();
+        model.addAttribute("gleichung", equation);
+        model.addAttribute("submarine", new Submarine(EquationGenerator.generatePointBelowSea(equation)));
+        model.addAttribute("plane", new Submarine(EquationGenerator.generatePointAboveSea(equation)));
+        model.addAttribute("result", true); //TODO Überprüfen ob wirklich richtig
+        return "level1";
+    }
+
+    @GetMapping("/level2") // Die URL, für keine Subseite einfach @GetMapping()
+    public String level2(Model model, iLInput input)
+    {
+        LinearEquation equation = EquationGenerator.generateLinearEquation();
+        model.addAttribute("gleichung", equation);
+        model.addAttribute("submarine", new Submarine(EquationGenerator.generatePointBelowSea(equation)));
+        model.addAttribute("plane", new Submarine(EquationGenerator.generatePointAboveSea(equation)));
+        model.addAttribute("input", new InputLevel1());
+        return "level1";
+    }
+
+    @PostMapping("/level2") // Die URL, für keine Subseite einfach @GetMapping()
+    public String level2Input(@ModelAttribute("userInput") InputLevel1 userInput, Model model)
+    {
+        LinearEquation equation = EquationGenerator.generateLinearEquation();
+        model.addAttribute("gleichung", equation);
+        model.addAttribute("submarine", new Submarine(EquationGenerator.generatePointBelowSea(equation)));
+        model.addAttribute("plane", new Submarine(EquationGenerator.generatePointAboveSea(equation)));
+        model.addAttribute("result", true); //TODO Überprüfen ob wirklich richtig
+        return "level2";
+    }
+
+    @GetMapping("/level3") // Die URL, für keine Subseite einfach @GetMapping()
+    public String level3(Model model, iLInput input)
+    {
+        LinearEquation equation = EquationGenerator.generateLinearEquation();
+        model.addAttribute("gleichung", equation);
+        model.addAttribute("submarine", new Submarine(EquationGenerator.generatePointBelowSea(equation)));
+        model.addAttribute("plane", new Submarine(EquationGenerator.generatePointAboveSea(equation)));
+        model.addAttribute("input", new InputLevel1());
+        return "level1";
+    }
+
+    @PostMapping("/level3") // Die URL, für keine Subseite einfach @GetMapping()
+    public String level3Input(@ModelAttribute("userInput") InputLevel1 userInput, Model model)
+    {
+        LinearEquation equation = EquationGenerator.generateLinearEquation();
+        model.addAttribute("gleichung", equation);
+        model.addAttribute("submarine", new Submarine(EquationGenerator.generatePointBelowSea(equation)));
+        model.addAttribute("plane", new Submarine(EquationGenerator.generatePointAboveSea(equation)));
+        model.addAttribute("result", true); //TODO Überprüfen ob wirklich richtig
+        return "level3";
+    }
+
+    @GetMapping("/level4") // Die URL, für keine Subseite einfach @GetMapping()
+    public String level4(Model model, iLInput input)
+    {
+        LinearEquation equation = EquationGenerator.generateLinearEquation();
+        model.addAttribute("gleichung", equation);
+        model.addAttribute("submarine", new Submarine(EquationGenerator.generatePointBelowSea(equation)));
+        model.addAttribute("plane", new Submarine(EquationGenerator.generatePointAboveSea(equation)));
+        model.addAttribute("input", new InputLevel1());
+        return "level4";
+    }
+
+    @PostMapping("/level4") // Die URL, für keine Subseite einfach @GetMapping()
+    public String level4Input(@ModelAttribute("userInput") InputLevel1 userInput, Model model)
+    {
+        LinearEquation equation = EquationGenerator.generateLinearEquation();
+        model.addAttribute("gleichung", equation);
+        model.addAttribute("submarine", new Submarine(EquationGenerator.generatePointBelowSea(equation)));
+        model.addAttribute("plane", new Submarine(EquationGenerator.generatePointAboveSea(equation)));
+        model.addAttribute("result", true); //TODO Überprüfen ob wirklich richtig
+        return "level4";
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    /*public void playLevel(iLevel level)
     {
         if(level instanceof  Level1)
         {
@@ -131,7 +238,7 @@ public class MainController {
             {
                 ((Level2) level).getLevelbeatcounter().fillResultOfRound(false);
             }
-        }
+        }*/
 
         /*if(level instanceof Level3)
         {
@@ -147,7 +254,7 @@ public class MainController {
                 ((Level3) level).getLevelbeatcounter().fillResultOfRound(false);
             }
         }*/
-
+        /*
         if(level instanceof Level4)
         {
             LinearEquation temp_linearequation = new LinearEquation(((InputLevel4) inputLevel).getUserNumeratorInput(),((InputLevel4) inputLevel).getUserDenominatorInput(), ((InputLevel4) inputLevel).getUserYInput());
@@ -162,13 +269,13 @@ public class MainController {
                 ((Level4) level).getLevelbeatcounter().fillResultOfRound(false);
             }
         }
-    }
+    } */
 
 
 
 
     //TODO Login Funktion entwickeln (wo kommt user her?)
-    public void storyExecution(User user)
+   /* public void storyExecution(User user)
     {
 
 
@@ -221,7 +328,7 @@ public class MainController {
 
 
 
-    }
+    }*/
 
     private void moveFigure(User user)
     {

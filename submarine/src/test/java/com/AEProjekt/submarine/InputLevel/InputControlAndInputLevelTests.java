@@ -17,7 +17,7 @@ public class InputControlAndInputLevelTests {
 
 
     @Test
-    public void testController()
+    /*public void testController()
     {
         for(int i = 0; i < 4; i++)
         {
@@ -55,7 +55,7 @@ public class InputControlAndInputLevelTests {
                 }
             }
         }
-    }
+    }*/
 
     public TestStructureForInputLevel4 TestForInputLevel4()
     {
