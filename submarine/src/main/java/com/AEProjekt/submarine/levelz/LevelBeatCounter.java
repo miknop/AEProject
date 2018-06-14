@@ -1,8 +1,12 @@
 package com.AEProjekt.submarine.levelz;
 
+import lombok.Data;
+
 import java.util.ArrayList;
 
+@Data
 public class LevelBeatCounter {
+
     private int beatCounter = 0;
     private ArrayList<Boolean> beatList;
 

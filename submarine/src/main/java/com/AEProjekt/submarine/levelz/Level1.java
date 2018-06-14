@@ -14,6 +14,8 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import javax.persistence.*;
+
 /**
  *
  * @author Michel
@@ -22,9 +24,13 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 //@NoArgsConstructor
 public class Level1 implements iLevel {
+
     private iFigure plane = null;
+
     private iFigure sub = null;
+
     private LinearEquation linEq = null;
+
     private LevelBeatCounter levelbeatcounter;
 
 
