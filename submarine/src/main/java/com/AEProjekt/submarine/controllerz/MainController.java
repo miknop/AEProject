@@ -102,6 +102,7 @@ public class MainController {
         model.addAttribute("gleichung", equation);
         model.addAttribute("submarine", new Submarine(EquationGenerator.generatePointBelowSea(equation)));
         model.addAttribute("plane", new Submarine(EquationGenerator.generatePointAboveSea(equation)));
+        model.addAttribute("input", userInput);
         model.addAttribute("result", true); //TODO Überprüfen ob wirklich richtig
         return "level1";
     }
