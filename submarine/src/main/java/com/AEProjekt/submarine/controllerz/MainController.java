@@ -66,6 +66,7 @@ public class MainController {
 
         model.addAttribute("user", user);
         model.addAttribute("userInput", this.inputLevel);
+        model.addAttribute("userInputValid", this.inputLevel.isInputValid());
 
         this.inputLevel = userInput;
 
@@ -178,7 +179,7 @@ public class MainController {
 
 
 
-        if((user.getLevel() instanceof Level4) && isLevelBeat(user) && user.getLevel().getLevelbeatcounter().getBeatCounter() == 7)
+        if((user.getLevel() instanceof Level4) && isLevelBeat(user))
         {
 
 
@@ -192,8 +193,15 @@ public class MainController {
         {
 
             //Jedes level hat sein eigenen Beatcounter und es muss nicht gecastet werden
-            playLevel((user.getLevel()));
+            if(inputLevel.isInputValid() == true)
+            {
+                playLevel((user.getLevel()));
 
+            }
+
+
+
+            //TODO
             if(!isLevelBeat(user))
             {
                 if(user.getLevel() instanceof  Level1)
@@ -242,7 +250,7 @@ public class MainController {
     public void setToNextLevel(User user)
     {
         //Die Fragstellung hier ist doch, koennte er es nach wie vor gewinnen und hat er seinen soll erfuellt
-        if(isLevelBeat(user) && user.getLevel().getLevelbeatcounter().getBeatCounter() == 7)
+        if(isLevelBeat(user))
         {
             if(user.getLevel() instanceof  Level1)
                 user.setLevel(new Level2());
@@ -259,24 +267,32 @@ public class MainController {
     //Die genauere fragestellung die hier erfüllt werden soll ist doch eher, kann der user das level noch gewinnen
     public boolean isLevelBeat(User user)
     {
-
-
-        int wrongs = 0;
-        for(int i = 0; i < ((user.getLevel()).getLevelbeatcounter().getBeatCounter()); i++)
-        {
-            if((user.getLevel()).getLevelbeatcounter().getBeatList().get(i) == false) {
-                wrongs++;
-            }
-        }
-
-        if(wrongs >= 2)
+        if(user.getLevel().getLevelbeatcounter().getBeatList().size() < 7)
         {
             return false;
         }
         else
         {
-            return true;
+            int rights = 0;
+
+            for(int i = 0; i < user.getLevel().getLevelbeatcounter().getBeatList().size(); i++)
+            {
+                if(user.getLevel().getLevelbeatcounter().getBeatList().get(i))
+                {
+                    rights++;
+                }
+            }
+
+            if(rights >= 5)
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
         }
+
 
 
 
