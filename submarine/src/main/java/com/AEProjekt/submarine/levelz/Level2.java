@@ -25,7 +25,7 @@ public class Level2 implements iLevel{
    private boolean satellite;
     private LinearEquation linEq = null;
     private LevelBeatCounter levelbeatcounter;
-
+    private Submarine submarine;
     public Level2()
     {
         equipLevel();
@@ -33,11 +33,14 @@ public class Level2 implements iLevel{
 
     public void equipLevel() {
         linEq = EquationGenerator.generateLinearEquation();
+        submarine = new Submarine(EquationGenerator.generatePointBelowSea(linEq));
         levelbeatcounter = new LevelBeatCounter();
     }
 
     public void equipLevelNoRS()
     {
         linEq = EquationGenerator.generateLinearEquation();
+        submarine = new Submarine(EquationGenerator.generatePointBelowSea(linEq));
+
     }
 }

@@ -52,10 +52,10 @@
     <table>
 
         <tr>
-            <td>PLATZHALTER FUER X WERT</td>
+            <td th:text="'x = ' + ${user.getLevel().getSubmarine().getXPosition()}"></td>
         </tr>
         <tr>
-            <td>y: <input type="text" th:field="*{p1Y}" /></td>
+            <td>y: <input type="text" th:field="*{pFX}" /></td>
         </tr>
         </tr>
         <td><button type="submit">Submit</button></td>

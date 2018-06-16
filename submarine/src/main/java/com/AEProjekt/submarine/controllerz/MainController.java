@@ -7,6 +7,7 @@ import com.AEProjekt.submarine.InputLevel.*;
 import com.AEProjekt.submarine.equations.EquationGenerator;
 import com.AEProjekt.submarine.equations.*;
 import com.AEProjekt.submarine.figures.Ship;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import com.AEProjekt.submarine.levelz.*;
 import jdk.internal.util.xml.impl.Input;
@@ -46,7 +47,7 @@ public class MainController {
 
     public MainController()
     {
-        inputLevel = new InputLevel1();
+        inputLevel = new InputLevel2();
         user = new User();
     }
 
@@ -61,7 +62,7 @@ public class MainController {
     }
 
     @PostMapping("/exampleMainController")
-    public String userInputTest(@ModelAttribute("userInput") InputLevel1 userInput, Model model)
+    public String userInputTest(@Autowired @ModelAttribute("userInput") iLInput userInput, Model model)
     {
 
         model.addAttribute("user", user);
@@ -99,6 +100,21 @@ public class MainController {
                 ((Level1) level).getLevelbeatcounter().fillResultOfRound(false);
             }
 
+        }
+
+        if(level instanceof Level2)
+        {
+            Point temp_point = new Point(((Level2) level).getSubmarine().getXPosition(), ((InputLevel2) inputLevel).getPFX());
+
+            if(temp_point.compareTo(((Level2) level).getSubmarine().getPoint()) == 0)
+            {
+                ((Level2) level).getLevelbeatcounter().fillResultOfRound(true);
+                ((Level2) level).equipLevelNoRS();
+            }
+            else
+            {
+                ((Level2) level).getLevelbeatcounter().fillResultOfRound(false);
+            }
         }
 
     }
@@ -185,11 +201,22 @@ public class MainController {
         if(isLevelBeat(user) && user.getLevel().getLevelbeatcounter().getBeatCounter() == 7)
         {
             if(user.getLevel() instanceof  Level1)
+            {
                 user.setLevel(new Level2());
+                this.inputLevel = new InputLevel2();
+            }
             else if (user.getLevel() instanceof  Level2)
+            {
                 user.setLevel(new Level3());
+                this.inputLevel = new InputLevel3();
+            }
+
             else if (user.getLevel() instanceof  Level3)
+            {
                 user.setLevel(new Level4());
+                this.inputLevel = new InputLevel4();
+            }
+
         }
 
 

@@ -14,9 +14,9 @@ import lombok.NoArgsConstructor;
  *
  * @author Michel
  */
-//@Data
+@Data
 //@AllArgsConstructor
-//@NoArgsConstructor
+@NoArgsConstructor
 // renamed from UBoat to Submarine (Michel; 5/7/2018)
 public class Submarine{
     private int xPosition;
@@ -33,8 +33,13 @@ public class Submarine{
     {
         return "(" + Integer.toString(xPosition) + "/" + Integer.toString(yPosition) + ")";
     }
+    public Point getPoint()
+    {
+        return new Point(this.xPosition, this.yPosition);
+    }
     public Submarine(int xPosition, int yPosition) {
         this.xPosition = xPosition;
         this.yPosition = yPosition;
     }
+    
 }
