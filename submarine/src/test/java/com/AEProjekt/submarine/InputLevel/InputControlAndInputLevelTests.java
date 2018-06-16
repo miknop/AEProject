@@ -84,7 +84,7 @@ public class InputControlAndInputLevelTests {
         TestStructureForInputLevel3 temp_obj = new TestStructureForInputLevel3();
 
         //Zuweisung von Werten in die Struktur
-        temp_obj.pX = (double)(Math.random() * -100) + (double)(Math.random() * +100);
+        temp_obj.pX = (int)(Math.random() * -100) + (int)(Math.random() * +100);
         temp_obj.right_or_wrong = true;
 
         if(temp_obj.pX < -12 || temp_obj.pX > 12)
@@ -100,7 +100,7 @@ public class InputControlAndInputLevelTests {
         TestStructureForInputLevel2 temp_obj = new TestStructureForInputLevel2();
 
         //Zuweisung von Werten in die Struktur
-        temp_obj.pFX = (double)(Math.random() * -100);
+        temp_obj.pFX = (int)(Math.random() * -100);
         temp_obj.right_or_wrong = true;
 
         if(temp_obj.pFX < -12 || temp_obj.pFX > 0)
@@ -117,10 +117,10 @@ public class InputControlAndInputLevelTests {
         TestStructureForInputLevel1 temp_obj = new TestStructureForInputLevel1();
 
         //Zuweisung von Werten in die Struktur
-        temp_obj.p1Y = (double)(Math.random() * -100) + (double)(Math.random() * +100);
-        temp_obj.p1X = (double)(Math.random() * -100) + (double)(Math.random() * +100);
-        temp_obj.p2Y = (double)(Math.random() * -100) + (double)(Math.random() * +100);
-        temp_obj.p2X = (double)(Math.random() * -100) + (double)(Math.random() * +100);
+        temp_obj.p1Y = (int)(Math.random() * -100) + (int)(Math.random() * +100);
+        temp_obj.p1X = (int)(Math.random() * -100) + (int)(Math.random() * +100);
+        temp_obj.p2Y = (int)(Math.random() * -100) + (int)(Math.random() * +100);
+        temp_obj.p2X = (int)(Math.random() * -100) + (int)(Math.random() * +100);
         temp_obj.right_or_wrong = true;
 
         if(temp_obj.p1Y < -12 || temp_obj.p1Y > 12)

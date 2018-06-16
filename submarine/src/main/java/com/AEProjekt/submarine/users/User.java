@@ -15,8 +15,7 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 public class User {
     private String username;
-    private String password;
-    private iLevel level = new Level2();
+    private iLevel level = new Level1();
     /*
     private boolean level1Beaten = false;
     private boolean level2Beaten= false;
