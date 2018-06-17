@@ -1,5 +1,11 @@
 package com.AEProjekt.submarine.InputLevel;
 
+/**
+ *
+ * @author:
+ * @since:
+ * @version:
+ */
 public class InputLevel1 implements iLInput
 {
     private double p1Y;

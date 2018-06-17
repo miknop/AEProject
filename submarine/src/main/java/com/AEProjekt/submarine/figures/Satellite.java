@@ -8,6 +8,7 @@ package com.AEProjekt.submarine.figures;
 /**
  *
  * @author Michel
+ * @since: 20.05.
  */
 public class Satellite {
     private int xPosition;

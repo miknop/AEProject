@@ -4,7 +4,10 @@ import com.AEProjekt.submarine.InputLevel.InputLevel1;
 import com.AEProjekt.submarine.InputLevel.TestStructureForInputLevel1;
 import com.AEProjekt.submarine.InputLevel.iLInput;
 
-
+/**
+ *
+ * @author:
+ */
 public class InputControlAndInputLevelTests {
 
     private iLInput test_input;

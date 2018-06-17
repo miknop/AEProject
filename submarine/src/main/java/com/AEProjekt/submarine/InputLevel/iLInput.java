@@ -1,5 +1,10 @@
 package com.AEProjekt.submarine.InputLevel;
 
+/**
+ *
+ * @authhor:
+ * @since:
+ */
 public interface iLInput {
 
     //Weitere Methoden

@@ -1,5 +1,11 @@
 package com.AEProjekt.submarine.InputLevel;
 
+/**
+ *
+ * @author:
+ * @since:
+ * @veersion:
+ */
 public class InputLevel4 implements iLInput {
     private int userNumeratorInput; //Zaehler
     private int userDenominatorInput; //Nenner
@@ -38,9 +44,11 @@ public class InputLevel4 implements iLInput {
         this.userYInput = userYInput;
     }
 
-    //Weitere Methoden
-
-    //Es reicht hier eigentlich schon aus zu pruefen ob der y-achsen abschnit von x = 0 in der Map liegt
+    /**
+     * Weitere Methoden
+     *
+     * Es reicht hier eigentlich schon aus zu pruefen ob der y-achsen abschnit von x = 0 in der Map liegt
+     */
     public boolean isInputValid()
     {
         if(userYInput>= -12 && userYInput <= 12)

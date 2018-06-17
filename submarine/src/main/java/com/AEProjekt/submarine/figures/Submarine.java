@@ -8,6 +8,7 @@ package com.AEProjekt.submarine.figures;  // created at 5/7/2018
 /**
  *
  * @author Michel
+ * @since: 20.05.
  */
 
 // renamed from UBoat to Submarine (Michel; 5/7/2018)

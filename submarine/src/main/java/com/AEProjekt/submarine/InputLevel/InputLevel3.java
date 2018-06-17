@@ -1,5 +1,11 @@
 package com.AEProjekt.submarine.InputLevel;
 
+/**
+ *
+ * @author:
+ * @since:
+ * @version:
+ */
 public class InputLevel3 implements iLInput {
     private double pX;
 
@@ -18,8 +24,9 @@ public class InputLevel3 implements iLInput {
     }
 
     //Weitere Methoden
-
-    //prueft ob sich der Punkt auf dem Spielfeld befindet
+    /**
+     *Diese Methode prueft ob sich der Punkt auf dem Spielfeld befindet
+    */
     public boolean isInputValid()
     {
         if(pX>= -12 && pX <= 12)

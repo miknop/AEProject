@@ -12,7 +12,8 @@ package com.AEProjekt.submarine.levelz;  //  created at 5/7/2018
  */
 public class Level4 {
    private boolean plane;
-    
+
+    //Getter und Setter
     public void setPlane(boolean plane){
         this.plane = plane;
     }

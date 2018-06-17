@@ -20,6 +20,9 @@ public class ExampleController
     EquationGenerator generator = new EquationGenerator();
 
     @GetMapping("/example") // Die URL, für keine Subseite einfach @GetMapping()
+    /**
+     *  ...
+     */
     public String example(@RequestParam(name="gleichung", required=false, defaultValue="gleichung") String gleichung, Model model)
     {
         generator.generateEquation(1);

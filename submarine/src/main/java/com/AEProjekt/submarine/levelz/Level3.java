@@ -12,7 +12,8 @@ package com.AEProjekt.submarine.levelz;  // created at 5/7/2018
  */
 public class Level3 {
     private boolean satellite;
-    
+
+    //Getter und Setter
     public void setSatellite(boolean satellite){
         this.satellite = satellite;
     }

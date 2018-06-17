@@ -1,5 +1,9 @@
 package com.AEProjekt.submarine.InputLevel;
 
+/**
+ *
+ * @author:
+ */
 public class TestStructureForInputLevel1
 {
     public boolean right_or_wrong;

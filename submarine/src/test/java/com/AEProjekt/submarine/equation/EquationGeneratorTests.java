@@ -13,6 +13,11 @@ import static org.junit.Assert.assertTrue;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest
+/**
+ *
+ * @author:
+ *
+ */
 public class EquationGeneratorTests {
 
     @Test
