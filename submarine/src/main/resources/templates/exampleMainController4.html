@@ -8,8 +8,13 @@
 <h1>Form</h1>
 
 
-
-        <a th:text="${user.getLevel().getLinEq()}"></a>
+<!-- Hier werden jetzt mal punkte angezeigt, die kann ja Niklas irgendwie verarbeiten ;)-->
+<!-- <a th:text="${user.getLevel().getLinEq()}"></a> -->
+<br>
+<a th:text="'Flugzeug: ' + ${user.getLevel().getPlane().toString()}"></a>
+<br>
+<br>
+<a th:text="'U-Boot: ' + ${user.getLevel().getSubmarine().toString()}"></a>
 
 <div th:if="${userInputValid} == false"  style="width: 600px; height: 100px; border: 1px solid black; background-color: red; margin-left: auto; margin-right: auto; text-align: center;">
     <a>Sie haben einen Fehler in der Eingabe, bitte überprüfen Sie Ihre Eingabe!</a>
@@ -29,51 +34,41 @@
     </div>
 </div>
 
-<form action="#" th:action="@{/exampleMainController}" th:object="${userInput}" method="post">
+<form action="#" th:action="@{/exampleMainController4}" th:object="${userInput}" method="post">
     <table th:if="${userInputValid} == false" table>
 
         <tr>
-            <td>Punkt 1 x: <input type="text" th:field="*{p1X}" /></td>
+            <td>a Zaehler: <input type="text" th:field="*{userNumeratorInput}" /></td>
         </tr>
         <tr>
-            <td>Punkt 1 y: <input type="text" th:field="*{p1Y}" /></td>
+            <td>a Nenner: <input type="text" th:field="*{userDenominatorInput}" /></td>
         </tr>
         <tr>
-            <td>Punkt 2 x: <input type="text" th:field="*{p2X}" /></td>
-        </tr>
-        <tr>
-            <td>Punkt 2 y: <input type="text" th:field="*{p2Y}" /></td>
-        </tr>
-        </tr>
-            <td><button type="submit">Submit</button></td>
-        </tr>
-
-    </table>
-    <table th:if="${userInputValid} == null or ${userInputValid} == true" table>
-
-        <tr>
-            <td>Punkt 1 x: <input type="text" th:id="'p1X'" th:name="'p1X'" /></td>
-        </tr>
-        <tr>
-            <td>Punkt 1 y: <input type="text" th:id="'p1Y'" th:name="'p1Y'" /></td>
-        </tr>
-        <tr>
-            <td>Punkt 2 x: <input type="text" th:id="'p2X'" th:name="'p2X'" /></td>
-        </tr>
-        <tr>
-            <td>Punkt 2 y: <input type="text" th:id="'p2Y'" th:name="'p2Y'" /></td>
+            <td>b: <input type="text" th:field="*{userYInput}" /></td>
         </tr>
         </tr>
         <td><button type="submit">Submit</button></td>
         </tr>
 
     </table>
+    <table th:if="${userInputValid} == null or ${userInputValid} == true" table>
 
+
+        <tr>
+            <td>a Zaehler: <input type="text" th:id="'userNumeratorInput'" th:name="'userNumeratorInput'" /></td>
+        </tr>
+        <tr>
+            <td>a Nenner: <input type="text" th:id="'userDenominatorInput'" th:name="'userDenominatorInput'" /></td>
+        </tr>
+        <tr>
+            <td>b: <input type="text" th:id="'userYInput'" th:name="'userYInput'" /></td>
+        </tr>
+        <tr>
+        <td><button type="submit">Submit</button></td>
+        </tr>
+
+
+    </table>
 </form>
-
-
-
-
-
 </body>
 </html>

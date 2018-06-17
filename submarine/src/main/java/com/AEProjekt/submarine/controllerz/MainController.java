@@ -51,6 +51,7 @@ public class MainController {
     }
 
 
+    //Level1
     @GetMapping("/exampleMainController")
     public String bootstrapTest(Model model)
     {
@@ -59,21 +60,132 @@ public class MainController {
 
         return "exampleMainController";
     }
-
     @PostMapping("/exampleMainController")
     public String userInputTest(@ModelAttribute("userInput") InputLevel1 userInput, Model model)
     {
-
+        this.inputLevel = userInput;
         model.addAttribute("user", user);
         model.addAttribute("userInput", this.inputLevel);
         model.addAttribute("userInputValid", this.inputLevel.isInputValid());
 
+        storyExecution(this.user);
+
+        if(user.getLevel() instanceof Level2)
+        {
+            return "exampleMainController2";
+        }
+        else
+        {
+            return "exampleMainController";
+        }
+    }
+    //Level2
+    /*
+    Folgende Änderungen müssen immer gemacht werden
+    @GetMapping("/exampleMainControllerX")
+    public String bootstrapTestX(Model model)
+
+    return "exampleMainControllerX";
+    @PostMapping("/exampleMainControllerX")
+    public String userInputTestX(@ModelAttribute("userInput") InputLevelX userInput, Model model)
+    if(user.getLevel() instanceof LevelX+1)
+    return "exampleMainControllerX+1";
+    return "exampleMainControllerX";
+     */
+
+    @GetMapping("/exampleMainController2")
+    public String bootstrapTest2(Model model)
+    {
+        model.addAttribute("user", user);
+        model.addAttribute("userInput", this.inputLevel);
+
+        return "exampleMainController2";
+    }
+    @PostMapping("/exampleMainController2")
+    public String userInputTest2(@ModelAttribute("userInput") InputLevel2 userInput, Model model)
+    {
         this.inputLevel = userInput;
+        model.addAttribute("user", user);
+        model.addAttribute("userInput", this.inputLevel);
+        model.addAttribute("userInputValid", this.inputLevel.isInputValid());
 
         storyExecution(this.user);
 
-        return "exampleMainController";
+        if(user.getLevel() instanceof Level3)
+        {
+            return "exampleMainController3";
+        }
+        else
+        {
+            return "exampleMainController2";
+        }
     }
+    //Level3
+    @GetMapping("/exampleMainController3")
+    public String bootstrapTest3(Model model)
+    {
+        model.addAttribute("user", user);
+        model.addAttribute("userInput", this.inputLevel);
+
+        return "exampleMainController3";
+    }
+    @PostMapping("/exampleMainController3")
+    public String userInputTest3(@ModelAttribute("userInput") InputLevel3 userInput, Model model)
+    {
+        this.inputLevel = userInput;
+        model.addAttribute("user", user);
+        model.addAttribute("userInput", this.inputLevel);
+        model.addAttribute("userInputValid", this.inputLevel.isInputValid());
+
+        storyExecution(this.user);
+
+        if(user.getLevel() instanceof Level4)
+        {
+            return "exampleMainController4";
+        }
+        else
+        {
+            return "exampleMainController3";
+        }
+    }
+    //Level4
+    @GetMapping("/exampleMainController4")
+    public String bootstrapTest4(Model model)
+    {
+        model.addAttribute("user", user);
+        model.addAttribute("userInput", this.inputLevel);
+
+        return "exampleMainController4";
+    }
+    @PostMapping("/exampleMainController4")
+    public String userInputTest4(@ModelAttribute("userInput") InputLevel4 userInput, Model model)
+    {
+        this.inputLevel = userInput;
+        model.addAttribute("user", user);
+        model.addAttribute("userInput", this.inputLevel);
+        model.addAttribute("userInputValid", this.inputLevel.isInputValid());
+
+        storyExecution(this.user);
+
+        //if(user.getLevel() instanceof Level5) -- Fuer die erweiterbarkeit mit einem Weiteren Level braucht man das
+        if(isLevelBeat(user))
+        {
+            return "exampleMainControllerWin";
+        }
+        else
+        {
+            return "exampleMainController4";
+        }
+    }
+
+
+
+
+
+
+
+
+
 
     @GetMapping("/example") // Die URL, für keine Subseite einfach @GetMapping()
     public String example(@RequestParam(name="gleichung", required=false, defaultValue="gleichung") String gleichung, Model model)
@@ -115,6 +227,7 @@ public class MainController {
             else
             {
                 ((Level1) level).getLevelbeatcounter().fillResultOfRound(false);
+                ((Level1) level).equipLevelNoRS();
             }
 
         }
@@ -131,10 +244,11 @@ public class MainController {
             else
             {
                 ((Level2) level).getLevelbeatcounter().fillResultOfRound(false);
+                ((Level2) level).equipLevelNoRS();
             }
         }
 
-        /*if(level instanceof Level3)
+        if(level instanceof Level3)
         {
             Point temp_point = new Point(((InputLevel3) inputLevel).getPX(), ((Level3) level).getSubmarine().getPoint().getY());
 
@@ -146,8 +260,9 @@ public class MainController {
             else
             {
                 ((Level3) level).getLevelbeatcounter().fillResultOfRound(false);
+                ((Level3) level).equipLevelNoRS();
             }
-        }*/
+        }
 
         if(level instanceof Level4)
         {
@@ -161,6 +276,7 @@ public class MainController {
             else
             {
                 ((Level4) level).getLevelbeatcounter().fillResultOfRound(false);
+                ((Level4) level).equipLevelNoRS();
             }
         }
     }
@@ -202,7 +318,8 @@ public class MainController {
 
 
             //TODO
-            if(!isLevelBeat(user))
+            /*
+            if(isLevelBeat(user))
             {
                 if(user.getLevel() instanceof  Level1)
                     user.setLevel(new Level1());
@@ -213,7 +330,7 @@ public class MainController {
                 else if (user.getLevel() instanceof  Level4)
                     user.setLevel(new Level4());
             }
-
+            */
 
             //Nachdem die runde gespielt wurde, kann nun eine entscheidung getroffen werden, ob er in das naechste kommt
             setToNextLevel(user);
@@ -253,11 +370,23 @@ public class MainController {
         if(isLevelBeat(user))
         {
             if(user.getLevel() instanceof  Level1)
+            {
                 user.setLevel(new Level2());
+                inputLevel = new InputLevel2();
+            }
+
             else if (user.getLevel() instanceof  Level2)
+            {
                 user.setLevel(new Level3());
+                inputLevel = new InputLevel3();
+            }
+
             else if (user.getLevel() instanceof  Level3)
+            {
                 user.setLevel(new Level4());
+                inputLevel = new InputLevel4();
+            }
+
         }
 
 

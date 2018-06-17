@@ -44,7 +44,7 @@ public class Point
         }
 
     }
-
+    /*
     public int compareTo(Point o) {
         if(o.getX() == this.x && o.getY() == this.y)
         {
@@ -56,4 +56,5 @@ public class Point
         }
 
     }
+    */
 }
