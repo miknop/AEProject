@@ -27,6 +27,15 @@ public class Submarine implements iFigure{
         point = p;
     }
 
+    public int getX()
+    {
+        return point.getX();
+    }
+
+    public int getY()
+    {
+        return point.getY();
+    }
 
     public String toString()
     {

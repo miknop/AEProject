@@ -13,6 +13,7 @@ import static org.junit.Assert.assertTrue;
 @SpringBootTest
 public class InputControlAndInputLevelTests {
 
+    /*
     private iLInput test_input;
 
 
@@ -136,4 +137,5 @@ public class InputControlAndInputLevelTests {
 
         return temp_obj;
     }
+    */
 }
