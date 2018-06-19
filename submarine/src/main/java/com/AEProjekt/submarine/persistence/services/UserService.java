@@ -30,6 +30,8 @@ public class UserService {
             UserEntity userEntity = UserMapper.fromObjectToEntity(user);
             log.debug("User Entity (CREATED): {}", userEntity);
             userRepository.save(userEntity);
+        } else {
+            //TODO throw Exception
         }
     }
 
@@ -39,12 +41,19 @@ public class UserService {
             userEntity.setUsername(user.getUsername());
             userEntity.setLevel(UserMapper.mapLevelInt(user));
             userEntity.setBeatList(user.getLevel().getLevelbeatcounter().getBeatList());
+        } else {
+            //TODO throw Exception
         }
     }
 
-    public void deleteUserEntity (String name) {
+    public void deleteUserEntity(String name) {
         UserEntity userEntity = userRepository.findByUsername(name);
-        userRepository.delete(userEntity);
+        if (userEntity != null) {
+            userRepository.delete(userEntity);
+            log.debug("DELETION SUCCESSFUL");
+        } else {
+            //TODO throw Exception
+        }
     }
 
 }
