@@ -14,5 +14,5 @@ public interface iUserRepository extends CrudRepository<UserEntity, Long> {
      * @param username
      * @returns user with this username from Database
      */
-    public UserEntity findByUsername(String username);
+    UserEntity findByUsername(String username);
 }

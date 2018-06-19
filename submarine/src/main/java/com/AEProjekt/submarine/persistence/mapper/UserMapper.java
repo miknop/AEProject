@@ -13,6 +13,26 @@ public class UserMapper {
     public static User fromEntityToObject(UserEntity entity) {
         User user = new User();
         user.setUsername(entity.getUsername());
+        iLevel level = mapLevelFromEntity(entity) ;
+        LevelBeatCounter counter = level.getLevelbeatcounter();
+        counter.setBeatList(entity.getBeatList());
+        level.setLevelbeatcounter(counter);
+        user.setLevel(level);
+
+        return user;
+    }
+
+    public static UserEntity fromObjectToEntity(User user) {
+        UserEntity entity = new UserEntity();
+        entity.setUsername(user.getUsername());
+        iLevel level = user.getLevel();
+        int levelInt = mapLevelInt(user);
+        entity.setLevel(levelInt);
+        entity.setBeatList(level.getLevelbeatcounter().getBeatList());
+        return entity;
+    }
+
+    public static iLevel mapLevelFromEntity (UserEntity entity) {
         iLevel level;
         int levelInt = entity.getLevel();
         switch (levelInt) {
@@ -32,13 +52,10 @@ public class UserMapper {
                 level = null;
                 break;
         }
-        user.setLevel(level);
-        return user;
+        return level;
     }
 
-    public static UserEntity fromObjectToEntity(User user) {
-        UserEntity entity = new UserEntity();
-        entity.setUsername(user.getUsername());
+    public static int mapLevelInt (User user) {
         iLevel level = user.getLevel();
         int levelInt = 0;
         if (level instanceof Level1) {
@@ -50,7 +67,8 @@ public class UserMapper {
         } else if (level instanceof Level4) {
             levelInt = 4;
         }
-        entity.setLevel(levelInt);
-        return entity;
+        return levelInt;
     }
+
+
 }
