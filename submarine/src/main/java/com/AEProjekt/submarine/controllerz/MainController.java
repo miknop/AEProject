@@ -396,7 +396,7 @@ public class MainController {
     //Die genauere fragestellung die hier erfüllt werden soll ist doch eher, kann der user das level noch gewinnen
     public boolean isLevelBeat(User user)
     {
-        if(user.getLevel().getLevelbeatcounter().getBeatList().size() < 7)
+        if(user.getLevel().getLevelbeatcounter().getBeatList().size() < 5)
         {
             return false;
         }
@@ -412,14 +412,8 @@ public class MainController {
                 }
             }
 
-            if(rights >= 5)
-            {
-                return true;
-            }
-            else
-            {
-                return false;
-            }
+            return (rights >= 5);
+
         }
 
 

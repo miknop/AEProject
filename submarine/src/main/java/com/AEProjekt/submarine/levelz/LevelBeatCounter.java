@@ -3,7 +3,7 @@ package com.AEProjekt.submarine.levelz;
 import java.util.ArrayList;
 
 public class LevelBeatCounter {
-    private int beatCounter = 0;
+    //private int beatCounter = 0;
     private ArrayList<Boolean> beatList;
 
 
@@ -15,43 +15,24 @@ public class LevelBeatCounter {
 
 
 
-    private void increaseRound()
-    {
-        if(beatCounter >= 6)
-        {
-            beatCounter = 0;
-        }
-        else
-        {
-            beatCounter++;
-        }
-
-    }
-
     public void fillResultOfRound (boolean resultOfRound)
     {
-        //Die Datenstruktur ist jetzt gross genug um nun elementweise mit index zu arbeiten
-        if(beatList.size() >= 7)
+
+        beatList.add(resultOfRound);
+
+        if(beatList.size() >= 8)
         {
-            beatList.set(beatCounter, resultOfRound);
-        }
-        else
-        {
-            beatList.add(resultOfRound);
+            beatList.remove(0);
         }
 
 
 
-        increaseRound();
+
+        //increaseRound();
     }
 
 
-    public int getBeatCounter() {
-        return beatCounter;
-    }
-    public void setBeatCounter(int beatCounter) {
-        this.beatCounter = beatCounter;
-    }
+
     public ArrayList<Boolean> getBeatList() {
         return beatList;
     }
