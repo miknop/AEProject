@@ -12,6 +12,7 @@ import com.AEProjekt.submarine.equations.LinearEquation;
  * @author Michel
  */
 public interface iLevel {
+
     final int maxLosses = 2;
     final int triesTotal = 7;
 
