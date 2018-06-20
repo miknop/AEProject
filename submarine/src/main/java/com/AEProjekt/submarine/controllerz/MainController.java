@@ -302,13 +302,17 @@ public class MainController {
         return "example";
     }
 
-    @PostMapping("/exmaple")
+    @PostMapping("/example")
     public String userInputTest(@ModelAttribute("userInput") InputLevel1 userInput, Model model)
     {
         this.inputLevel = userInput;
         model.addAttribute("user", user);
         model.addAttribute("userInput", this.inputLevel);
         model.addAttribute("userInputValid", this.inputLevel.isInputValid());
+        LinearEquation equation = EquationGenerator.generateLinearEquation();
+        model.addAttribute("gleichung", equation);
+        model.addAttribute("submarine", new Submarine(EquationGenerator.generatePointBelowSea(equation)));
+        model.addAttribute("plane", new Submarine(EquationGenerator.generatePointAboveSea(equation)));
 
         storyExecution(this.user);
 
@@ -318,7 +322,7 @@ public class MainController {
         }
         else
         {
-            return "exampleMainController";
+            return "example";
         }
     }
 

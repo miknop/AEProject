@@ -77,7 +77,6 @@
                 var py1In = document.getElementById("p1Y");
 
                 helpfield.setAttribute("value",1);
-                alert(Math.round(cursorpt.x));
                 px1In.setAttribute("value",Math.round(cursorpt.x));
                 py1In.setAttribute("value",Math.round(cursorpt.y));
 
@@ -85,10 +84,45 @@
             if ( cHelp == 1 ) {
                 var px2In = document.getElementById("p2X");
                 var py2In = document.getElementById("p2Y");
-
+                alert(cHelp)
                 px2In.setAttribute("value",Math.round(cursorpt.x));
                 py2In.setAttribute("value",Math.round(cursorpt.y));
+
+                zeichneOnCommand();
+                document.setTimeout(5000);
+                document.getElementById("sweetSugar").submit();
             }
+        }
+
+        function zeichneOnCommand(){
+            var graph = document.getElementById('functionGraph');
+
+            var px1 = document.getElementById('p1X');
+            var px2 = document.getElementById('p2X');
+            var py1 = document.getElementById('p1Y');
+            var py2 = document.getElementById('p2Y');
+
+            graph.setAttribute("d", "M"+px1+","+py1+" L"+px2+"," + py2);
+
+            //zeichnen der punkte
+            var punkt1 = document.getElementById('flugdings');
+            var punkt2 = document.getElementById('uBoat');
+
+            submarineX = /*[[${submarine.getX()}]]*/ '11'
+            submarineY = /*[[${submarine.getY()}]]*/ '-1'
+            planeY = /*[[${plane.getY()}]]*/ '12'
+            planeX = /*[[${plane.getX()}]]*/ '-4'
+
+            submarineY = 200+(-10*submarineY);
+            submarineX = 350+(10*submarineX);
+            planeY = 200-(10*planeY);
+            planeX = 350+(10*planeX);
+
+            punkt2.setAttribute("cx", submarineX);
+            punkt2.setAttribute("cy", submarineY);
+            punkt1.setAttribute("cx", planeX);
+            punkt1.setAttribute("cy", planeY);
+
         }
 
         function getClickPosition(e) {
@@ -129,7 +163,7 @@
             <!--dirty workaround-->
             <input type="hidden" id="counterSlave" value="0">
 
-            <form action="#" th:action="@{/exampleMainController}" th:object="${userInput}" method="post" style="hidden">
+            <form id="sweetSugar" action="#" th:action="@{/example}" th:object="${userInput}" method="post" style="hidden">
                 <table th:if="${userInputValid} == false" table>
 
                     <tr>
@@ -191,7 +225,7 @@
         </div>
         <!-- Hier kommt die mittlere Spalte aka "Spielfeld" -->
         <!--<div class="col-md-8" onload="zeichne()">-->
-        <div class="col-md-8" onload="zeichne()" >
+        <div class="col-md-8"  >
             <main>
                 <form>
                     <!--<fieldset>
