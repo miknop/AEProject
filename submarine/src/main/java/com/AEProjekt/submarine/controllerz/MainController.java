@@ -58,7 +58,27 @@ public class MainController {
         model.addAttribute("user", user);
         model.addAttribute("userInput", this.inputLevel);
 
-        return "exampleMainController";
+        iLevel level = user.getLevel();
+        if(level instanceof Level1)
+        {
+            return "exampleMainController";
+        }
+        else if(level instanceof Level2)
+        {
+            return "redirect:/exampleMainController2";
+        }
+        else if(level instanceof Level3)
+        {
+            return "redirect:/exampleMainController3";
+        }
+        else if(level instanceof Level4)
+        {
+            return "redirect:/exampleMainController4";
+        }
+        else
+        {
+            return "redirect:/exampleMainControllerWin";
+        }
     }
     @PostMapping("/exampleMainController")
     public String userInputTest(@ModelAttribute("userInput") InputLevel1 userInput, Model model)
@@ -99,7 +119,36 @@ public class MainController {
         model.addAttribute("user", user);
         model.addAttribute("userInput", this.inputLevel);
 
-        return "exampleMainController2";
+        /*if(user.getLevel() instanceof Level2)
+        {
+            return "exampleMainController2";
+        }
+        else
+        {
+            return "redirect:/exampleMainController";
+        }*/
+        iLevel level = user.getLevel();
+        if(level instanceof Level1)
+        {
+            return "redirect:/exampleMainController";
+        }
+        else if(level instanceof Level2)
+        {
+            return "exampleMainController2";
+        }
+        else if(level instanceof Level3)
+        {
+            return "redirect:/exampleMainController3";
+        }
+        else if(level instanceof Level4)
+        {
+            return "redirect:/exampleMainController4";
+        }
+        else
+        {
+            return "redirect:/exampleMainControllerWin";
+        }
+
     }
     @PostMapping("/exampleMainController2")
     public String userInputTest2(@ModelAttribute("userInput") InputLevel2 userInput, Model model)
@@ -110,6 +159,7 @@ public class MainController {
         model.addAttribute("userInputValid", this.inputLevel.isInputValid());
 
         storyExecution(this.user);
+
 
         if(user.getLevel() instanceof Level3)
         {
@@ -127,7 +177,36 @@ public class MainController {
         model.addAttribute("user", user);
         model.addAttribute("userInput", this.inputLevel);
 
-        return "exampleMainController3";
+        /*if(user.getLevel() instanceof Level3)
+        {
+            return "exampleMainController3";
+        }
+        else
+        {
+            return "redirect:/exampleMainController2";
+        }*/
+
+        iLevel level = user.getLevel();
+        if(level instanceof Level1)
+        {
+            return "redirect:/exampleMainController";
+        }
+        else if(level instanceof Level2)
+        {
+            return "redirect:/exampleMainController2";
+        }
+        else if(level instanceof Level3)
+        {
+            return "exampleMainController3";
+        }
+        else if(level instanceof Level4)
+        {
+            return "redirect:/exampleMainController4";
+        }
+        else
+        {
+            return "redirect:/exampleMainControllerWin";
+        }
     }
     @PostMapping("/exampleMainController3")
     public String userInputTest3(@ModelAttribute("userInput") InputLevel3 userInput, Model model)
@@ -155,7 +234,36 @@ public class MainController {
         model.addAttribute("user", user);
         model.addAttribute("userInput", this.inputLevel);
 
-        return "exampleMainController4";
+        /*if(user.getLevel() instanceof Level4)
+        {
+            return "exampleMainController4";
+        }
+        else
+        {
+            //return New ModelAndView("exampleMainController3");
+            return "redirect:/exampleMainController3";
+        }*/
+        iLevel level = user.getLevel();
+        if(level instanceof Level1)
+        {
+            return "redirect:/exampleMainController";
+        }
+        else if(level instanceof Level2)
+        {
+            return "redirect:/exampleMainController2";
+        }
+        else if(level instanceof Level3)
+        {
+            return "redirect:/exampleMainController3";
+        }
+        else if(level instanceof Level4)
+        {
+            return "exampleMainController4";
+        }
+        else
+        {
+            return "redirect:/exampleMainControllerWin";
+        }
     }
     @PostMapping("/exampleMainController4")
     public String userInputTest4(@ModelAttribute("userInput") InputLevel4 userInput, Model model)
@@ -177,13 +285,6 @@ public class MainController {
             return "exampleMainController4";
         }
     }
-
-
-
-
-
-
-
 
 
 
@@ -287,36 +388,17 @@ public class MainController {
     //TODO Login Funktion entwickeln (wo kommt user her?)
     public void storyExecution(User user)
     {
-
-
-
-
-
-
-
-
         if((user.getLevel() instanceof Level4) && isLevelBeat(user))
         {
-
-
-
             System.out.println("Du hast gewonnen!");
-
-
         }
-
         else
         {
-
             //Jedes level hat sein eigenen Beatcounter und es muss nicht gecastet werden
-            if(inputLevel.isInputValid() == true)
+            if(inputLevel.isInputValid())
             {
                 playLevel((user.getLevel()));
-
             }
-
-
-
             //TODO
             /*
             if(isLevelBeat(user))
@@ -335,17 +417,6 @@ public class MainController {
             //Nachdem die runde gespielt wurde, kann nun eine entscheidung getroffen werden, ob er in das naechste kommt
             setToNextLevel(user);
         }
-
-
-
-
-
-
-
-
-
-
-
     }
 
     private void moveFigure(User user)
