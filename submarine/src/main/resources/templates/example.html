@@ -56,19 +56,121 @@
 
             /*]]>*/
         }
+
+        function startDatShit(evt){
+            //document.getElementById("playground").addEventListener("click", getClickPosition, false);
+            var svg = document.getElementById("playground");
+            var pt = svg.createSVGPoint();  // Created once for document
+
+            pt.x = evt.clientX;
+            pt.y = evt.clientY;
+            // The cursor point, translated into svg coordinates
+            var cursorpt =  pt.matrixTransform(svg.getScreenCTM().inverse());
+            console.log("(" + cursorpt.x + ", " + cursorpt.y + ")");
+
+            var helpfield = document.getElementById("counterSlave");//.getAttribute("value");
+
+            var cHelp = helpfield.getAttribute("value");
+            //alert(cHelp);
+            if ( cHelp == 0 ) {
+                var px1In = document.getElementById("p1X");
+                var py1In = document.getElementById("p1Y");
+
+                helpfield.setAttribute("value",1);
+                alert(Math.round(cursorpt.x));
+                px1In.setAttribute("value",Math.round(cursorpt.x));
+                py1In.setAttribute("value",Math.round(cursorpt.y));
+
+            }
+            if ( cHelp == 1 ) {
+                var px2In = document.getElementById("p2X");
+                var py2In = document.getElementById("p2Y");
+
+                px2In.setAttribute("value",Math.round(cursorpt.x));
+                py2In.setAttribute("value",Math.round(cursorpt.y));
+            }
+        }
+
+        function getClickPosition(e) {
+            //var parentPosition = getPosition(e.currentTarget);
+            var xPosition = e.clientX ;
+            var yPosition = e.clientY ;
+
+            //workaround
+            var helpfield = document.getElementById("counterSlave").getAttribute("value");
+
+            if ( helpfield == 0 ) {
+                var px1In = document.getElementById("p1X");
+                var py1In = document.getElementById("p1Y");
+
+            }
+            if ( helpfield == 1 ) {
+                var px2In = document.getElementById("p2X");
+                var py2In = document.getElementById("p2Y");
+            }
+
+            /*theThing.style.left = xPosition + "px";
+            theThing.style.top = yPosition + "px";*/
+        }
+
     </script>
 
 </head>
 <!--<body onload="zeichne()">-->
-<body>
+<body onload="startDatShit()">
 <!--<p th:text="${gleichung.toString()}"></p>-->
 <p th:text="${submarine.toString()}"></p>
 <p th:text="${plane.toString()}"></p>
 <div class="container-fluid">
     <div class="row">
+
         <!-- Hier kommt die linke Spalte mit Input für Gleichungslösung, History der Eingaben und Ausgabe von Gleichungen -->
         <div class="col-md-1">
-            <input type="text" name="solution">
+            <!--dirty workaround-->
+            <input type="hidden" id="counterSlave" value="0">
+
+            <form action="#" th:action="@{/exampleMainController}" th:object="${userInput}" method="post" style="hidden">
+                <table th:if="${userInputValid} == false" table>
+
+                    <tr>
+                        <td><input type="hidden" th:field="*{p1X}" /></td>
+                    </tr>
+                    <tr>
+                        <td><input type="hidden" th:field="*{p1Y}" /></td>
+                    </tr>
+                    <tr>
+                        <td><input type="hidden" th:field="*{p2X}" /></td>
+                    </tr>
+                    <tr>
+                        <td><input type="hidden" th:field="*{p2Y}" /></td>
+                    </tr>
+                    </tr>
+                    <td><button type="submit">Submit</button></td>
+                    </tr>
+
+                </table>
+                <table th:if="${userInputValid} == null or ${userInputValid} == true" table>
+
+                    <tr>
+                        <td><input type="hidden" th:id="'p1X'" th:name="'p1X'" /></td>
+                    </tr>
+                    <tr>
+                        <td><input type="hidden" th:id="'p1Y'" th:name="'p1Y'" /></td>
+                    </tr>
+                    <tr>
+                        <td><input type="hidden" th:id="'p2X'" th:name="'p2X'" /></td>
+                    </tr>
+                    <tr>
+                        <td><input type="hidden" th:id="'p2Y'" th:name="'p2Y'" /></td>
+                    </tr>
+                    </tr>
+                    <td><button type="submit">Submit</button></td>
+                    </tr>
+
+                </table>
+
+            </form>
+            <!--<input type="text" name="solution">
 
             <p>
             <div>
@@ -79,7 +181,7 @@
                 <input type="text" name="history5" readonly="true">
                 <input type="text" name="history6" readonly="true">
                 <input type="text" name="history7" readonly="true">
-            </div>
+            </div>-->
             </p>
 
 
@@ -102,7 +204,7 @@
                         </p>
                     </fieldset>-->
                 </form>
-                <svg id="playground" viewbox="0 0 700 400" onload="zeichne()">
+                <svg id="playground" viewbox="0 0 700 400" onclick="startDatShit(evt)">
                     <style>
                         .small { font: 9px sans-serif; }
                     </style>

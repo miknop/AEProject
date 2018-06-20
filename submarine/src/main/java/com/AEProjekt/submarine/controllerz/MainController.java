@@ -60,7 +60,7 @@ public class MainController {
 
         return "exampleMainController";
     }
-    @PostMapping("/exampleMainController")
+    /*@PostMapping("/exampleMainController")
     public String userInputTest(@ModelAttribute("userInput") InputLevel1 userInput, Model model)
     {
         this.inputLevel = userInput;
@@ -78,7 +78,7 @@ public class MainController {
         {
             return "exampleMainController";
         }
-    }
+    }*/
     //Level2
     /*
     Folgende Änderungen müssen immer gemacht werden
@@ -194,7 +194,31 @@ public class MainController {
         model.addAttribute("gleichung", equation);
         model.addAttribute("submarine", new Submarine(EquationGenerator.generatePointBelowSea(equation)));
         model.addAttribute("plane", new Submarine(EquationGenerator.generatePointAboveSea(equation)));
+
+        model.addAttribute("user", user);
+        model.addAttribute("userInput", this.inputLevel);
+
         return "example";
+    }
+
+    @PostMapping("/exmaple")
+    public String userInputTest(@ModelAttribute("userInput") InputLevel1 userInput, Model model)
+    {
+        this.inputLevel = userInput;
+        model.addAttribute("user", user);
+        model.addAttribute("userInput", this.inputLevel);
+        model.addAttribute("userInputValid", this.inputLevel.isInputValid());
+
+        storyExecution(this.user);
+
+        if(user.getLevel() instanceof Level2)
+        {
+            return "exampleMainController2";
+        }
+        else
+        {
+            return "exampleMainController";
+        }
     }
 
     public void playLevel(iLevel level)
