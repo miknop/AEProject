@@ -35,6 +35,7 @@
             planeX = 350+(10*planeX);
             graph.setAttribute("d", "M"+submarineX+","+submarineY+" L"+planeX+"," + planeY);
 
+
             //zeichnen der punkte
             var punkt1 = document.getElementById('flugdings');
             var punkt2 = document.getElementById('uBoat');
@@ -66,7 +67,7 @@
             pt.y = evt.clientY;
             // The cursor point, translated into svg coordinates
             var cursorpt =  pt.matrixTransform(svg.getScreenCTM().inverse());
-            console.log("(" + cursorpt.x + ", " + cursorpt.y + ")");
+            console.log("(" + Math.round(cursorpt.x) + ", " + Math.round(cursorpt.y) + ")");
 
             var helpfield = document.getElementById("counterSlave");//.getAttribute("value");
 
@@ -84,26 +85,29 @@
             if ( cHelp == 1 ) {
                 var px2In = document.getElementById("p2X");
                 var py2In = document.getElementById("p2Y");
-                alert(cHelp)
                 px2In.setAttribute("value",Math.round(cursorpt.x));
                 py2In.setAttribute("value",Math.round(cursorpt.y));
 
                 zeichneOnCommand();
-                document.setTimeout(5000);
+                sleep(5000);
                 document.getElementById("sweetSugar").submit();
             }
+        }
+
+        function sleep(ms) {
+            return new Promise(resolve => setTimeout(resolve, ms));
         }
 
         function zeichneOnCommand(){
             var graph = document.getElementById('functionGraph');
 
-            var px1 = document.getElementById('p1X');
-            var px2 = document.getElementById('p2X');
-            var py1 = document.getElementById('p1Y');
-            var py2 = document.getElementById('p2Y');
+            var px1 = document.getElementById('p1X').getAttribute("value");
+            var px2 = document.getElementById('p2X').getAttribute("value");
+            var py1 = document.getElementById('p1Y').getAttribute("value");
+            var py2 = document.getElementById('p2Y').getAttribute("value");
 
             graph.setAttribute("d", "M"+px1+","+py1+" L"+px2+"," + py2);
-
+            graph.setAttribute("stroke","black");
             //zeichnen der punkte
             var punkt1 = document.getElementById('flugdings');
             var punkt2 = document.getElementById('uBoat');
@@ -178,9 +182,6 @@
                     <tr>
                         <td><input type="hidden" th:field="*{p2Y}" /></td>
                     </tr>
-                    </tr>
-                    <td><button type="submit">Submit</button></td>
-                    </tr>
 
                 </table>
                 <table th:if="${userInputValid} == null or ${userInputValid} == true" table>
@@ -197,26 +198,11 @@
                     <tr>
                         <td><input type="hidden" th:id="'p2Y'" th:name="'p2Y'" /></td>
                     </tr>
-                    </tr>
-                    <td><button type="submit">Submit</button></td>
-                    </tr>
 
                 </table>
 
             </form>
-            <!--<input type="text" name="solution">
 
-            <p>
-            <div>
-                <input type="text" name="history1" readonly="true">
-                <input type="text" name="history2" readonly="true">
-                <input type="text" name="history3" readonly="true">
-                <input type="text" name="history4" readonly="true">
-                <input type="text" name="history5" readonly="true">
-                <input type="text" name="history6" readonly="true">
-                <input type="text" name="history7" readonly="true">
-            </div>-->
-            </p>
 
 
         </div>
@@ -270,7 +256,7 @@
                     <path class="axis" id="y-axis" d="M350,400 v-400" stroke="black"/>
                     <!-- Linie des Funktionsgraphen -->
                     <!--<path id="functionGraph" d="M140,400 L560,0" stroke="#AAAA" />-->
-                    <path id="functionGraph" d="M140,400 L560,0" stroke="#f0ffff" />
+                    <path id="functionGraph" d="M140,400 L560,0" stroke="white" />
 
                     <!-- Beschriftung des Ursprungspunktes -->
                     <!--<text x="360" y="200" fill="darkslategray">(0,0)</text>-->
