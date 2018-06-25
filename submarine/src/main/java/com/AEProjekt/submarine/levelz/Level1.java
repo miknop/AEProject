@@ -35,6 +35,7 @@ public class Level1 implements iLevel {
 
 
 
+
     public Level1()
     {
         equipLevel();

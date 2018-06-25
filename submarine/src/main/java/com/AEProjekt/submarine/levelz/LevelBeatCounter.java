@@ -3,9 +3,8 @@ package com.AEProjekt.submarine.levelz;
 import java.util.ArrayList;
 
 public class LevelBeatCounter {
-    //private int beatCounter = 0;
     private ArrayList<Boolean> beatList;
-
+    private int totalTriesCounter;
 
 
     public LevelBeatCounter()
@@ -19,6 +18,7 @@ public class LevelBeatCounter {
     {
 
         beatList.add(resultOfRound);
+        totalTriesCounter++;
 
         if(beatList.size() >= 8)
         {

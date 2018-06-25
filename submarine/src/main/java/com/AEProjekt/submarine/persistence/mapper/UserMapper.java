@@ -16,6 +16,10 @@ public class UserMapper {
         iLevel level = mapLevelFromEntity(entity) ;
         LevelBeatCounter counter = level.getLevelbeatcounter();
         counter.setBeatList(entity.getBeatList());
+        user.setScoreLevel1(entity.getScoreLevel1());
+        user.setScoreLevel2(entity.getScoreLevel2());
+        user.setScoreLevel3(entity.getScoreLevel3());
+        user.setScoreLevel4(entity.getScoreLevel4());
         level.setLevelbeatcounter(counter);
         user.setLevel(level);
 
@@ -29,6 +33,10 @@ public class UserMapper {
         int levelInt = mapLevelInt(user);
         entity.setLevel(levelInt);
         entity.setBeatList(level.getLevelbeatcounter().getBeatList());
+        entity.setScoreLevel1(user.getScoreLevel1());
+        entity.setScoreLevel2(user.getScoreLevel2());
+        entity.setScoreLevel3(user.getScoreLevel3());
+        entity.setScoreLevel4(user.getScoreLevel4());
         return entity;
     }
 
@@ -69,6 +77,5 @@ public class UserMapper {
         }
         return levelInt;
     }
-
 
 }

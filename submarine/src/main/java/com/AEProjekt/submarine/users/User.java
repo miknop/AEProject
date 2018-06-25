@@ -25,4 +25,8 @@ public class User {
     private String username;
     private iLevel level = new Level1();
 
+    private int scoreLevel1;
+    private int scoreLevel2;
+    private int scoreLevel3;
+    private int scoreLevel4;
 }

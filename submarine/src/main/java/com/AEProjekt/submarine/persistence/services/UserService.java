@@ -1,6 +1,8 @@
 package com.AEProjekt.submarine.persistence.services;
 
 import com.AEProjekt.submarine.persistence.entities.UserEntity;
+import com.AEProjekt.submarine.persistence.exceptions.EntityAlreadyExistsException;
+import com.AEProjekt.submarine.persistence.exceptions.EntityNotFoundException;
 import com.AEProjekt.submarine.persistence.mapper.UserMapper;
 import com.AEProjekt.submarine.persistence.repositories.iUserRepository;
 import com.AEProjekt.submarine.users.User;
@@ -31,7 +33,7 @@ public class UserService {
             log.debug("User Entity (CREATED): {}", userEntity);
             userRepository.save(userEntity);
         } else {
-            //TODO throw Exception
+            throw new EntityAlreadyExistsException();
         }
     }
 
@@ -42,8 +44,18 @@ public class UserService {
             userEntity.setLevel(UserMapper.mapLevelInt(user));
             userEntity.setBeatList(user.getLevel().getLevelbeatcounter().getBeatList());
         } else {
-            //TODO throw Exception
+            throw new EntityNotFoundException();
         }
+    }
+
+    public User getUser(String name) {
+        UserEntity entity = userRepository.findByUsername(name);
+        if (entity != null) {
+            return UserMapper.fromEntityToObject(entity);
+        } else {
+            throw new EntityNotFoundException();
+        }
+
     }
 
     public void deleteUserEntity(String name) {
@@ -52,7 +64,7 @@ public class UserService {
             userRepository.delete(userEntity);
             log.debug("DELETION SUCCESSFUL");
         } else {
-            //TODO throw Exception
+            throw new EntityNotFoundException();
         }
     }
 

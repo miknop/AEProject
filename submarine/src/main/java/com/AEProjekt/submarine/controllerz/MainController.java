@@ -345,7 +345,8 @@ public class MainController {
 
 
 
-            LinearEquation temp_linearequation = new LinearEquation(m1, m2, (int)((double)((InputLevel1) inputLevel).getP1Y() + m_doub * (double)((InputLevel1) inputLevel).getP1X() * (-1)));
+            LinearEquation temp_linearequation = new LinearEquation(m1, m2, (int)((double)((InputLevel1) inputLevel).getP1Y()
+                    + m_doub * (double)((InputLevel1) inputLevel).getP1X() * (-1)));
 
 
             if(temp_linearequation.compareTo( ((Level1) level).getLinEq()) == 0)
@@ -395,7 +396,8 @@ public class MainController {
 
         if(level instanceof Level4)
         {
-            LinearEquation temp_linearequation = new LinearEquation(((InputLevel4) inputLevel).getUserNumeratorInput(),((InputLevel4) inputLevel).getUserDenominatorInput(), ((InputLevel4) inputLevel).getUserYInput());
+            LinearEquation temp_linearequation = new LinearEquation(((InputLevel4) inputLevel).getUserNumeratorInput(),
+                    ((InputLevel4) inputLevel).getUserDenominatorInput(), ((InputLevel4) inputLevel).getUserYInput());
 
             if(temp_linearequation.compareTo(((Level4) level).getLinEq()) == 0)
             {

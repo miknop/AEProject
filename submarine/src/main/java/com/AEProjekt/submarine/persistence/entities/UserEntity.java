@@ -24,4 +24,8 @@ public class UserEntity {
     private String username;
     private int level;
     private ArrayList<Boolean> beatList;
+    private int scoreLevel1;
+    private int scoreLevel2;
+    private int scoreLevel3;
+    private int scoreLevel4;
 }
