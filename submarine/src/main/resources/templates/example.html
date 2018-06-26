@@ -57,11 +57,18 @@
 
             /*]]>*/
         }
-
+        /*<![CDATA[*/
         function startDatShit(evt){
             //document.getElementById("playground").addEventListener("click", getClickPosition, false);
             var svg = document.getElementById("playground");
             var pt = svg.createSVGPoint();  // Created once for document
+            var punkt2 = document.getElementById('uBoat');
+            var submarineX = /*[[${submarine.getX()}]]*/ '11';
+            var submarineY = /*[[${submarine.getY()}]]*/ '-1';
+            submarineY = 200+(-10*submarineY);
+            submarineX = 350+(10*submarineX);
+            punkt2.setAttribute("cx", submarineX);
+            punkt2.setAttribute("cy", submarineY);
 
             pt.x = evt.clientX;
             pt.y = evt.clientY;
@@ -89,11 +96,11 @@
                 py2In.setAttribute("value",Math.round(cursorpt.y));
 
                 zeichneOnCommand();
-                sleep(5000);
+                sleep(50000);
                 document.getElementById("sweetSugar").submit();
             }
         }
-
+        /*]]>*/
         function sleep(ms) {
             return new Promise(resolve => setTimeout(resolve, ms));
         }
@@ -107,15 +114,16 @@
             var py2 = document.getElementById('p2Y').getAttribute("value");
 
             graph.setAttribute("d", "M"+px1+","+py1+" L"+px2+"," + py2);
+            graph.setAttribute("stroke-opacity", 1);
             graph.setAttribute("stroke","black");
             //zeichnen der punkte
             var punkt1 = document.getElementById('flugdings');
             var punkt2 = document.getElementById('uBoat');
 
-            submarineX = /*[[${submarine.getX()}]]*/ '11'
-            submarineY = /*[[${submarine.getY()}]]*/ '-1'
-            planeY = /*[[${plane.getY()}]]*/ '12'
-            planeX = /*[[${plane.getX()}]]*/ '-4'
+            submarineX = /*[[${submarine.getX()}]]*/ '11';
+            submarineY = /*[[${submarine.getY()}]]*/ '-1';
+            planeY = /*[[${plane.getY()}]]*/ '12';
+            planeX = /*[[${plane.getX()}]]*/ '-4';
 
             submarineY = 200+(-10*submarineY);
             submarineX = 350+(10*submarineX);
@@ -124,9 +132,10 @@
 
             punkt2.setAttribute("cx", submarineX);
             punkt2.setAttribute("cy", submarineY);
+            punkt2.setAttribute("stroke-opacity", 1);
             punkt1.setAttribute("cx", planeX);
             punkt1.setAttribute("cy", planeY);
-
+            punkt1.setAttribute("stroke-opacity", 1);
         }
 
         function getClickPosition(e) {
@@ -155,17 +164,24 @@
 
 </head>
 <!--<body onload="zeichne() ">-->
-<body onload="startDatShit()">
+<body onload="startDatShit()" style="background-image:url(https://cdn.pixabay.com/photo/2018/03/24/03/45/nature-3255634_1280.jpg)">
 <!--<p th:text="${gleichung.toString()}"></p>-->
-<p th:text="${submarine.toString()}"></p>
-<p th:text="${plane.toString()}"></p>
+<!--<p th:text="${submarine.toString()}"></p>
+<p th:text="${plane.toString()}"></p>-->
 <div class="container-fluid">
     <div class="row">
 
         <!-- Hier kommt die linke Spalte mit Input für Gleichungslösung, History der Eingaben und Ausgabe von Gleichungen -->
-        <div class="col-md-1">
+        <div class="col-md-2">
             <!--dirty workaround-->
             <input type="hidden" id="counterSlave" value="0">
+            <p style="color:white;">Als einfacher Schiffjunge auf einem U-Boot, musst du die Schusslinie der
+                Kanone grafisch im „Logbuch dokumentieren“. Der Schuss der Kanone wird dir als Geradengleichung übermittelt. Der Spieler muss die „Schusslinie“ im
+                Koordinatensystem einzeichnen. Nach dem Zeichnen wird „als Kontrolle“ das U-Boot
+                und das Flugobjekt angezeigt. Hast du 5 Schusslinien richtig eingetragen,
+                wird er zum Matrosen „befördert“ und steigt zum Level 2 auf.</p>
+            <br>
+            <p style="color:white;">Gleichung: </p> <p style="color:white;" th:text="${gleichung.toString()}"></p>
 
             <form id="sweetSugar" action="#" th:action="@{/example}" th:object="${userInput}" method="post" style="hidden">
                 <table th:if="${userInputValid} == false" table>
@@ -206,9 +222,6 @@
 
 
         </div>
-        <div class="col-md-1">
-
-        </div>
         <!-- Hier kommt die mittlere Spalte aka "Spielfeld" -->
         <!--<div class="col-md-8" onload="zeichne()">-->
         <div class="col-md-8"  >
@@ -226,7 +239,7 @@
                 </form>
                 <svg id="playground" viewbox="0 0 700 400" onclick="startDatShit(evt)">
                     <style>
-                        .small { font: 9px sans-serif; }
+                        .small { font: 7px sans-serif; }
                     </style>
 
                     <defs>
@@ -235,7 +248,7 @@
                         <!-- eine Pfeilspitze -->
                         <marker id="markerArrow" markerWidth="130" markerHeight="13" refx="2" refy="6" orient="auto">
                             <path d="M0,2 l8,4 l-8,4"  stroke="red" stroke-width="1" />
-                            <path d="M360,200 L400,200 L9,3 z" fill="#f00" />
+                            <path d="M360,200 L400,200 L9,3 z" fill="#f00" fill-opacity="0.0"/>
                         </marker>
 
                     </defs>
@@ -246,8 +259,8 @@
 
 
 
-                    <circle id="flugdings" cx="350" cy="200" r="4" fill="#f0ffff"></circle>
-                    <circle id="uBoat" cx="350" cy="200" r="4" fill="#f0ffff"></circle>
+                    <circle id="flugdings" cx="350" cy="200" r="4" fill="#f0ffff" fill-opacity="0.0"></circle>
+                    <circle id="uBoat" cx="350" cy="200" r="4" fill="#f0ffff" ></circle>
 
 
                     <!-- X-Achse -->
@@ -256,7 +269,7 @@
                     <path class="axis" id="y-axis" d="M350,400 v-400" stroke="black"/>
                     <!-- Linie des Funktionsgraphen -->
                     <!--<path id="functionGraph" d="M140,400 L560,0" stroke="#AAAA" />-->
-                    <path id="functionGraph" d="M140,400 L560,0" stroke="white" />
+                    <path id="functionGraph" d="M140,400 L560,0" stroke="white" stroke-opacity="0.0"/>
 
                     <!-- Beschriftung des Ursprungspunktes -->
                     <!--<text x="360" y="200" fill="darkslategray">(0,0)</text>-->
@@ -374,14 +387,7 @@
     </div>
 
     <!-- Hier kommt die rechte Spalte aka Befehlsangabe -->
-    <div class="col-md-1" type="hidden">
-        <p>Als einfacher Schiffjunge auf einem U-Boot, muss der Spieler die Schusslinie der
-            Kanone grafisch im „Logbuch dokumentieren“. Der Schuss der Kanone wird dem
-            Matrosen als Geradengleichung übermittelt. Der Spieler muss die „Schusslinie“ im
-            Koordinatensystem einzeichnen. Nach dem Zeichnen wird „als Kontrolle“ das U-Boot
-            und das Flugobjekt angezeigt. Hat der Schiffsjunge 5 Schusslinien richtig eingetragen,
-            wird er zum Matrosen „befördert“ und steigt zum Level 2 auf.</p>
-
+    <!--<div class="col-md-1" type="hidden">
 
         <p name="order2" readonly="true">Der Spieler muss als Leichtmatrose auf einem Kanonenboot auf der Oberfläche
             Kanonen programmieren, welche gegnerische U-Boote zerstören. Ein Satelit
@@ -405,23 +411,12 @@
             U-Boot muss mit „Eingabe der Geradengleichung“ so ausgerichtet werden, dass
             das Flugobjekt getroffen wird. Die Steigung muss als Bruch und der YAchsenabschnitt als Ganzzahl angegeben werden. War die Eingabe korrekt,
             explodiert das Flugobjekt. Hat der Kanonier die Kanone 10x richtig ausgerichtet, wird
-            er zum Offizier befördert (Level 5).</p>
+            er zum Offizier befördert (Level 5).</p>-->
     </div>
 
 
 </div>
 
-
-<!--<div class="container-fluid">
-    <div class="row">
-        <div class="col-4 bg-success">
-            <p>Lorem ipsum...</p>
-        </div>
-        <div class="col-8 bg-warning">
-            <p>Sed ut perspiciatis...</p>
-        </div>
-    </div>
-</div>-->
 
 <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
 <script src="/webjars/jquery/3.3.1/jquery.min.js"></script>

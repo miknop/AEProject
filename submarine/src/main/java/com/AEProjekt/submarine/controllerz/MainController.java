@@ -298,7 +298,7 @@ public class MainController {
 
         model.addAttribute("user", user);
         model.addAttribute("userInput", this.inputLevel);
-
+        iLevel level = user.getLevel();
         return "example";
     }
 
@@ -313,7 +313,6 @@ public class MainController {
         model.addAttribute("gleichung", equation);
         model.addAttribute("submarine", new Submarine(EquationGenerator.generatePointBelowSea(equation)));
         model.addAttribute("plane", new Submarine(EquationGenerator.generatePointAboveSea(equation)));
-
         storyExecution(this.user);
 
         if(user.getLevel() instanceof Level2)
