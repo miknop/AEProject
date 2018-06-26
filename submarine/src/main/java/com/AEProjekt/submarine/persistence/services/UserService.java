@@ -10,6 +10,10 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.lang.reflect.Array;
+import java.util.ArrayList;
+import java.util.List;
+
 @Slf4j
 @Service
 /**
@@ -41,6 +45,7 @@ public class UserService {
         UserEntity userEntity = userRepository.findByUsername(name);
         if (userEntity != null) {
             userEntity.setUsername(user.getUsername());
+            userEntity.setClassNumber(user.getClassNumber());
             userEntity.setLevel(UserMapper.mapLevelInt(user));
             userEntity.setBeatList(user.getLevel().getLevelbeatcounter().getBeatList());
         } else {
@@ -56,6 +61,24 @@ public class UserService {
             throw new EntityNotFoundException();
         }
 
+    }
+
+    public List<User> getUsers() {
+        Iterable<UserEntity> iterable = userRepository.findAll();
+        List<UserEntity> list = (List) iterable;
+        if (!list.isEmpty()) {
+            return UserMapper.fromEntitiesToObjects(list);
+        }
+        throw new EntityNotFoundException();
+    }
+
+    public List<User> getUsersByClassNumber(String classNumber) {
+        Iterable<UserEntity> iterable = userRepository.findByClassNumber(classNumber);
+        List<UserEntity> list = (List) iterable;
+        if (!list.isEmpty()) {
+            return UserMapper.fromEntitiesToObjects(list);
+        }
+        throw new EntityNotFoundException();
     }
 
     public void deleteUserEntity(String name) {

@@ -4,6 +4,9 @@ import com.AEProjekt.submarine.levelz.*;
 import com.AEProjekt.submarine.persistence.entities.UserEntity;
 import com.AEProjekt.submarine.users.User;
 
+import java.util.ArrayList;
+import java.util.List;
+
 /**
  * Created by backes_tor on 14.06.2018.
  * maps the User Class to the Entity and vice-versa.
@@ -13,6 +16,7 @@ public class UserMapper {
     public static User fromEntityToObject(UserEntity entity) {
         User user = new User();
         user.setUsername(entity.getUsername());
+        user.setClassNumber(entity.getClassNumber());
         iLevel level = mapLevelFromEntity(entity) ;
         LevelBeatCounter counter = level.getLevelbeatcounter();
         counter.setBeatList(entity.getBeatList());
@@ -29,6 +33,7 @@ public class UserMapper {
     public static UserEntity fromObjectToEntity(User user) {
         UserEntity entity = new UserEntity();
         entity.setUsername(user.getUsername());
+        entity.setClassNumber(user.getClassNumber());
         iLevel level = user.getLevel();
         int levelInt = mapLevelInt(user);
         entity.setLevel(levelInt);
@@ -40,7 +45,15 @@ public class UserMapper {
         return entity;
     }
 
-    public static iLevel mapLevelFromEntity (UserEntity entity) {
+    public static List<User>fromEntitiesToObjects(List<UserEntity> list) {
+        List<User> userList = new ArrayList<>();
+        for (UserEntity entity: list) {
+            userList.add(UserMapper.fromEntityToObject(entity));
+        }
+        return userList;
+    }
+
+    private static iLevel mapLevelFromEntity (UserEntity entity) {
         iLevel level;
         int levelInt = entity.getLevel();
         switch (levelInt) {

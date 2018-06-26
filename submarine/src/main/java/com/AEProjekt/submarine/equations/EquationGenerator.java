@@ -1,80 +1,67 @@
 package com.AEProjekt.submarine.equations;
 
 
-
 import java.util.ArrayList;
 import java.util.Random;
 
 /**
  * Created by miknop
- *
  */
 
-public class EquationGenerator
-{
+public class EquationGenerator {
     private static final int MAXVALUES = 6;
 
-    public static iEquationType generateEquation(int equationType)
-    {
+    public static iEquationType generateEquation(int equationType) {
         iEquationType equation = null;
-        if(equationType == 1)
-        {
-             equation = generateLinearEquation();
+        if (equationType == 1) {
+            equation = generateLinearEquation();
         }
         return equation;
     }
 
     //TODO Michael
-    public static LinearEquation generateLinearEquation(){
+    public static LinearEquation generateLinearEquation() {
         // Zähler der Steigung im Bereich von -6 bis 6 generieren.
         //int dividend = -MAXVALUES + new Random().nextInt(MAXVALUES *2 + 1);
-        int dividend = new Random().nextInt(MAXVALUES ) + 1;
+        int dividend = new Random().nextInt(MAXVALUES) + 1;
 
         // bei 0 positiv, bei 1 negativ
-        if(new Random().nextInt(2) == 0)
-        {
+        if (new Random().nextInt(2) == 0) {
             dividend *= -1;
         }
 
-        int divisor = new Random().nextInt(MAXVALUES)+1; // +1 um 0 auszuschließen und um auf 12 zu kommen
+        int divisor = new Random().nextInt(MAXVALUES) + 1; // +1 um 0 auszuschließen und um auf 12 zu kommen
 
         //Bruch kürzen  mit Hilfe des gcd (Größter gemeinsamer Teiler)
         int gcd = ExtraMath.calculateGcd(dividend, divisor);
         dividend /= gcd;
         divisor /= gcd;
 
-        int temp = dividend/divisor;
-        if(temp < 0) temp*=-1;
+        int temp = dividend / divisor;
+        if (temp < 0) {
+            temp *= -1;
+        }
         int b;
-        if(temp < 1)
-        {
+        if (temp < 1) {
             b = (-MAXVALUES + divisor);
-            if(MAXVALUES - divisor == 0)
-            {
+            if (MAXVALUES - divisor == 0) {
                 b += new Random().nextInt(1); // erklärung folgt
-            }
-            else
-            {
+            } else {
                 b += new Random().nextInt((MAXVALUES - divisor) * 2); // erklärung folgt
             }
-        }
-        else
-        {
+        } else {
             b = (-MAXVALUES + temp) + new Random().nextInt(MAXVALUES * 2 - temp);
         }
         return new LinearEquation(dividend, divisor, b);
     }
 
-    public static Point generatePointBelowSea(iEquationType equation)
-    {
+    public static Point generatePointBelowSea(iEquationType equation) {
         ArrayList<Integer> xBelow = new ArrayList<Integer>();
 
         // Zufällige Punkte bestimmen
-        for (int i = -12; i <= 12; i++)
-        {
+        for (int i = -12; i <= 12; i++) {
             double y = equation.calculateY(i);
-            if (y % 1 == 0 && y < 0 && y >= -12)
-            {
+            if (y % 1 == 0 && y < 0 && y >= -12) {
                 xBelow.add(i);
             }
         }
@@ -89,11 +76,9 @@ public class EquationGenerator
         ArrayList<Integer> xAbove = new ArrayList<Integer>();
 
         // Zufällige Punkte bestimmen
-        for (int i = -12; i <= 12; i++)
-        {
+        for (int i = -12; i <= 12; i++) {
             double y = equation.calculateY(i);
-            if (y % 1 == 0 && y < 12 && y > 0)
-            {
+            if (y % 1 == 0 && y < 12 && y > 0) {
                 xAbove.add(i);
             }
         }
@@ -113,22 +98,22 @@ public class EquationGenerator
 
 
     public static int generateUfoX() {
-        int i  = 0;
+        int i = 0;
         return i;
     }
 
     public static int generateUfoY() {
-        int i  = 0;
+        int i = 0;
         return i;
     }
 
     public static int generateSubX() {
-        int i  = 0;
+        int i = 0;
         return i;
     }
 
     public static int generateSubY() {
-        int i  = 0;
+        int i = 0;
         return i;
     }
 }

@@ -3,9 +3,11 @@ package com.AEProjekt.submarine.persistence.repositories;
 import com.AEProjekt.submarine.persistence.entities.UserEntity;
 import org.springframework.data.repository.CrudRepository;
 
+import java.util.List;
+
 /**
  * Created by backes_tor on 07.06.2018.
- *
+ * <p>
  * User Repository. Enables CRUD operations and one additional functionality to search the User by name in Database.
  */
 public interface iUserRepository extends CrudRepository<UserEntity, Long> {
@@ -15,4 +17,6 @@ public interface iUserRepository extends CrudRepository<UserEntity, Long> {
      * @returns user with this username from Database
      */
     UserEntity findByUsername(String username);
+
+    List<UserEntity> findByClassNumber(String classNumber);
 }

@@ -22,6 +22,7 @@ public class UserEntity {
     @GeneratedValue
     private long id;
     private String username;
+    private String classNumber;
     private int level;
     private ArrayList<Boolean> beatList;
     private int scoreLevel1;

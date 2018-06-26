@@ -11,22 +11,20 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 /**
- *
  * @author Michel
  */
 @Data
 //@AllArgsConstructor
 //@NoArgsConstructor
-public class Ship implements iFigure{
+public class Ship implements iFigure {
     private Point point;
 
-    public Ship(Point p)
-    {
+    public Ship(Point p) {
         point = p;
     }
 
-    public String toString()
-    {
-        return "(" + Integer.toString(point.getX()) + "/" + Integer.toString(point.getY()) + ")";}
+    public String toString() {
+        return "(" + Integer.toString(point.getX()) + "/" + Integer.toString(point.getY()) + ")";
+    }
 
 }

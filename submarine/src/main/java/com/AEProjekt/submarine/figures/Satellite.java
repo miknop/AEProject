@@ -11,22 +11,19 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 /**
- *
  * @author Michel
  */
 @Data
 //@AllArgsConstructor
 @NoArgsConstructor
-public class Satellite implements iFigure{
+public class Satellite implements iFigure {
     private Point point;
 
-    public Satellite(Point p)
-    {
+    public Satellite(Point p) {
         point = p;
     }
 
-    public String toString()
-    {
+    public String toString() {
         return "(" + Integer.toString(point.getX()) + "/" + Integer.toString(point.getY()) + ")";
     }
 

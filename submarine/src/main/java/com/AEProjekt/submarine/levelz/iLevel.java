@@ -8,7 +8,6 @@ package com.AEProjekt.submarine.levelz;  // created at 5/7/2018
 import com.AEProjekt.submarine.equations.LinearEquation;
 
 /**
- *
  * @author Michel
  */
 public interface iLevel {
@@ -19,8 +18,10 @@ public interface iLevel {
 
     //Methoden
     public LevelBeatCounter getLevelbeatcounter();
+
     public void setLevelbeatcounter(LevelBeatCounter levelbeatcounter);
 
     public LinearEquation getLinEq();
-    public void  setLinEq(LinearEquation linearequation);
+
+    public void setLinEq(LinearEquation linearequation);
 }

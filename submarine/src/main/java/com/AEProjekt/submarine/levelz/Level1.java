@@ -17,7 +17,6 @@ import lombok.NoArgsConstructor;
 import javax.persistence.*;
 
 /**
- *
  * @author Michel
  */
 @Data
@@ -34,10 +33,7 @@ public class Level1 implements iLevel {
     private LevelBeatCounter levelbeatcounter;
 
 
-
-
-    public Level1()
-    {
+    public Level1() {
         equipLevel();
     }
 
@@ -48,8 +44,7 @@ public class Level1 implements iLevel {
         levelbeatcounter = new LevelBeatCounter();
     }
 
-    public void equipLevelNoRS()
-    {
+    public void equipLevelNoRS() {
         linEq = EquationGenerator.generateLinearEquation();
         plane = new Plane(EquationGenerator.generatePointAboveSea(linEq));
         sub = new Submarine(EquationGenerator.generatePointBelowSea(linEq));
