@@ -11,6 +11,11 @@ import java.util.Random;
 public class EquationGenerator {
     private static final int MAXVALUES = 6;
 
+    /**
+     * Generates an eqution of a specified type
+     * @param equationType The type of eqution that should be generated, 1 = linear
+     * @return a newly generated equation
+     */
     public static iEquationType generateEquation(int equationType) {
         iEquationType equation = null;
         if (equationType == 1) {
@@ -19,7 +24,10 @@ public class EquationGenerator {
         return equation;
     }
 
-    //TODO Michael
+    /**
+     * Generates a linear equation
+     * @return a newly generated equation
+     */
     public static LinearEquation generateLinearEquation() {
         // Zähler der Steigung im Bereich von -6 bis 6 generieren.
         //int dividend = -MAXVALUES + new Random().nextInt(MAXVALUES *2 + 1);
@@ -55,6 +63,11 @@ public class EquationGenerator {
         return new LinearEquation(dividend, divisor, b);
     }
 
+    /**
+     * Generates a random point below y = 0
+     * @param equation The equation the point should be generated for
+     * @return Point that is on the graph and below y = 0
+     */
     public static Point generatePointBelowSea(iEquationType equation) {
         ArrayList<Integer> xBelow = new ArrayList<Integer>();
 
@@ -72,6 +85,11 @@ public class EquationGenerator {
         return new Point(x1, y1);
     }
 
+    /**
+     * Generates a random point above y = 0
+     * @param equation The equation the point should be generated for
+     * @return Point that is on the graph and above y = 0
+     */
     public static Point generatePointAboveSea(iEquationType equation) {
         ArrayList<Integer> xAbove = new ArrayList<Integer>();
 
@@ -89,6 +107,11 @@ public class EquationGenerator {
         return new Point(x1, y1);
     }
 
+    /**
+     * Generates a random point at y = 0
+     * @param equation The equation the point should be generated for
+     * @return Point that is on the graph and at y = 0
+     */
     public static Point generatePointAtSealevel(iEquationType equation) {
         int x1 = (int) equation.calculateX(0);
         int y1 = 0;
@@ -96,24 +119,4 @@ public class EquationGenerator {
         return new Point(x1, y1);
     }
 
-
-    public static int generateUfoX() {
-        int i = 0;
-        return i;
-    }
-
-    public static int generateUfoY() {
-        int i = 0;
-        return i;
-    }
-
-    public static int generateSubX() {
-        int i = 0;
-        return i;
-    }
-
-    public static int generateSubY() {
-        int i = 0;
-        return i;
-    }
 }

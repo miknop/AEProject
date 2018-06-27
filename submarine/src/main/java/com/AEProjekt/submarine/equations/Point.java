@@ -24,11 +24,20 @@ public class Point {
     }
 
 
+    /**
+     * Generates a formatted String representing the point
+     * @return a formatted String representing the point
+     */
     @Override
     public String toString() {
         return (x + "/" + y);
     }
 
+    /**
+     * Compares the Point to another Point
+     * @param o The Point this Point should be compared to
+     * @return 0 if the point are the same, otherwise -1
+     */
     public int compareTo(Point o) {
         if (o.getX() == this.x && o.getY() == this.y) {
             return 0;
@@ -37,17 +46,4 @@ public class Point {
         }
 
     }
-    /*
-    public int compareTo(Point o) {
-        if(o.getX() == this.x && o.getY() == this.y)
-        {
-            return 0;
-        }
-        else
-        {
-            return -1;
-        }
-
-    }
-    */
 }
