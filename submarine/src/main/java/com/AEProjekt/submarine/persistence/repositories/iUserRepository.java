@@ -18,5 +18,11 @@ public interface iUserRepository extends CrudRepository<UserEntity, Long> {
      */
     UserEntity findByUsername(String username);
 
+    /**
+     *
+     * @param classNumber
+     * @return List of UserEntities
+     * enables searching the Database for All users that are in a certain class.
+     */
     List<UserEntity> findByClassNumber(String classNumber);
 }

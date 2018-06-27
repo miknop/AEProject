@@ -1,33 +1,22 @@
 package com.AEProjekt.submarine.controllerz;
 
 
-import com.AEProjekt.submarine.UserInputTest;
-import com.AEProjekt.submarine.users.User;
 import com.AEProjekt.submarine.InputLevel.*;
 import com.AEProjekt.submarine.equations.EquationGenerator;
-import com.AEProjekt.submarine.equations.*;
-import com.AEProjekt.submarine.figures.Ship;
-import org.springframework.stereotype.Controller;
+import com.AEProjekt.submarine.equations.LinearEquation;
+import com.AEProjekt.submarine.equations.Point;
+import com.AEProjekt.submarine.equations.iEquationType;
+import com.AEProjekt.submarine.figures.Submarine;
 import com.AEProjekt.submarine.levelz.*;
-import jdk.internal.util.xml.impl.Input;
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import com.AEProjekt.submarine.persistence.services.UserService;
+import com.AEProjekt.submarine.users.User;
+import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
-import com.AEProjekt.submarine.UserInputTest;
-import com.AEProjekt.submarine.equations.EquationGenerator;
-import com.AEProjekt.submarine.equations.LinearEquation;
-import com.AEProjekt.submarine.figures.Submarine;
-import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
-import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.*;
 
-import javax.validation.Valid;
 import java.util.ArrayList;
 
 //@Data
@@ -40,11 +29,13 @@ public class MainController {
     private iLInput inputLevel;
     private InputControl validInput;
     private User user;
+    private UserService userService;
 
 
-    public MainController() {
+    public MainController(UserService aUserService) {
         inputLevel = new InputLevel1();
         user = new User();
+        userService = aUserService;
     }
 
 
@@ -67,52 +58,12 @@ public class MainController {
             return "redirect:/exampleMainControllerWin";
         }
     }
-    /*@PostMapping("/exampleMainController")
-    public String userInputTest(@ModelAttribute("userInput") InputLevel1 userInput, Model model)
-    {
-        this.inputLevel = userInput;
-        model.addAttribute("user", user);
-        model.addAttribute("userInput", this.inputLevel);
-        model.addAttribute("userInputValid", this.inputLevel.isInputValid());
-
-        storyExecution(this.user);
-
-        if(user.getLevel() instanceof Level2)
-        {
-            return "exampleMainController2";
-        }
-        else
-        {
-            return "exampleMainController";
-        }
-    }*/
-    //Level2
-    /*
-    Folgende Änderungen müssen immer gemacht werden
-    @GetMapping("/exampleMainControllerX")
-    public String bootstrapTestX(Model model)
-
-    return "exampleMainControllerX";
-    @PostMapping("/exampleMainControllerX")
-    public String userInputTestX(@ModelAttribute("userInput") InputLevelX userInput, Model model)
-    if(user.getLevel() instanceof LevelX+1)
-    return "exampleMainControllerX+1";
-    return "exampleMainControllerX";
-     */
 
     @GetMapping("/exampleMainController2")
     public String bootstrapTest2(Model model) {
         model.addAttribute("user", user);
         model.addAttribute("userInput", this.inputLevel);
 
-        /*if(user.getLevel() instanceof Level2)
-        {
-            return "exampleMainController2";
-        }
-        else
-        {
-            return "redirect:/exampleMainController";
-        }*/
         iLevel level = user.getLevel();
         if (level instanceof Level1) {
             return "redirect:/exampleMainController";
@@ -151,15 +102,6 @@ public class MainController {
         model.addAttribute("user", user);
         model.addAttribute("userInput", this.inputLevel);
 
-        /*if(user.getLevel() instanceof Level3)
-        {
-            return "exampleMainController3";
-        }
-        else
-        {
-            return "redirect:/exampleMainController2";
-        }*/
-
         iLevel level = user.getLevel();
         if (level instanceof Level1) {
             return "redirect:/exampleMainController";
@@ -196,15 +138,6 @@ public class MainController {
         model.addAttribute("user", user);
         model.addAttribute("userInput", this.inputLevel);
 
-        /*if(user.getLevel() instanceof Level4)
-        {
-            return "exampleMainController4";
-        }
-        else
-        {
-            //return New ModelAndView("exampleMainController3");
-            return "redirect:/exampleMainController3";
-        }*/
         iLevel level = user.getLevel();
         if (level instanceof Level1) {
             return "redirect:/exampleMainController";
@@ -218,6 +151,7 @@ public class MainController {
             return "redirect:/exampleMainControllerWin";
         }
     }
+
 
     @PostMapping("/exampleMainController4")
     public String userInputTest4(@ModelAttribute("userInput") InputLevel4 userInput, Model model) {
@@ -289,11 +223,13 @@ public class MainController {
                     + m_doub * (double) ((InputLevel1) inputLevel).getP1X() * (-1)));
 
 
-            if (temp_linearequation.compareTo(((Level1) level).getLinEq()) == 0) {
-                ((Level1) level).getLevelbeatcounter().fillResultOfRound(true);
+            if (temp_linearequation.compareTo(level.getLinEq()) == 0) {
+                level.getLevelbeatcounter().fillResultOfRound(true);
+                userService.updateUserEntity(user);
                 ((Level1) level).equipLevelNoRS();
             } else {
-                ((Level1) level).getLevelbeatcounter().fillResultOfRound(false);
+                level.getLevelbeatcounter().fillResultOfRound(false);
+                userService.updateUserEntity(user);
                 ((Level1) level).equipLevelNoRS();
             }
 
@@ -303,10 +239,12 @@ public class MainController {
             Point temp_point = new Point(((Level2) level).getSubmarine().getPoint().getX(), ((InputLevel2) inputLevel).getPFX());
 
             if (temp_point.compareTo(((Level2) level).getSubmarine().getPoint()) == 0) {
-                ((Level2) level).getLevelbeatcounter().fillResultOfRound(true);
+                level.getLevelbeatcounter().fillResultOfRound(true);
+                userService.updateUserEntity(user);
                 ((Level2) level).equipLevelNoRS();
             } else {
-                ((Level2) level).getLevelbeatcounter().fillResultOfRound(false);
+                level.getLevelbeatcounter().fillResultOfRound(false);
+                userService.updateUserEntity(user);
                 ((Level2) level).equipLevelNoRS();
             }
         }
@@ -315,10 +253,12 @@ public class MainController {
             Point temp_point = new Point(((InputLevel3) inputLevel).getPX(), ((Level3) level).getSubmarine().getPoint().getY());
 
             if (temp_point.compareTo(((Level3) level).getSubmarine().getPoint()) == 0) {
-                ((Level3) level).getLevelbeatcounter().fillResultOfRound(true);
+                level.getLevelbeatcounter().fillResultOfRound(true);
+                userService.updateUserEntity(user);
                 ((Level3) level).equipLevelNoRS();
             } else {
-                ((Level3) level).getLevelbeatcounter().fillResultOfRound(false);
+                level.getLevelbeatcounter().fillResultOfRound(false);
+                userService.updateUserEntity(user);
                 ((Level3) level).equipLevelNoRS();
             }
         }
@@ -327,11 +267,13 @@ public class MainController {
             LinearEquation temp_linearequation = new LinearEquation(((InputLevel4) inputLevel).getUserNumeratorInput(),
                     ((InputLevel4) inputLevel).getUserDenominatorInput(), ((InputLevel4) inputLevel).getUserYInput());
 
-            if (temp_linearequation.compareTo(((Level4) level).getLinEq()) == 0) {
-                ((Level4) level).getLevelbeatcounter().fillResultOfRound(true);
+            if (temp_linearequation.compareTo(level.getLinEq()) == 0) {
+                level.getLevelbeatcounter().fillResultOfRound(true);
+                userService.updateUserEntity(user);
                 ((Level4) level).equipLevelNoRS();
             } else {
-                ((Level4) level).getLevelbeatcounter().fillResultOfRound(false);
+                level.getLevelbeatcounter().fillResultOfRound(false);
+                userService.updateUserEntity(user);
                 ((Level4) level).equipLevelNoRS();
             }
         }
@@ -347,21 +289,6 @@ public class MainController {
             if (inputLevel.isInputValid()) {
                 playLevel((user.getLevel()));
             }
-            //TODO
-            /*
-            if(isLevelBeat(user))
-            {
-                if(user.getLevel() instanceof  Level1)
-                    user.setLevel(new Level1());
-                else if (user.getLevel() instanceof  Level2)
-                    user.setLevel(new Level2());
-                else if (user.getLevel() instanceof  Level3)
-                    user.setLevel(new Level3());
-                else if (user.getLevel() instanceof  Level4)
-                    user.setLevel(new Level4());
-            }
-            */
-
             //Nachdem die runde gespielt wurde, kann nun eine entscheidung getroffen werden, ob er in das naechste kommt
             setToNextLevel(user);
         }

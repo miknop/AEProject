@@ -13,6 +13,12 @@ import java.util.List;
  */
 public class UserMapper {
 
+    /**
+     *
+     * @param entity
+     * @return User
+     * Maps Database object to live Object.
+     */
     public static User fromEntityToObject(UserEntity entity) {
         User user = new User();
         user.setUsername(entity.getUsername());
@@ -30,6 +36,13 @@ public class UserMapper {
         return user;
     }
 
+    /**
+     *
+     * @param user
+     * @return User Entity
+     * maps live objects to Database objects.
+     */
+
     public static UserEntity fromObjectToEntity(User user) {
         UserEntity entity = new UserEntity();
         entity.setUsername(user.getUsername());
@@ -45,6 +58,12 @@ public class UserMapper {
         return entity;
     }
 
+    /**
+     *
+     * @param list of User Entities
+     * @return List of Users
+     * works in between Database and live objects.
+     */
     public static List<User>fromEntitiesToObjects(List<UserEntity> list) {
         List<User> userList = new ArrayList<>();
         for (UserEntity entity: list) {
@@ -53,6 +72,12 @@ public class UserMapper {
         return userList;
     }
 
+    /**
+     *
+     * @param entity
+     * @return iLevel level class. is needed to arm the user with a real level instead of Database Integer.
+     * See mapLevelInt function ffi.
+     */
     private static iLevel mapLevelFromEntity (UserEntity entity) {
         iLevel level;
         int levelInt = entity.getLevel();
@@ -76,6 +101,13 @@ public class UserMapper {
         return level;
     }
 
+    /**
+     *
+     * @param user
+     * @return returns an Integer value, to simplify Database design.
+     * Instead of unnecessarily persisting the Level, it is saved as an Integer value and later on mapped back
+     * through mapLevelFromEntity function
+     */
     public static int mapLevelInt (User user) {
         iLevel level = user.getLevel();
         int levelInt = 0;

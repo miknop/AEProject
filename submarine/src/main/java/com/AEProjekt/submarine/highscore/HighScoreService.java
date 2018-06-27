@@ -13,6 +13,8 @@ import java.util.List;
 /**
  * author tbackes
  * created on 22.06.2018
+ *
+ * This class works as a Service to generate the Scores
  */
 @Service
 public class HighScoreService {
@@ -23,6 +25,13 @@ public class HighScoreService {
         userService = aUserService;
     }
 
+    /**
+     *
+     * @param userName
+     * @param level
+     * @return int
+     * returns an integer value based on a simple formula, that generates the score based on the amount of failed and total tries
+     */
     public int generateLevelScoreForUser(String userName, iLevel level) {
         User user = userService.getUser(userName);
         int totalFails = level.getLevelbeatcounter().getTotalFailsCounter();
@@ -30,6 +39,11 @@ public class HighScoreService {
         return (1 - (totalFails / totalTries)) * 100;
     }
 
+    /**
+     *
+     * @param classNumber
+     * @return List of Users that belong to a certain class, sorted by highscore
+     */
     public List<User> generateHighScoreForClass(String classNumber) {
         List<User> userList = userService.getUsersByClassNumber(classNumber);
         Collections.sort(userList);

@@ -19,7 +19,7 @@ import java.util.List;
 /**
  * Created by backes_tor on 19.06.2018.
  *
- * User Service. Handles all CRUD Operations.
+ * User Service. Handles all CRUD Operations. Acts in between Software logic and database logic as abstraction layer.
  */
 public class UserService {
 
@@ -30,6 +30,10 @@ public class UserService {
         userRepository = aUserRepository;
     }
 
+    /**
+     * creates a new User in Database by making use of the CRUD repository.
+     * @param user
+     */
     public void createUserEntity(User user) {
         log.debug("At User Service (CREATE)");
         if (userRepository.findByUsername(user.getUsername()) == null) {
@@ -41,8 +45,12 @@ public class UserService {
         }
     }
 
-    public void updateUserEntity(String name, User user) {
-        UserEntity userEntity = userRepository.findByUsername(name);
+    /**
+     * updates a new User in Database by making use of the CRUD repository.
+     * @param user
+     */
+    public void updateUserEntity(User user) {
+        UserEntity userEntity = userRepository.findByUsername(user.getUsername());
         if (userEntity != null) {
             userEntity.setUsername(user.getUsername());
             userEntity.setClassNumber(user.getClassNumber());
@@ -53,6 +61,12 @@ public class UserService {
         }
     }
 
+    /**
+     *
+     * @param name
+     * @return User
+     * returns one User from Database who was selected by name
+     */
     public User getUser(String name) {
         UserEntity entity = userRepository.findByUsername(name);
         if (entity != null) {
@@ -63,6 +77,11 @@ public class UserService {
 
     }
 
+    /**
+     *
+     * @return List of Users
+     * returns a List of all Users that currently are persisted in the Database.
+     */
     public List<User> getUsers() {
         Iterable<UserEntity> iterable = userRepository.findAll();
         List<UserEntity> list = (List) iterable;
@@ -72,6 +91,11 @@ public class UserService {
         throw new EntityNotFoundException();
     }
 
+    /**
+     *
+     * @param classNumber
+     * @return List of Users that are part of a certain Class.
+     */
     public List<User> getUsersByClassNumber(String classNumber) {
         Iterable<UserEntity> iterable = userRepository.findByClassNumber(classNumber);
         List<UserEntity> list = (List) iterable;
@@ -81,6 +105,10 @@ public class UserService {
         throw new EntityNotFoundException();
     }
 
+    /**
+     * enables removing one user from the Database.
+     * @param name
+     */
     public void deleteUserEntity(String name) {
         UserEntity userEntity = userRepository.findByUsername(name);
         if (userEntity != null) {

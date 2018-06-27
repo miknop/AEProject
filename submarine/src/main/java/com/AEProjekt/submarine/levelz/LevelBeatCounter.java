@@ -4,6 +4,10 @@ import lombok.Data;
 
 import java.util.ArrayList;
 
+/**
+ * This class counts the number of tries and fails a user experiences while playing on level.
+ *
+ */
 @Data
 public class LevelBeatCounter {
     private ArrayList<Boolean> beatList;
@@ -14,7 +18,6 @@ public class LevelBeatCounter {
     public LevelBeatCounter() {
         beatList = new ArrayList<>();
     }
-
 
     public void fillResultOfRound(boolean resultOfRound) {
 
@@ -28,15 +31,5 @@ public class LevelBeatCounter {
         if (beatList.size() >= 8) {
             beatList.remove(0);
         }
-
-    }
-
-
-    public ArrayList<Boolean> getBeatList() {
-        return beatList;
-    }
-
-    public void setBeatList(ArrayList<Boolean> beatList) {
-        this.beatList = beatList;
     }
 }
