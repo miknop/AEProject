@@ -30,7 +30,8 @@ public class HighScoreService {
      * @param userName
      * @param level
      * @return int
-     * returns an integer value based on a simple formula, that generates the score based on the amount of failed and total tries
+     * returns an integer value based on a simple formula ((1 - (totalFails / totalTries)) * 100),
+     * that generates the score based on the amount of failed and total tries
      */
     public int generateLevelScoreForUser(String userName, iLevel level) {
         User user = userService.getUser(userName);

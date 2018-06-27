@@ -3,6 +3,7 @@ package com.AEProjekt.submarine.persistence.exceptions;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.ResponseStatus;
 /**
+ * Created by backes_tor on 19.06.2018.
  * Exception to check if Database Entites are already existant to make sure there is no NullPointerException.
  */
 @ResponseStatus(value = HttpStatus.NOT_FOUND, reason= "Entity not in Database")
