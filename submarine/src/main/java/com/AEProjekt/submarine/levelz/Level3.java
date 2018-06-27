@@ -14,22 +14,22 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import javax.persistence.*;
+
 /**
- *
  * @author Michel
  */
 
 @Data
 @AllArgsConstructor
 //@NoArgsConstructor
-public class Level3 implements iLevel{
+public class Level3 implements iLevel {
     private LevelBeatCounter levelbeatcounter;
     private LinearEquation linEq = null;
     private iFigure satellite = null;
     private Submarine submarine;
 
-    public Level3()
-    {
+    public Level3() {
         equipLevel();
     }
 
@@ -39,8 +39,7 @@ public class Level3 implements iLevel{
         submarine = new Submarine(EquationGenerator.generatePointBelowSea(linEq));
     }
 
-    public void equipLevelNoRS()
-    {
+    public void equipLevelNoRS() {
         linEq = EquationGenerator.generateLinearEquation();
         submarine = new Submarine(EquationGenerator.generatePointBelowSea(linEq));
     }

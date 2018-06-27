@@ -10,33 +10,30 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+
 /**
- *
  * @author Michel
  */
 @Data
 //@AllArgsConstructor
 //@NoArgsConstructor
-public class Plane implements iFigure{
+
+public class Plane implements iFigure {
     private Point point;
 
-    public Plane(Point p)
-    {
+    public Plane(Point p) {
         point = p;
     }
 
-    public int getX()
-    {
+    public int getX() {
         return point.getX();
     }
 
-    public int getY()
-    {
+    public int getY() {
         return point.getY();
     }
 
-    public String toString()
-    {
+    public String toString() {
         return "(" + Integer.toString(point.getX()) + "/" + Integer.toString(point.getY()) + ")";
     }
 

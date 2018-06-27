@@ -11,7 +11,6 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 /**
- *
  * @author Michel
  * renamed from UBoat to Submarine (Michel; 5/7/2018)
  */
@@ -19,26 +18,22 @@ import lombok.NoArgsConstructor;
 //@AllArgsConstructor
 //@NoArgsConstructor
 
-public class Submarine implements iFigure{
+public class Submarine implements iFigure {
     private Point point;
 
-    public Submarine(Point p)
-    {
+    public Submarine(Point p) {
         point = p;
     }
 
-    public int getX()
-    {
+    public int getX() {
         return point.getX();
     }
 
-    public int getY()
-    {
+    public int getY() {
         return point.getY();
     }
 
-    public String toString()
-    {
+    public String toString() {
         return "(" + Integer.toString(point.getX()) + "/" + Integer.toString(point.getY()) + ")";
     }
 

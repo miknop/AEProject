@@ -14,21 +14,21 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import javax.persistence.*;
+
 /**
- *
  * @author Michel
  */
 @Data
 @AllArgsConstructor
 //@NoArgsConstructor
-public class Level4 implements iLevel{
+public class Level4 implements iLevel {
     private LevelBeatCounter levelbeatcounter;
     private LinearEquation linEq = null;
     private iFigure plane = null;
     private iFigure submarine = null;
 
-    public Level4()
-    {
+    public Level4() {
         equipLevel();
     }
 
@@ -39,8 +39,7 @@ public class Level4 implements iLevel{
         levelbeatcounter = new LevelBeatCounter();
     }
 
-    public void equipLevelNoRS()
-    {
+    public void equipLevelNoRS() {
         linEq = EquationGenerator.generateLinearEquation();
         plane = new Plane(EquationGenerator.generatePointAboveSea(linEq));
         submarine = new Submarine(EquationGenerator.generatePointBelowSea(linEq));

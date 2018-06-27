@@ -5,14 +5,19 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import javax.persistence.*;
+
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class Level5 implements iLevel{
+
+public class Level5 implements iLevel {
+
     private LevelBeatCounter levelbeatcounter;
     private LinearEquation linEq = null;
+
     //Viel zutun hier ;)
-    public void method(){
+    public void method() {
 
     }
 }

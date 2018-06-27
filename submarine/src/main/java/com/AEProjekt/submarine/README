@@ -1,0 +1,13 @@
+Additional information regarding the Code:
+
+Getters and Setters are left out on purpose.
+We used a plugin called "Lombok" which can be found for at least IntelliJ and Eclipse that generates Getters, Setters
+and Constructors by itself if the correct Annotations are used.
+In this case the used Annotations are:
+@Data
+@AllArgsConstructor
+@NoArgsConstructor
+
+Other Tools that were used:
+
+SpringBoot

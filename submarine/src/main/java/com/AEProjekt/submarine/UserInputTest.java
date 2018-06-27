@@ -7,13 +7,13 @@ import lombok.NoArgsConstructor;
 
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+
 import javax.validation.constraints.Digits;
 
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class UserInputTest
-{
+public class UserInputTest {
     private Point punkt1;
     private Point punkt2;
 
@@ -26,7 +26,6 @@ public class UserInputTest
 
     @Digits(integer = 10, fraction = 0, message = "Es muss eine gültige Zahl eingegeben werden")
     private int b;
-
 
 
 }

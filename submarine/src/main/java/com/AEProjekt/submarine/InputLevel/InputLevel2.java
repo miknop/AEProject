@@ -13,17 +13,13 @@ public class InputLevel2 implements iLInput {
     private int pFX;
 
     //Weitere Methoden
-        public boolean isInputValid()
-        {
-            if(pFX>= -12 && pFX <= 0)
-            {
-                return true;
-            }
-            else
-            {
-                return false;
-            }
+    public boolean isInputValid() {
+        if (pFX >= -12 && pFX <= 0) {
+            return true;
+        } else {
+            return false;
         }
+    }
 
 
 }
