@@ -12,9 +12,10 @@ public class InputLevel4 implements iLInput {
     private int userDenominatorInput; //Nenner
     private int userYInput;
 
-    //Weitere Methoden
-
-    //Es reicht hier eigentlich schon aus zu pruefen ob der y-achsen abschnit von x = 0 in der Map liegt
+    /**
+     * Siehe die Erklärung aus InputLevel1
+     * @author Simon Freygang
+     */
     public boolean isInputValid() {
         if (userYInput >= -12 && userYInput <= 12) {
             if (userDenominatorInput != 0) {

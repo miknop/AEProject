@@ -24,6 +24,7 @@ public class InputLevel1 implements iLInput {
 
     /**
      * Diese Methode prueft ob die Punkte im Spielfeld liegen und das es fuer kein x zwei verschiedene f(x) gibt
+     * @author Simon Freygang
      */
     public boolean isInputValid() {
 

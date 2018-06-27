@@ -36,12 +36,20 @@ public class Level2 implements iLevel {
         equipLevel();
     }
 
+
+    /**
+     * Siehe Level 1
+     * @author Simon Freygang
+     */
     public void equipLevel() {
         linEq = EquationGenerator.generateLinearEquation();
         levelbeatcounter = new LevelBeatCounter();
         submarine = new Submarine(EquationGenerator.generatePointBelowSea(linEq));
     }
-
+    /**
+     * Siehe Level 1
+     * @author Simon Freygang
+     */
     public void equipLevelNoRS() {
         linEq = EquationGenerator.generateLinearEquation();
         submarine = new Submarine(EquationGenerator.generatePointBelowSea(linEq));
