@@ -5,15 +5,26 @@
  */
 package com.AEProjekt.submarine.figures;
 
+import com.AEProjekt.submarine.equations.Point;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+
 /**
- *
  * @author Michel
  */
-public class Satellite {
-    private int xPosition;
-    private int yPosition;
-    
-    private void generatePosition(){
-        
+@Data
+//@AllArgsConstructor
+@NoArgsConstructor
+public class Satellite implements iFigure {
+    private Point point;
+
+    public Satellite(Point p) {
+        point = p;
     }
+
+    public String toString() {
+        return "(" + Integer.toString(point.getX()) + "/" + Integer.toString(point.getY()) + ")";
+    }
+
 }

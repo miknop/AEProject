@@ -5,15 +5,26 @@
  */
 package com.AEProjekt.submarine.figures;  // created at 5/7/2018
 
+import com.AEProjekt.submarine.equations.Point;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+
 /**
- *
  * @author Michel
  */
-public class Ship {
-    private int xPosition;
-    private int yPosition;
-    
-    private void generatePosition(){
-        
+@Data
+//@AllArgsConstructor
+//@NoArgsConstructor
+public class Ship implements iFigure {
+    private Point point;
+
+    public Ship(Point p) {
+        point = p;
     }
+
+    public String toString() {
+        return "(" + Integer.toString(point.getX()) + "/" + Integer.toString(point.getY()) + ")";
+    }
+
 }

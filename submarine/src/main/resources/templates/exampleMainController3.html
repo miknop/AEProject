@@ -1,0 +1,50 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Getting Started: Handling Form Submission</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+</head>
+<body>
+<h1>Form</h1>
+
+
+
+<a th:text="${user.getLevel().getLinEq()}"></a>
+
+<div th:if="${userInputValid} == false"  style="width: 600px; height: 100px; border: 1px solid black; background-color: red; margin-left: auto; margin-right: auto; text-align: center;">
+    <a>Sie haben einen Fehler in der Eingabe, bitte überprüfen Sie Ihre Eingabe!</a>
+</div>
+<br>
+<br>
+<div style="width: 800px; height: 150px; border: 1px solid black;">
+
+    <div th:each="ele : ${user.getLevel().getLevelbeatcounter().getBeatList()}">
+        <div th:if="${ele} == true" style="width: 100px; height: 150px; border: 1px solid black; float: left; background-color: green;">
+
+
+        </div>
+        <div th:if="${ele} == false" style="width: 100px; height: 150px; border: 1px solid black; float: left; background-color: red;">
+
+        </div>
+    </div>
+
+</div>
+
+<form action="#" th:action="@{/exampleMainController3}" th:object="${userInput}" method="post">
+    <table>
+
+        <tr>
+            <td ><a th:text="'y: ' + ${user.getLevel().getSubmarine().getY()}"></a></td>
+        </tr>
+        <tr>
+            <td th:if="${userInputValid} == false">y: <input type="text" th:field="*{pX}" /></td>
+            <td th:if="${userInputValid} == null or ${userInputValid} == true">x: <input type="text" th:id="'pX'" th:name="'pX'" /></td>
+        </tr>
+        </tr>
+        <td><button type="submit">Submit</button></td>
+        </tr>
+
+    </table>
+</form>
+</body>
+</html>

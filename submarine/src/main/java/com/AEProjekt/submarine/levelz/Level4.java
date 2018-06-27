@@ -5,22 +5,43 @@
  */
 package com.AEProjekt.submarine.levelz;  //  created at 5/7/2018
 
+import com.AEProjekt.submarine.equations.EquationGenerator;
+import com.AEProjekt.submarine.equations.LinearEquation;
+import com.AEProjekt.submarine.figures.Plane;
+import com.AEProjekt.submarine.figures.Submarine;
+import com.AEProjekt.submarine.figures.iFigure;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+
+import javax.persistence.*;
+
 /**
- *
  * @author Michel
  */
-public class Level4 {
-   private boolean plane;
-    
-    public void setPlane(boolean plane){
-        this.plane = plane;
+@Data
+@AllArgsConstructor
+//@NoArgsConstructor
+public class Level4 implements iLevel {
+    private LevelBeatCounter levelbeatcounter;
+    private LinearEquation linEq = null;
+    private iFigure plane = null;
+    private iFigure submarine = null;
+
+    public Level4() {
+        equipLevel();
     }
-    
-    public boolean getPlane(){
-        return this.plane;
+
+    public void equipLevel() {
+        linEq = EquationGenerator.generateLinearEquation();
+        plane = new Plane(EquationGenerator.generatePointAboveSea(linEq));
+        submarine = new Submarine(EquationGenerator.generatePointBelowSea(linEq));
+        levelbeatcounter = new LevelBeatCounter();
     }
-    
-    public void method(){
-        
+
+    public void equipLevelNoRS() {
+        linEq = EquationGenerator.generateLinearEquation();
+        plane = new Plane(EquationGenerator.generatePointAboveSea(linEq));
+        submarine = new Submarine(EquationGenerator.generatePointBelowSea(linEq));
     }
 }

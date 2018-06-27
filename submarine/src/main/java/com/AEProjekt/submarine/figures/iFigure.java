@@ -5,13 +5,13 @@
  */
 package com.AEProjekt.submarine.figures;  // created at 5/7/2018
 
+import com.AEProjekt.submarine.equations.Point;
+
 /**
- *
  * @author Michel
  */
 public interface iFigure {
-    public int[] field = {};
-    
-    public void method();       
-        
+
+    public Point getPoint();
+
 }

@@ -1,3 +1,5 @@
+
+
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org" lang="en">
 <head>
@@ -9,53 +11,417 @@
     <title>AE_Projekt; Submarine Math Game</title>
 
     <!-- Bootstrap -->
-    <link href="css/bootstrap.min.css" rel="stylesheet">
-
+    <link rel="stylesheet" type="text/css"
+          href="webjars/bootstrap/4.1.0/css/bootstrap.min.css" />
     <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
-    <!--[if lt IE 9]>
+    <script ></script>
     <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+    <script src="webjars/d3js/5.4.0/d3.min.js"></script>
     <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
-    <![endif]-->
+    <script th:inline="javascript">
+        /*<![CDATA[*/
+        function zeichne(){
+            var graph = document.getElementById('functionGraph');
+            var submarineX = /*[[${gleichung.calculateX(-40)}]]*/ '11'
+            var submarineY = -40
+
+            var planeX = /*[[${gleichung.calculateX(40)}]]*/ '12'
+            var planeY = 40
+
+            submarineY = 200+(-10*submarineY);
+            submarineX = 350+(10*submarineX);
+            planeY = 200-(10*planeY);
+            planeX = 350+(10*planeX);
+            graph.setAttribute("d", "M"+submarineX+","+submarineY+" L"+planeX+"," + planeY);
+
+
+            //zeichnen der punkte
+            var punkt1 = document.getElementById('flugdings');
+            var punkt2 = document.getElementById('uBoat');
+
+            submarineX = /*[[${submarine.getX()}]]*/ '11'
+            submarineY = /*[[${submarine.getY()}]]*/ '-1'
+            planeY = /*[[${plane.getY()}]]*/ '12'
+            planeX = /*[[${plane.getX()}]]*/ '-4'
+
+            submarineY = 200+(-10*submarineY);
+            submarineX = 350+(10*submarineX);
+            planeY = 200-(10*planeY);
+            planeX = 350+(10*planeX);
+
+            punkt2.setAttribute("cx", submarineX);
+            punkt2.setAttribute("cy", submarineY);
+            punkt1.setAttribute("cx", planeX);
+            punkt1.setAttribute("cy", planeY);
+
+            /*]]>*/
+        }
+        /*<![CDATA[*/
+        function startDatShit(evt){
+            //document.getElementById("playground").addEventListener("click", getClickPosition, false);
+            var svg = document.getElementById("playground");
+            var pt = svg.createSVGPoint();  // Created once for document
+            var punkt2 = document.getElementById('uBoat');
+            var submarineX = /*[[${submarine.getX()}]]*/ '11';
+            var submarineY = /*[[${submarine.getY()}]]*/ '-1';
+            submarineY = 200+(-10*submarineY);
+            submarineX = 350+(10*submarineX);
+            punkt2.setAttribute("cx", submarineX);
+            punkt2.setAttribute("cy", submarineY);
+
+            pt.x = evt.clientX;
+            pt.y = evt.clientY;
+            // The cursor point, translated into svg coordinates
+            var cursorpt =  pt.matrixTransform(svg.getScreenCTM().inverse());
+            console.log("(" + Math.round(cursorpt.x) + ", " + Math.round(cursorpt.y) + ")");
+
+            var helpfield = document.getElementById("counterSlave");//.getAttribute("value");
+
+            var cHelp = helpfield.getAttribute("value");
+            //alert(cHelp);
+            if ( cHelp == 0 ) {
+                var px1In = document.getElementById("p1X");
+                var py1In = document.getElementById("p1Y");
+
+                helpfield.setAttribute("value",1);
+                px1In.setAttribute("value",Math.round(cursorpt.x));
+                py1In.setAttribute("value",Math.round(cursorpt.y));
+
+            }
+            if ( cHelp == 1 ) {
+                var px2In = document.getElementById("p2X");
+                var py2In = document.getElementById("p2Y");
+                px2In.setAttribute("value",Math.round(cursorpt.x));
+                py2In.setAttribute("value",Math.round(cursorpt.y));
+
+                zeichneOnCommand();
+                sleep(50000);
+                document.getElementById("sweetSugar").submit();
+            }
+        }
+        /*]]>*/
+        function sleep(ms) {
+            return new Promise(resolve => setTimeout(resolve, ms));
+        }
+
+        function zeichneOnCommand(){
+            var graph = document.getElementById('functionGraph');
+
+            var px1 = document.getElementById('p1X').getAttribute("value");
+            var px2 = document.getElementById('p2X').getAttribute("value");
+            var py1 = document.getElementById('p1Y').getAttribute("value");
+            var py2 = document.getElementById('p2Y').getAttribute("value");
+
+            graph.setAttribute("d", "M"+px1+","+py1+" L"+px2+"," + py2);
+            graph.setAttribute("stroke-opacity", 1);
+            graph.setAttribute("stroke","black");
+            //zeichnen der punkte
+            var punkt1 = document.getElementById('flugdings');
+            var punkt2 = document.getElementById('uBoat');
+
+            submarineX = /*[[${submarine.getX()}]]*/ '11';
+            submarineY = /*[[${submarine.getY()}]]*/ '-1';
+            planeY = /*[[${plane.getY()}]]*/ '12';
+            planeX = /*[[${plane.getX()}]]*/ '-4';
+
+            submarineY = 200+(-10*submarineY);
+            submarineX = 350+(10*submarineX);
+            planeY = 200-(10*planeY);
+            planeX = 350+(10*planeX);
+
+            punkt2.setAttribute("cx", submarineX);
+            punkt2.setAttribute("cy", submarineY);
+            punkt2.setAttribute("stroke-opacity", 1);
+            punkt1.setAttribute("cx", planeX);
+            punkt1.setAttribute("cy", planeY);
+            punkt1.setAttribute("stroke-opacity", 1);
+        }
+
+        function getClickPosition(e) {
+            //var parentPosition = getPosition(e.currentTarget);
+            var xPosition = e.clientX ;
+            var yPosition = e.clientY ;
+
+            //workaround
+            var helpfield = document.getElementById("counterSlave").getAttribute("value");
+
+            if ( helpfield == 0 ) {
+                var px1In = document.getElementById("p1X");
+                var py1In = document.getElementById("p1Y");
+
+            }
+            if ( helpfield == 1 ) {
+                var px2In = document.getElementById("p2X");
+                var py2In = document.getElementById("p2Y");
+            }
+
+            /*theThing.style.left = xPosition + "px";
+            theThing.style.top = yPosition + "px";*/
+        }
+
+    </script>
+
 </head>
-<body>
-    <h1>Hello, world!</h1>
-    <p>Gegebene Funktion: </p>
-    <p th:text="'f(x)=' + ${gleichung}"></p>
-    <!--<p th:text="'Hello, ' + ${name} + '!'" ></p>-->
-    <div class="container-fluid">
-        <div class="row">
-            <!-- Hier kommt die linke Spalte mit Input für Gleichungslösung, History der Eingaben und Ausgabe von Gleichungen -->
-            <div class="col-md-2">
-                f(x)=3/4 * 3x
-            </div>
+<!--<body onload="zeichne() ">-->
+<body onload="startDatShit()" style="background-image:url(https://cdn.pixabay.com/photo/2018/03/24/03/45/nature-3255634_1280.jpg)">
+<!--<p th:text="${gleichung.toString()}"></p>-->
+<!--<p th:text="${submarine.toString()}"></p>
+<p th:text="${plane.toString()}"></p>-->
+<div class="container-fluid">
+    <div class="row">
 
-            <!-- Hier kommt die mittlere Spalte aka "Spielfeld" -->
-            <div class="col-md-8">
+        <!-- Hier kommt die linke Spalte mit Input für Gleichungslösung, History der Eingaben und Ausgabe von Gleichungen -->
+        <div class="col-md-2">
+            <!--dirty workaround-->
+            <input type="hidden" id="counterSlave" value="0">
+            <p style="color:white;">Als einfacher Schiffjunge auf einem U-Boot, musst du die Schusslinie der
+                Kanone grafisch im „Logbuch dokumentieren“. Der Schuss der Kanone wird dir als Geradengleichung übermittelt. Der Spieler muss die „Schusslinie“ im
+                Koordinatensystem einzeichnen. Nach dem Zeichnen wird „als Kontrolle“ das U-Boot
+                und das Flugobjekt angezeigt. Hast du 5 Schusslinien richtig eingetragen,
+                wird er zum Matrosen „befördert“ und steigt zum Level 2 auf.</p>
+            <br>
+            <p style="color:white;">Gleichung: </p> <p style="color:white;" th:text="${gleichung.toString()}"></p>
 
-            </div>
+            <form id="sweetSugar" action="#" th:action="@{/example}" th:object="${userInput}" method="post" style="hidden">
+                <table th:if="${userInputValid} == false" table>
 
-            <!-- Hier kommt die rechte Spalte aka Befehlsangabe -->
-            <div class="col-md-2">
+                    <tr>
+                        <td><input type="hidden" th:field="*{p1X}" /></td>
+                    </tr>
+                    <tr>
+                        <td><input type="hidden" th:field="*{p1Y}" /></td>
+                    </tr>
+                    <tr>
+                        <td><input type="hidden" th:field="*{p2X}" /></td>
+                    </tr>
+                    <tr>
+                        <td><input type="hidden" th:field="*{p2Y}" /></td>
+                    </tr>
 
-            </div>
+                </table>
+                <table th:if="${userInputValid} == null or ${userInputValid} == true" table>
 
+                    <tr>
+                        <td><input type="hidden" th:id="'p1X'" th:name="'p1X'" /></td>
+                    </tr>
+                    <tr>
+                        <td><input type="hidden" th:id="'p1Y'" th:name="'p1Y'" /></td>
+                    </tr>
+                    <tr>
+                        <td><input type="hidden" th:id="'p2X'" th:name="'p2X'" /></td>
+                    </tr>
+                    <tr>
+                        <td><input type="hidden" th:id="'p2Y'" th:name="'p2Y'" /></td>
+                    </tr>
 
-            <div class="row">
-                <div class="col-xs-6 col-md-2">.col-xs-6 .col-md-4</div>
-                <div class="col-xs-12 col-sm-6 col-md-8">.col-xs-12 .col-sm-6 .col-md-1</div>
-                <div class="col-xs-6 col-md-4">.col-xs-6 .col-md-4</div>
+                </table>
 
+            </form>
 
-            </div>
 
 
         </div>
+        <!-- Hier kommt die mittlere Spalte aka "Spielfeld" -->
+        <!--<div class="col-md-8" onload="zeichne()">-->
+        <div class="col-md-8"  >
+            <main>
+                <form>
+                    <!--<fieldset>
+                        <legend>Formel</legend>
+                        <p> y =
+                            <label> Faktor a
+                                <input name="a" step="0.01" type="number" value="1"> </label> * x +
+                            <label> Konstante c
+                                <input name="c" id="" type="number" value="1"> </label>
+                        </p>
+                    </fieldset>-->
+                </form>
+                <svg id="playground" viewbox="0 0 700 400" onclick="startDatShit(evt)">
+                    <style>
+                        .small { font: 7px sans-serif; }
+                    </style>
+
+                    <defs>
+                        <!--<pattern id="grid" patternUnits="userSpaceOnUse" width="10" height="10" x="0" y="0">
+                            <path d="M0,0 v10 h10" stroke="#57c4ff" fill="none" /> </pattern>-->
+                        <!-- eine Pfeilspitze -->
+                        <marker id="markerArrow" markerWidth="130" markerHeight="13" refx="2" refy="6" orient="auto">
+                            <path d="M0,2 l8,4 l-8,4"  stroke="red" stroke-width="1" />
+                            <path d="M360,200 L400,200 L9,3 z" fill="#f00" fill-opacity="0.0"/>
+                        </marker>
+
+                    </defs>
+                    <!-- Karo-Muster -->
+                    <rect x="0" y="0" width="700" height="400" fill="url(#grid)"></rect>
+                    <!-- Ursprungspunkt -->
+                    <!--<circle cx="350" cy="200" r="4" fill="#c32e04"></circle>-->
+
+
+
+                    <circle id="flugdings" cx="350" cy="200" r="4" fill="#f0ffff" fill-opacity="0.0"></circle>
+                    <circle id="uBoat" cx="350" cy="200" r="4" fill="#f0ffff" ></circle>
+
+
+                    <!-- X-Achse -->
+                    <path class="axis" id="x-axis" d="M0,200 h700" stroke="black" fill="black" />
+                    <!-- Y-Achse -->
+                    <path class="axis" id="y-axis" d="M350,400 v-400" stroke="black"/>
+                    <!-- Linie des Funktionsgraphen -->
+                    <!--<path id="functionGraph" d="M140,400 L560,0" stroke="#AAAA" />-->
+                    <path id="functionGraph" d="M140,400 L560,0" stroke="white" stroke-opacity="0.0"/>
+
+                    <!-- Beschriftung des Ursprungspunktes -->
+                    <!--<text x="360" y="200" fill="darkslategray">(0,0)</text>-->
+
+                    <!-- Beschriftung X-Achse -->
+                    <!--<text id="x-label" x="640" y="195" fill="#999">X-Achse</text>
+                    <!-- Beschriftung Y-Achse -->
+                    <!--<text id="y-label" x="340" y="20" fill="#999">Y-Achse</text>-->
+
+                    <circle cx="210" cy="200" r="1" fill="black"></circle>
+                    <circle cx="220" cy="200" r="1" fill="black"></circle>
+                    <circle cx="230" cy="200" r="1" fill="black"></circle>
+                    <circle cx="240" cy="200" r="1" fill="black"></circle>
+                    <circle cx="250" cy="200" r="1" fill="black"></circle>
+                    <circle cx="260" cy="200" r="1" fill="black"></circle>
+                    <circle cx="270" cy="200" r="1" fill="black"></circle>
+                    <circle cx="280" cy="200" r="1" fill="black"></circle>
+                    <circle cx="290" cy="200" r="1" fill="black"></circle>
+                    <circle cx="300" cy="200" r="1" fill="black"></circle>
+                    <circle cx="310" cy="200" r="1" fill="black"></circle>
+                    <circle cx="320" cy="200" r="1" fill="black"></circle>
+                    <circle cx="330" cy="200" r="1" fill="black"></circle>
+                    <circle cx="340" cy="200" r="1" fill="black"></circle>
+
+                    <circle cx="350" cy="60" r="1" fill="black"></circle>
+                    <circle cx="350" cy="70" r="1" fill="black"></circle>
+                    <circle cx="350" cy="80" r="1" fill="black"></circle>
+                    <circle cx="350" cy="90" r="1" fill="black"></circle>
+                    <circle cx="350" cy="100" r="1" fill="black"></circle>
+                    <circle cx="350" cy="110" r="1" fill="black"></circle>
+                    <circle cx="350" cy="120" r="1" fill="black"></circle>
+                    <circle cx="350" cy="130" r="1" fill="black"></circle>
+                    <circle cx="350" cy="140" r="1" fill="black"></circle>
+                    <circle cx="350" cy="150" r="1" fill="black"></circle>
+                    <circle cx="350" cy="160" r="1" fill="black"></circle>
+                    <circle cx="350" cy="170" r="1" fill="black"></circle>
+                    <circle cx="350" cy="180" r="1" fill="black"></circle>
+                    <circle cx="350" cy="190" r="1" fill="black"></circle>
+
+                    <circle cx="350" cy="210" r="1" fill="black"></circle>
+                    <circle cx="350" cy="220" r="1" fill="black"></circle>
+                    <circle cx="350" cy="230" r="1" fill="black"></circle>
+                    <circle cx="350" cy="240" r="1" fill="black"></circle>
+                    <circle cx="350" cy="250" r="1" fill="black"></circle>
+                    <circle cx="350" cy="260" r="1" fill="black"></circle>
+                    <circle cx="350" cy="270" r="1" fill="black"></circle>
+                    <circle cx="350" cy="280" r="1" fill="black"></circle>
+                    <circle cx="350" cy="290" r="1" fill="black"></circle>
+                    <circle cx="350" cy="300" r="1" fill="black"></circle>
+                    <circle cx="350" cy="310" r="1" fill="black"></circle>
+                    <circle cx="350" cy="320" r="1" fill="black"></circle>
+                    <circle cx="350" cy="330" r="1" fill="black"></circle>
+                    <circle cx="350" cy="340" r="1" fill="black"></circle>
+
+                    <circle cx="360" cy="200" r="1" fill="black"></circle>
+                    <circle cx="370" cy="200" r="1" fill="black"></circle>
+                    <circle cx="380" cy="200" r="1" fill="black"></circle>
+                    <circle cx="390" cy="200" r="1" fill="black"></circle>
+                    <circle cx="400" cy="200" r="1" fill="black"></circle>
+                    <circle cx="410" cy="200" r="1" fill="black"></circle>
+                    <circle cx="420" cy="200" r="1" fill="black"></circle>
+                    <circle cx="430" cy="200" r="1" fill="black"></circle>
+                    <circle cx="440" cy="200" r="1" fill="black"></circle>
+                    <circle cx="450" cy="200" r="1" fill="black"></circle>
+                    <circle cx="460" cy="200" r="1" fill="black"></circle>
+                    <circle cx="470" cy="200" r="1" fill="black"></circle>
+                    <circle cx="480" cy="200" r="1" fill="black"></circle>
+                    <circle cx="490" cy="200" r="1" fill="black"></circle>
+
+                    <text id="y-label" class="small" x="340" y="220" fill="black">-2</text>
+                    <text id="y-label" class="small" x="340" y="240" fill="black">-4</text>
+                    <text id="y-label" class="small" x="340" y="260" fill="black">-6</text>
+                    <text id="y-label" class="small" x="340" y="280" fill="black">-8</text>
+                    <text id="y-label" class="small" x="340" y="300" fill="black">-10</text>
+                    <text id="y-label" class="small" x="340" y="320" fill="black">-12</text>
+                    <text id="y-label" class="small" x="340" y="340" fill="black">-14</text>
+
+                    <text id="y-label" class="small" x="340" y="180" fill="black">2</text>
+                    <text id="y-label" class="small" x="340" y="160" fill="black">4</text>
+                    <text id="y-label" class="small" x="340" y="140" fill="black">6</text>
+                    <text id="y-label" class="small" x="340" y="120" fill="black">8</text>
+                    <text id="y-label" class="small" x="340" y="100" fill="black">10</text>
+                    <text id="y-label" class="small" x="340" y="80" fill="black">12</text>
+                    <text id="y-label" class="small" x="340" y="60" fill="black">14</text>
+
+                    <text id="y-label" class="small" x="320" y="200" fill="black">-2</text>
+                    <text id="y-label" class="small" x="300" y="200" fill="black">-4</text>
+                    <text id="y-label" class="small" x="280" y="200" fill="black">-6</text>
+                    <text id="y-label" class="small" x="260" y="200" fill="black">-8</text>
+                    <text id="y-label" class="small" x="240" y="200" fill="black">-10</text>
+                    <text id="y-label" class="small" x="220" y="200" fill="black">-12</text>
+                    <text id="y-label" class="small" x="200" y="200" fill="black">-14</text>
+
+                    <text id="y-label" class="small" x="360" y="200" fill="black">2</text>
+                    <text id="y-label" class="small" x="380" y="200" fill="black">4</text>
+                    <text id="y-label" class="small" x="400" y="200" fill="black">6</text>
+                    <text id="y-label" class="small" x="420" y="200" fill="black">8</text>
+                    <text id="y-label" class="small" x="440" y="200" fill="black">10</text>
+                    <text id="y-label" class="small" x="460" y="200" fill="black">12</text>
+                    <text id="y-label" class="small" x="480" y="200" fill="black">14</text>
+                    <!-- Ende der Achsen Beschriftung -->
+
+
+                    <!-- Beschriftung des Funktionsgraphen -->
+                    <!--<text>
+                        <textPath id="graph-label" fill="#AAAA" startOffset="20" xlink:href="#functionGraph" th:text="${gleichung.toString()}"></textPath>
+                    </text>-->
+                </svg>
+
+            </main>
+
+        </div>
+
+        <canvas id="canvastest" width="150" height="150" > Ihr Browser kann kein Canvas! </canvas>
     </div>
 
-    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
-    <!-- Include all compiled plugins (below), or include individual files as needed -->
-    <script src="js/bootstrap.min.js"></script>
+    <!-- Hier kommt die rechte Spalte aka Befehlsangabe -->
+    <!--<div class="col-md-1" type="hidden">
+
+        <p name="order2" readonly="true">Der Spieler muss als Leichtmatrose auf einem Kanonenboot auf der Oberfläche
+            Kanonen programmieren, welche gegnerische U-Boote zerstören. Ein Satelit
+            übermittelt an das Schiff eine Geradengleichung auf dessen Linie ein gegnerisches UBoot geortet wurde. (Die Linie wird nicht angezeigt.) Das Schiff befindet sich bereits
+            direkt über dem U-Boot, aber in welcher Tiefe soll die Bombe explodieren? Der Punkt
+            auf dem die Bombe explodieren solle muss eingegeben werden. Hat der
+            Leichtmatrose 5 U-Boote des Gegners erfolgreich zerstört, wird er zum „Vollmatrosen
+            1. Grades“ befördert.</p>
+        <p name="order3" readonly="true">Der Spieler muss als Vollmatrose 1. Grades auf dem Kanonenboot nach wie vor
+            Kanonen programmieren, welche gegnerische U-Boote zerstören. Ein Satelit
+            übermittelt an das Schiff eine Geradengleichung auf dessen Linie ein gegnerisches UBoot geortet wurde. (Die Linie wird nicht angezeigt.) Ein alliiertes Boot übermittelt die
+            Information, auf welcher Tiefe sich das U-Boot befindet. Das Schiff muss an die
+            Position direkt über dem U-Boot fahren, um seine Bombe abzuwerfen. Der Punkt auf
+            dem die Bombe explodieren soll muss wie im Level 2 eingegeben werden. Zudem
+            muss der Punkt zu dem das Schiff fahren muss eingegeben werden. Das Schiff
+            fährt anschließend zum eingegebenen Punkt und wirft seine Bombe ab. Hat der
+            Vollmatrose 1. Grades 5 U-Boote des Gegners erfolgreich zerstört, wird er zum
+            „Vollmatrosen 2. Grades“ (Level 4) befördert.</p>
+        <p name="order4" readonly="true">Auf dem Punkt „in der Luft“ wird ein Flugobjekt (Ziel) angezeigt. Auf dem tiefsten
+            ganzzahligen Punkt auf der Gerade wird ein U-Boot angezeigt. Die Kanone auf dem
+            U-Boot muss mit „Eingabe der Geradengleichung“ so ausgerichtet werden, dass
+            das Flugobjekt getroffen wird. Die Steigung muss als Bruch und der YAchsenabschnitt als Ganzzahl angegeben werden. War die Eingabe korrekt,
+            explodiert das Flugobjekt. Hat der Kanonier die Kanone 10x richtig ausgerichtet, wird
+            er zum Offizier befördert (Level 5).</p>-->
+    </div>
+
+
+</div>
+
+
+<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+<script src="/webjars/jquery/3.3.1/jquery.min.js"></script>
+<!-- Include all compiled plugins (below), or include individual files as needed -->
+<script type="text/javascript"
+        src="webjars/bootstrap/4.1.0/js/bootstrap.min.js"></script>
 </body>
 </html>

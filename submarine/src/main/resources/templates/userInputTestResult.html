@@ -1,0 +1,35 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>User Input Result</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+</head>
+<body>
+
+<table>
+    <tr>
+        <td >Punkt1 x: </td> <td th:text="${userInput.punkt1.x}"></td>
+    </tr>
+    <tr>
+        <td >Punkt1 y: </td> <td th:text="${userInput.punkt1.y}"></td>
+    </tr>
+    <tr>
+        <td >Punkt2 x: </td> <td th:text="${userInput.punkt2.x}"></td>
+    </tr>
+    <tr>
+        <td >Punkt2 y: </td> <td th:text="${userInput.punkt2.y}"></td>
+    </tr>
+    <tr>
+        <td >Nenner: </td> <td th:text="${userInput.divisor}"></td>
+    </tr>
+    <tr>
+        <td >Zähler: </td> <td th:text="${userInput.divident}"></td>
+    </tr>
+    <tr>
+        <td >b: </td> <td th:text="${userInput.b}"></td>
+    </tr>
+</table>
+
+
+</body>
+</html>

@@ -1,33 +1,25 @@
 package com.AEProjekt.submarine.InputLevel;
 
+
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+
+@Data
+@AllArgsConstructor
+@NoArgsConstructor
 public class InputLevel2 implements iLInput {
 
-    private double pFX;
-
-    //Konstruktor
-    public InputLevel2(double pFX)
-    {
-        this.pFX = pFX;
-    }
-
-    public double getPFX() {
-        return pFX;
-    }
-
-    public void setPFX(double pFX) {
-        this.pFX = pFX;
-    }
+    private int pFX;
 
     //Weitere Methoden
-        public boolean isInputValid()
-        {
-            if(pFX>= -12 && pFX <= 12)
-            {
-                return true;
-            }
-            else
-            {
-                return false;
-            }
+    public boolean isInputValid() {
+        if (pFX >= -12 && pFX <= 0) {
+            return true;
+        } else {
+            return false;
         }
+    }
+
+
 }
