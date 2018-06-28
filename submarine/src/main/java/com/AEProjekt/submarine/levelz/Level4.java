@@ -31,14 +31,20 @@ public class Level4 implements iLevel {
     public Level4() {
         equipLevel();
     }
-
+    /**
+     * Siehe Level 1
+     * @author Simon Freygang
+     */
     public void equipLevel() {
         linEq = EquationGenerator.generateLinearEquation();
         plane = new Plane(EquationGenerator.generatePointAboveSea(linEq));
         submarine = new Submarine(EquationGenerator.generatePointBelowSea(linEq));
         levelbeatcounter = new LevelBeatCounter();
     }
-
+    /**
+     * Siehe Level 1
+     * @author Simon Freygang
+     */
     public void equipLevelNoRS() {
         linEq = EquationGenerator.generateLinearEquation();
         plane = new Plane(EquationGenerator.generatePointAboveSea(linEq));

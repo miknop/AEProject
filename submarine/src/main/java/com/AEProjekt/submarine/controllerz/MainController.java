@@ -200,6 +200,12 @@ public class MainController {
         }
     }
 
+    /**
+     * Hier wird das Level sozusagen gespielt. Hier finden ableiche statt, wie z.B. ist die Aufgespannte Gerade aus den zwei
+     * Punkten, die der Benutzer eingezeichnet hat gleich zu der generierten Geraden ist. Hat der Benutzer eine richtige Eingabe
+     * gemacht, wird das Ergebnis der akutellen spielrunde in form von einer boolischen Liste eingetragen.
+     * @author Simon Freygang
+     */
     public void playLevel(iLevel level) {
         if (level instanceof Level1) {
             int m1 = ((InputLevel1) inputLevel).getP2Y() - ((InputLevel1) inputLevel).getP1Y();
@@ -275,7 +281,12 @@ public class MainController {
         }
     }
 
-
+    /**
+     * Diese Methode wird bei jeder entgegenname von Post-Parametern aufgerufen. Sie ruft unteranderem die playLevel(iLevel level)
+     * Methode auf. Hier wird abgefangen, ob der Nutzer das letzt Level geschlagen und damit gewonnen hat. Zusätzlich ruft sie nach
+     * jedem playLevel(iLevel level) die Methode setToNextLevel(User user) auf.
+     * @author Simon Freygang
+     */
     //TODO Login Funktion entwickeln (wo kommt user her?)
     public void storyExecution(User user) {
         if ((user.getLevel() instanceof Level4) && isLevelBeat(user)) {
@@ -291,6 +302,13 @@ public class MainController {
     }
 
 
+    /**
+    * Mit Hilfe der Methode isLevelBeat(User user) wird der Benutzer in das nächste Level befördert.
+    * Die Methode isLevelBeat(User user) gibt einen boolischen Wert zurück der, wenn er true ist, den
+    * Benutzer in das nächste Level bringt. Zusätzlich muss danach noch geprüft werden, in welchem Level
+    * er sich gerade befindet, damit das Programm weiß, in welches Level der Benutzer als nächstes gebracht werden muss.
+    * @author Simon Freygang
+    */
     public void setToNextLevel(User user) {
         //Die Fragstellung hier ist doch, koennte er es nach wie vor gewinnen und hat er seinen soll erfuellt
         if (isLevelBeat(user)) {
@@ -309,7 +327,11 @@ public class MainController {
     }
 
 
-    //Die genauere fragestellung die hier erfüllt werden soll ist doch eher, kann der user das level noch gewinnen
+    /**
+     * Gibt einen boolischen Wert zurück. Hier wird geprüft, ob er aus den Letzten spielen fünf stück Gewonnen hat.
+     * Hat er noch keine fünf Spiele im aktuellen Level gespielt, wird in jedem fall False zurück gegeben.
+     * @author Simon Freygang
+     */
     public boolean isLevelBeat(User user) {
         if (user.getLevel().getLevelbeatcounter().getBeatList().size() < 5) {
             return false;

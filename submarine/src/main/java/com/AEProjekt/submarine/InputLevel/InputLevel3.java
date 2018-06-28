@@ -11,9 +11,10 @@ import lombok.NoArgsConstructor;
 public class InputLevel3 implements iLInput {
     private int pX;
 
-    //Weitere Methoden
-
-    //prueft ob sich der Punkt auf dem Spielfeld befindet
+    /**
+     * Siehe die Erklärung aus InputLevel1
+     * @author Simon Freygang
+     */
     public boolean isInputValid() {
         if (pX >= -12 && pX <= 12) {
             return true;

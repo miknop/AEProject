@@ -37,13 +37,27 @@ public class Level1 implements iLevel {
         equipLevel();
     }
 
+    /**
+     * Rüstet das Level mit allen nötigen Variablen aus.
+     * Die generierte Gerade, den oberen und unteren Punkt,
+     * sowie den Counter für die Besiegung.
+     * Sie wird tendenziel aufgerufen, wenn der User gerade frisch
+     * nach einem Level aufstieg in das neue Level kommt.
+     * @author Simon Freygang
+     */
     public void equipLevel() {
         linEq = EquationGenerator.generateLinearEquation();
         plane = new Plane(EquationGenerator.generatePointAboveSea(linEq));
         sub = new Submarine(EquationGenerator.generatePointBelowSea(linEq));
         levelbeatcounter = new LevelBeatCounter();
     }
-
+    /**
+     * Das Gleiche wie die equipLevel(), nur das hier nicht der Counter für die
+     * besiegung zurückgesetzt wird. Sie wird tendenziel dann aufgerufen, wenn
+     * der Benutzer nach erfolg, oder misserfolg einer Überprüfung ein neues Spiel braucht.
+     * Seine bepunktungsfortschritt geht logischerweise nicht verloren.
+     * @author Simon Freygang
+     */
     public void equipLevelNoRS() {
         linEq = EquationGenerator.generateLinearEquation();
         plane = new Plane(EquationGenerator.generatePointAboveSea(linEq));
