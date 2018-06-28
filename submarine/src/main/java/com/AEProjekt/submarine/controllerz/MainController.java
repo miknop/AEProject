@@ -24,10 +24,7 @@ import java.util.ArrayList;
 
 @Controller
 public class MainController {
-    private EquationGenerator generator;
-    private LinearEquation linearEquation = null;
     private iLInput inputLevel;
-    private InputControl validInput;
     private User user;
     private UserService userService;
 
@@ -293,18 +290,6 @@ public class MainController {
         }
     }
 
-    private void moveFigure(User user) {
-
-    }
-
-    private void prepareLevel(iEquationType et, iLevel lv) {
-
-    }
-
-    public ArrayList<Boolean> generateRoundsList(int tt) {
-        return null;
-    }
-
 
     public void setToNextLevel(User user) {
         //Die Fragstellung hier ist doch, koennte er es nach wie vor gewinnen und hat er seinen soll erfuellt
@@ -321,8 +306,6 @@ public class MainController {
             }
 
         }
-
-
     }
 
 
@@ -342,8 +325,5 @@ public class MainController {
             return (rights >= 5);
 
         }
-
-
     }
-
 }
